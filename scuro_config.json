@@ -1,0 +1,15 @@
+{
+  "accumulation_lot": 0.02,
+  "reward_ratio": 2.5,
+  "rsi_buy_threshold": 45,
+  "rsi_sell_threshold": 55,
+  "sl_atr_mult": 1.8,
+  "trail_atr_mult": 1.4,
+  "ema_fast": 5,
+  "ema_slow": 13,
+  "max_open_positions": 2,
+  "cooldown_mins": 15,
+  "last_updated": "2026-05-07 12:00:00",
+  "update_reason": "manual reset — restored safe EMA pair and SL distance",
+  "cycle": 80
+}

@@ -1,0 +1,180 @@
+#!/usr/bin/env python3
+"""
+QUICK START CHECKLIST
+═══════════════════════════════════════════════════════════════════
+Copy-paste these commands step-by-step to get live cloud access.
+"""
+
+# ─── STEP 1: CREATE SUPABASE TABLE (2 minutes) ───────────────────
+"""
+1. Open https://app.supabase.com
+2. Click "SQL Editor" (left sidebar)
+3. Click "+ New Query"
+4. Paste this:
+
+    CREATE TABLE IF NOT EXISTS live_trading_data (
+      id INT PRIMARY KEY DEFAULT 1,
+      data JSONB NOT NULL,
+      updated_at TIMESTAMP DEFAULT NOW()
+    );
+
+5. Click ▶ "Run"
+6. You should see "1 statement executed successfully"
+
+✓ Table created!
+"""
+
+# ─── STEP 2: INSTALL PYTHON PACKAGE (1 minute) ──────────────────
+"""
+Open PowerShell, navigate to your sir_bane_v1 folder, then:
+
+  pip install supabase
+
+You should see:
+  Successfully installed supabase-2.5.0 ...
+"""
+
+# ─── STEP 3: START THE UPLOADER (30 seconds) ────────────────────
+"""
+In the same PowerShell window:
+
+  python upload_to_supabase.py
+
+You should see:
+  ✓ Connected to Supabase
+  ✓ Table 'live_trading_data' exists
+  [HH:MM:SS] ✓ Uploaded to Supabase
+  [HH:MM:SS] ✓ Uploaded to Supabase
+  ...
+
+Keep this running. Don't close the window.
+(This syncs your trading data to the cloud every 10 seconds)
+"""
+
+# ─── STEP 4: PUSH TO GITHUB (5 minutes) ──────────────────────────
+"""
+Option A: Create new repository on GitHub
+
+  1. Go to https://github.com/new
+  2. Name: "sir_bane_v1"
+  3. Initialize with README ✓
+  4. Create repository
+  5. Clone to your PC (or use GitHub Desktop)
+
+  6. Copy these files to the repo folder:
+     - advisor.py
+     - mt5_history.py
+     - dashboard_cloud.py (NOT dashboard.py)
+     - upload_to_supabase.py
+     - scuro_config.json
+     - requirements.txt
+     - CLOUD_DEPLOYMENT.md
+
+  7. Commit & push:
+     git add .
+     git commit -m "Add cloud dashboard setup"
+     git push
+
+Option B: Add to existing repository
+  - Just upload the new files (upload_to_supabase.py, dashboard_cloud.py, etc.)
+"""
+
+# ─── STEP 5: DEPLOY TO STREAMLIT CLOUD (5 minutes) ──────────────
+"""
+1. Go to https://share.streamlit.io/
+2. Click "New app" (or login first if needed)
+
+3. Fill in:
+   Repository: your-username/sir_bane_v1
+   Branch: main
+   Main file path: dashboard_cloud.py
+
+4. Click "Deploy"
+
+Wait for it to build (~1-2 minutes). You'll see logs.
+Once done, you'll get a URL like:
+  https://share.streamlit.io/your-username/sir_bane_v1/main/dashboard_cloud.py
+
+Your dashboard is now LIVE! But it won't show data yet...
+"""
+
+# ─── STEP 6: ADD ENVIRONMENT VARIABLES (2 minutes) ──────────────
+"""
+Your Streamlit Cloud dashboard needs Supabase credentials.
+
+1. Go to your deployed app
+2. Click the ⋮ menu (top right)
+3. Click "Settings"
+4. Scroll to "Secrets" (Advanced section)
+5. Click "Edit secrets in .streamlit/secrets.toml"
+
+Paste this:
+  SUPABASE_URL = "https://amykrtiekuyccddwyvbb.supabase.co"
+  SUPABASE_KEY = "sb_publishable_49Ob7v2rKNuzBaRaNGfhEg_DKoFqUQe"
+
+6. Click "Save"
+
+Your app will auto-reload. Now it should connect!
+"""
+
+# ─── STEP 7: VERIFY IT'S WORKING (1 minute) ────────────────────
+"""
+Checklist:
+
+  ☐ upload_to_supabase.py is running locally (PowerShell window open)
+  ☐ mt5_history.py is running locally (or has run recently)
+  ☐ Streamlit Cloud dashboard is deployed
+  ☐ Env variables are set in Streamlit Cloud Secrets
+  ☐ Dashboard shows "⚡ SCURO" header with live data
+
+If you see live prices, open positions, and charts:
+  🎉 YOU'RE DONE! Your dashboard is accessible from anywhere!
+"""
+
+# ─── KEEP IT RUNNING 24/7 (Optional) ─────────────────────────────
+"""
+For continuous access, you need upload_to_supabase.py to stay running.
+
+Easiest: Keep PC on and PowerShell window open
+- Minimize to taskbar
+- Check occasionally that uploader is still printing timestamps
+
+Or: Set up Windows Task Scheduler
+- See CLOUD_DEPLOYMENT.md for detailed instructions
+"""
+
+# ─── SHARE YOUR DASHBOARD ───────────────────────────────────────
+"""
+Your dashboard URL is:
+  https://share.streamlit.io/your-username/sir_bane_v1/main/dashboard_cloud.py
+
+You can:
+  ✓ Share with friends/investors
+  ✓ Check from phone/tablet anywhere
+  ✓ Monitor your bot 24/7 without VPN
+  ✓ Access from any browser, any device
+"""
+
+# ─── TROUBLESHOOTING ────────────────────────────────────────────
+"""
+Dashboard shows "No data in Supabase"
+  → Is upload_to_supabase.py running? (check PowerShell window)
+  → Is it printing [HH:MM:SS] ✓ Uploaded messages?
+  → If not, run: python upload_to_supabase.py again
+
+Dashboard won't load / Error
+  → Check Streamlit Cloud app logs (▲ button)
+  → Verify env variables are in Secrets (not as README)
+  → Try refreshing the page
+
+API Key not working
+  → Double-check the SUPABASE_KEY (copy from Supabase dashboard)
+  → Make sure it's in Secrets, not in code
+
+Old data showing
+  → Uploader might be paused
+  → Restart: Ctrl+C in PowerShell, then python upload_to_supabase.py again
+"""
+
+# ─── TOTAL TIME: ~25 MINUTES ────────────────────────────────────
+# ─── COST: FREE ($0) ───────────────────────────────────────────
