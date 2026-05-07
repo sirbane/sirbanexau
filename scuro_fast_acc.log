@@ -252,3 +252,24 @@
 2026-05-07 13:11:00,538 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
 2026-05-07 13:12:00,988 | INFO  | 🔍 XAUUSDm | Price: 4734.07 | RSI: 50.0 | H1: UP | EMA: ↓ | Streak: 0L
 2026-05-07 13:12:00,988 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:13:00,447 | INFO  | 🔍 XAUUSDm | Price: 4734.03 | RSI: 49.9 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:13:00,448 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:14:00,907 | INFO  | 🔍 XAUUSDm | Price: 4734.03 | RSI: 49.9 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:14:00,908 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:15:00,314 | INFO  | 🔍 XAUUSDm | Price: 4734.53 | RSI: 50.7 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:15:00,315 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:16:00,798 | INFO  | 🔍 XAUUSDm | Price: 4735.34 | RSI: 51.9 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:16:00,799 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:17:00,220 | INFO  | 🔍 XAUUSDm | Price: 4734.49 | RSI: 50.6 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:17:00,220 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:18:00,837 | INFO  | 🔍 XAUUSDm | Price: 4733.56 | RSI: 49.1 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:18:00,839 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:19:00,296 | INFO  | 🔍 XAUUSDm | Price: 4733.97 | RSI: 49.7 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:19:00,296 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:20:00,744 | INFO  | 📋 No trade history yet.
+2026-05-07 13:20:00,746 | INFO  | 🔍 XAUUSDm | Price: 4731.22 | RSI: 45.7 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:20:00,746 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:21:00,466 | INFO  | 🔍 XAUUSDm | Price: 4730.15 | RSI: 44.1 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:21:00,469 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:22:00,996 | INFO  | 🔍 XAUUSDm | Price: 4731.44 | RSI: 46.0 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:22:00,997 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "refreshed_at": "2026-05-07 13:14:51",
+    "refreshed_at": "2026-05-07 13:27:32",
     "symbol": "XAUUSDm",
     "magic": 777777,
     "lookback_days": 30
@@ -21,18 +21,18 @@
     "type": "demo"
   },
   "live_tick": {
-    "bid": 4733.98,
-    "ask": 4734.29,
-    "spread": 0.31,
-    "time": "2026-05-07 13:14:50"
+    "bid": 4732.53,
+    "ask": 4732.81,
+    "spread": 0.28,
+    "time": "2026-05-07 13:27:32"
   },
   "live_indicators": {
-    "rsi": 49.7,
-    "atr": 5.15,
-    "ema_fast": 4732.85,
-    "ema_slow": 4733.73,
+    "rsi": 49.8,
+    "atr": 4.99,
+    "ema_fast": 4732.49,
+    "ema_slow": 4733.21,
     "ema_trend": "DOWN",
-    "close": 4733.98
+    "close": 4732.53
   },
   "h1_trend": "UP",
   "stats": {
