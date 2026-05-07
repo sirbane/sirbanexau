@@ -1587,3 +1587,1313 @@
 2026-05-07 21:25:00,096 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
 2026-05-07 21:26:00,523 | INFO  | 🔍 XAUUSDm | Price: 4705.91 | RSI: 42.4 | H1: UP | EMA: ↓ | Streak: 1L
 2026-05-07 21:26:00,523 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:27:01,011 | INFO  | 🔍 XAUUSDm | Price: 4707.98 | RSI: 44.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:27:01,011 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:28:00,445 | INFO  | 🔍 XAUUSDm | Price: 4708.17 | RSI: 45.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:28:00,447 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:29:00,962 | INFO  | 🔍 XAUUSDm | Price: 4710.78 | RSI: 47.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:29:01,421 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:29:01,422 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.007% (flat, no conviction)
+2026-05-07 21:30:00,849 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:30:00,849 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 21:30:00,850 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:30:00,850 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 21:30:00,850 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 21:30:00,850 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 21:30:00,850 | INFO  |   Balance: 1,777.97
+2026-05-07 21:30:00,850 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 21:30:00,851 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:30:00,852 | INFO  |   LAST 10 TRADES:
+2026-05-07 21:30:00,852 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 21:30:00,852 | INFO  |   ······························································
+2026-05-07 21:30:00,853 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 21:30:00,853 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:30:00,855 | INFO  | 🔍 XAUUSDm | Price: 4713.19 | RSI: 50.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:30:01,295 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:30:01,296 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.53 < 30% ATR=6.96 (drift)
+2026-05-07 21:31:00,749 | INFO  | 🔍 XAUUSDm | Price: 4711.80 | RSI: 49.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:31:01,161 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:31:01,162 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.86 < 30% ATR=7.01 (drift)
+2026-05-07 21:32:00,565 | INFO  | 🔍 XAUUSDm | Price: 4712.99 | RSI: 50.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:32:00,973 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:32:00,974 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.33 < 30% ATR=7.02 (drift)
+2026-05-07 21:33:00,445 | INFO  | 🔍 XAUUSDm | Price: 4712.51 | RSI: 49.7 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:33:00,836 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:33:00,836 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.15 < 30% ATR=7.05 (drift)
+2026-05-07 21:34:00,252 | INFO  | 🔍 XAUUSDm | Price: 4714.74 | RSI: 52.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:34:00,666 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:34:00,667 | INFO  | ⏭️  Technical gate rejected: TECH:body=2.08 < 30% ATR=7.16 (drift)
+2026-05-07 21:35:00,106 | INFO  | 🔍 XAUUSDm | Price: 4713.64 | RSI: 50.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:35:00,534 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:35:00,534 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.00 < 30% ATR=6.66 (drift)
+2026-05-07 21:36:00,962 | INFO  | 🔍 XAUUSDm | Price: 4714.10 | RSI: 51.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:36:01,358 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:36:01,359 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.46 < 30% ATR=6.84 (drift)
+2026-05-07 21:37:00,778 | INFO  | 🔍 XAUUSDm | Price: 4713.92 | RSI: 51.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:37:01,172 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:37:01,173 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.28 < 30% ATR=6.96 (drift)
+2026-05-07 21:38:00,624 | INFO  | 🔍 XAUUSDm | Price: 4710.99 | RSI: 48.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:38:01,038 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:38:01,039 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.028% (flat, no conviction)
+2026-05-07 21:39:00,500 | INFO  | 🔍 XAUUSDm | Price: 4710.95 | RSI: 48.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:39:00,885 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:39:00,886 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.028% (flat, no conviction)
+2026-05-07 21:40:00,311 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:40:00,311 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 21:40:00,311 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:40:00,311 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 21:40:00,312 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 21:40:00,312 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 21:40:00,312 | INFO  |   Balance: 1,777.97
+2026-05-07 21:40:00,312 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 21:40:00,313 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:40:00,314 | INFO  |   LAST 10 TRADES:
+2026-05-07 21:40:00,315 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 21:40:00,315 | INFO  |   ······························································
+2026-05-07 21:40:00,316 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 21:40:00,317 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:40:00,319 | INFO  | 🔍 XAUUSDm | Price: 4712.95 | RSI: 50.1 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:40:00,751 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:40:00,752 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.69 < 30% ATR=7.29 (drift)
+2026-05-07 21:41:00,176 | INFO  | 🔍 XAUUSDm | Price: 4711.87 | RSI: 48.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:41:00,587 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:41:00,587 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.00 < 30% ATR=6.92 (drift)
+2026-05-07 21:42:00,020 | INFO  | 🔍 XAUUSDm | Price: 4710.72 | RSI: 47.6 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:42:00,417 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:42:00,417 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.028% (flat, no conviction)
+2026-05-07 21:43:00,865 | INFO  | 🔍 XAUUSDm | Price: 4714.11 | RSI: 51.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:43:01,254 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:43:01,255 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.23 < 30% ATR=7.11 (drift)
+2026-05-07 21:44:00,665 | INFO  | 🔍 XAUUSDm | Price: 4711.23 | RSI: 48.1 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:44:01,054 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:44:01,054 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.64 < 30% ATR=7.12 (drift)
+2026-05-07 21:45:00,482 | INFO  | 🔍 XAUUSDm | Price: 4706.46 | RSI: 43.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:45:00,483 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:46:00,927 | INFO  | 🔍 XAUUSDm | Price: 4706.53 | RSI: 43.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:46:00,928 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:47:00,352 | INFO  | 🔍 XAUUSDm | Price: 4709.01 | RSI: 46.6 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 21:47:00,763 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 21:47:00,764 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.006% (flat, no conviction)
+2026-05-07 21:48:00,173 | INFO  | 🔍 XAUUSDm | Price: 4706.85 | RSI: 44.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:48:00,173 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:49:00,592 | INFO  | 🔍 XAUUSDm | Price: 4704.30 | RSI: 41.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:49:00,592 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:50:00,040 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:50:00,041 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 21:50:00,041 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:50:00,041 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 21:50:00,042 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 21:50:00,043 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 21:50:00,043 | INFO  |   Balance: 1,777.97
+2026-05-07 21:50:00,045 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 21:50:00,046 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:50:00,049 | INFO  |   LAST 10 TRADES:
+2026-05-07 21:50:00,049 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 21:50:00,049 | INFO  |   ······························································
+2026-05-07 21:50:00,050 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 21:50:00,051 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:50:00,053 | INFO  | 🔍 XAUUSDm | Price: 4700.48 | RSI: 38.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:50:00,053 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:51:00,504 | INFO  | 🔍 XAUUSDm | Price: 4697.40 | RSI: 36.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:51:00,504 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:52:00,936 | INFO  | 🔍 XAUUSDm | Price: 4702.72 | RSI: 41.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:52:00,936 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:53:00,375 | INFO  | 🔍 XAUUSDm | Price: 4703.27 | RSI: 41.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:53:00,376 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:54:00,815 | INFO  | 🔍 XAUUSDm | Price: 4703.33 | RSI: 41.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:54:00,815 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:55:00,228 | INFO  | 🔍 XAUUSDm | Price: 4703.15 | RSI: 41.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:55:00,228 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:56:00,670 | INFO  | 🔍 XAUUSDm | Price: 4706.72 | RSI: 45.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:56:00,670 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:57:00,125 | INFO  | 🔍 XAUUSDm | Price: 4708.41 | RSI: 47.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:57:00,125 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:58:00,560 | INFO  | 🔍 XAUUSDm | Price: 4708.95 | RSI: 48.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:58:00,560 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 21:59:00,028 | INFO  | 🔍 XAUUSDm | Price: 4709.06 | RSI: 48.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 21:59:00,028 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:00:00,483 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:00:00,483 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 22:00:00,483 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:00:00,484 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 22:00:00,484 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 22:00:00,485 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 22:00:00,485 | INFO  |   Balance: 1,777.97
+2026-05-07 22:00:00,485 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 22:00:00,485 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:00:00,486 | INFO  |   LAST 10 TRADES:
+2026-05-07 22:00:00,486 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 22:00:00,487 | INFO  |   ······························································
+2026-05-07 22:00:00,487 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 22:00:00,487 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:00:00,489 | INFO  | 🔍 XAUUSDm | Price: 4710.23 | RSI: 49.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:00:00,903 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:00:00,904 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.57 < 30% ATR=7.50 (drift)
+2026-05-07 22:01:00,344 | INFO  | 🔍 XAUUSDm | Price: 4709.96 | RSI: 49.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:01:00,345 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:02:00,783 | INFO  | 🔍 XAUUSDm | Price: 4707.69 | RSI: 46.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:02:00,784 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:03:00,208 | INFO  | 🔍 XAUUSDm | Price: 4706.22 | RSI: 45.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:03:00,209 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:04:00,662 | INFO  | 🔍 XAUUSDm | Price: 4706.11 | RSI: 45.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:04:00,663 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:05:00,071 | INFO  | 🔍 XAUUSDm | Price: 4705.94 | RSI: 45.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:05:00,072 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:06:00,527 | INFO  | 🔍 XAUUSDm | Price: 4707.99 | RSI: 47.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:06:00,528 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:07:00,951 | INFO  | 🔍 XAUUSDm | Price: 4707.48 | RSI: 47.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:07:00,951 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:08:00,378 | INFO  | 🔍 XAUUSDm | Price: 4710.52 | RSI: 50.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:08:00,815 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:08:00,816 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.001% (flat, no conviction)
+2026-05-07 22:09:00,242 | INFO  | 🔍 XAUUSDm | Price: 4709.25 | RSI: 48.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:09:00,242 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:10:00,719 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:10:00,720 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 22:10:00,720 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:10:00,721 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 22:10:00,721 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 22:10:00,721 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 22:10:00,722 | INFO  |   Balance: 1,777.97
+2026-05-07 22:10:00,722 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 22:10:00,722 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:10:00,723 | INFO  |   LAST 10 TRADES:
+2026-05-07 22:10:00,723 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 22:10:00,724 | INFO  |   ······························································
+2026-05-07 22:10:00,724 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 22:10:00,724 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:10:00,726 | INFO  | 🔍 XAUUSDm | Price: 4709.97 | RSI: 49.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:10:01,132 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:10:01,133 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.00 < 30% ATR=7.32 (drift)
+2026-05-07 22:11:00,550 | INFO  | 🔍 XAUUSDm | Price: 4708.94 | RSI: 48.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:11:00,964 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:11:00,965 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.03 < 30% ATR=7.49 (drift)
+2026-05-07 22:12:00,371 | INFO  | 🔍 XAUUSDm | Price: 4709.75 | RSI: 49.3 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:12:00,770 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:12:00,770 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.22 < 30% ATR=7.49 (drift)
+2026-05-07 22:13:00,235 | INFO  | 🔍 XAUUSDm | Price: 4709.66 | RSI: 49.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:13:00,653 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:13:00,653 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.31 < 30% ATR=7.49 (drift)
+2026-05-07 22:14:00,096 | INFO  | 🔍 XAUUSDm | Price: 4710.53 | RSI: 50.1 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:14:00,491 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:14:00,492 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.56 < 30% ATR=7.51 (drift)
+2026-05-07 22:15:00,951 | INFO  | 🔍 XAUUSDm | Price: 4710.07 | RSI: 49.6 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:15:01,340 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:15:01,341 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.15 < 30% ATR=6.99 (drift)
+2026-05-07 22:16:00,756 | INFO  | 🔍 XAUUSDm | Price: 4709.74 | RSI: 49.3 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:16:01,161 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:16:01,162 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.18 < 30% ATR=7.08 (drift)
+2026-05-07 22:17:00,608 | INFO  | 🔍 XAUUSDm | Price: 4710.27 | RSI: 49.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:17:00,996 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:17:00,997 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.35 < 30% ATR=7.09 (drift)
+2026-05-07 22:18:00,424 | INFO  | 🔍 XAUUSDm | Price: 4704.87 | RSI: 44.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:18:00,425 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:19:00,898 | INFO  | 🔍 XAUUSDm | Price: 4703.22 | RSI: 43.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:19:00,898 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:20:00,316 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:20:00,317 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 22:20:00,317 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:20:00,317 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 22:20:00,318 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 22:20:00,318 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 22:20:00,318 | INFO  |   Balance: 1,777.97
+2026-05-07 22:20:00,318 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 22:20:00,319 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:20:00,319 | INFO  |   LAST 10 TRADES:
+2026-05-07 22:20:00,319 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 22:20:00,320 | INFO  |   ······························································
+2026-05-07 22:20:00,320 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 22:20:00,320 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:20:00,322 | INFO  | 🔍 XAUUSDm | Price: 4701.91 | RSI: 42.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:20:00,322 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:21:00,763 | INFO  | 🔍 XAUUSDm | Price: 4702.72 | RSI: 42.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:21:00,764 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:22:00,199 | INFO  | 🔍 XAUUSDm | Price: 4703.96 | RSI: 44.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:22:00,200 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:23:00,686 | INFO  | 🔍 XAUUSDm | Price: 4703.15 | RSI: 43.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:23:00,686 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:24:00,101 | INFO  | 🔍 XAUUSDm | Price: 4701.73 | RSI: 42.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:24:00,101 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:25:00,572 | INFO  | 🔍 XAUUSDm | Price: 4700.37 | RSI: 40.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:25:00,572 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:26:01,010 | INFO  | 🔍 XAUUSDm | Price: 4700.47 | RSI: 41.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:26:01,010 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:27:00,459 | INFO  | 🔍 XAUUSDm | Price: 4702.26 | RSI: 43.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:27:00,459 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:28:00,903 | INFO  | 🔍 XAUUSDm | Price: 4706.14 | RSI: 47.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:28:00,904 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:29:00,338 | INFO  | 🔍 XAUUSDm | Price: 4702.96 | RSI: 43.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:29:00,338 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:30:00,790 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:30:00,791 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 22:30:00,791 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:30:00,791 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 22:30:00,792 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 22:30:00,792 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 22:30:00,792 | INFO  |   Balance: 1,777.97
+2026-05-07 22:30:00,792 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 22:30:00,793 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:30:00,794 | INFO  |   LAST 10 TRADES:
+2026-05-07 22:30:00,794 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 22:30:00,794 | INFO  |   ······························································
+2026-05-07 22:30:00,794 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 22:30:00,795 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:30:00,796 | INFO  | 🔍 XAUUSDm | Price: 4705.45 | RSI: 46.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:30:00,797 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:31:00,256 | INFO  | 🔍 XAUUSDm | Price: 4705.28 | RSI: 46.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:31:00,256 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:32:00,678 | INFO  | 🔍 XAUUSDm | Price: 4704.60 | RSI: 45.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:32:00,678 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:33:00,127 | INFO  | 🔍 XAUUSDm | Price: 4705.69 | RSI: 46.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:33:00,127 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:34:00,571 | INFO  | 🔍 XAUUSDm | Price: 4706.14 | RSI: 47.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:34:00,571 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:35:00,024 | INFO  | 🔍 XAUUSDm | Price: 4707.74 | RSI: 48.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:35:00,025 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:36:00,521 | INFO  | 🔍 XAUUSDm | Price: 4707.15 | RSI: 48.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:36:00,522 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:37:00,962 | INFO  | 🔍 XAUUSDm | Price: 4707.27 | RSI: 48.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:37:00,962 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:38:00,373 | INFO  | 🔍 XAUUSDm | Price: 4710.22 | RSI: 51.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:38:00,808 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:38:00,809 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.007% (flat, no conviction)
+2026-05-07 22:39:00,266 | INFO  | 🔍 XAUUSDm | Price: 4710.72 | RSI: 51.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:39:00,670 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:39:00,670 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.009% (flat, no conviction)
+2026-05-07 22:40:00,104 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:40:00,106 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 22:40:00,106 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:40:00,107 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 22:40:00,107 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 22:40:00,108 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 22:40:00,109 | INFO  |   Balance: 1,777.97
+2026-05-07 22:40:00,109 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 22:40:00,110 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:40:00,112 | INFO  |   LAST 10 TRADES:
+2026-05-07 22:40:00,113 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 22:40:00,113 | INFO  |   ······························································
+2026-05-07 22:40:00,114 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 22:40:00,115 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:40:00,118 | INFO  | 🔍 XAUUSDm | Price: 4710.77 | RSI: 51.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:40:00,511 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:40:00,512 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.009% (flat, no conviction)
+2026-05-07 22:41:00,950 | INFO  | 🔍 XAUUSDm | Price: 4711.41 | RSI: 52.6 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:41:01,373 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:41:01,374 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.58 < 30% ATR=6.90 (drift)
+2026-05-07 22:42:00,803 | INFO  | 🔍 XAUUSDm | Price: 4708.34 | RSI: 49.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:42:01,221 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:42:01,222 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.011% (flat, no conviction)
+2026-05-07 22:43:00,690 | INFO  | 🔍 XAUUSDm | Price: 4708.76 | RSI: 49.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:43:01,104 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:43:01,105 | INFO  | ⏭️  Technical gate rejected: TECH:body=2.07 < 30% ATR=7.07 (drift)
+2026-05-07 22:44:00,550 | INFO  | 🔍 XAUUSDm | Price: 4709.64 | RSI: 50.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:44:00,964 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:44:00,965 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.20 < 30% ATR=7.07 (drift)
+2026-05-07 22:45:00,413 | INFO  | 🔍 XAUUSDm | Price: 4709.65 | RSI: 50.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:45:00,821 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:45:00,822 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.18 < 30% ATR=7.07 (drift)
+2026-05-07 22:46:00,246 | INFO  | 🔍 XAUUSDm | Price: 4709.44 | RSI: 50.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:46:00,636 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:46:00,636 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.45 < 30% ATR=6.67 (drift)
+2026-05-07 22:47:00,072 | INFO  | 🔍 XAUUSDm | Price: 4708.33 | RSI: 49.3 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:47:00,457 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:47:00,458 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.55 < 30% ATR=6.69 (drift)
+2026-05-07 22:48:00,873 | INFO  | 🔍 XAUUSDm | Price: 4706.33 | RSI: 47.3 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:48:01,292 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:48:01,293 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.007% (flat, no conviction)
+2026-05-07 22:49:00,724 | INFO  | 🔍 XAUUSDm | Price: 4705.84 | RSI: 46.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:49:02,039 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:49:02,040 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.005% (flat, no conviction)
+2026-05-07 22:50:00,492 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:50:00,492 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 22:50:00,492 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:50:00,493 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 22:50:00,493 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 22:50:00,493 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 22:50:00,495 | INFO  |   Balance: 1,777.97
+2026-05-07 22:50:00,495 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 22:50:00,496 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:50:00,497 | INFO  |   LAST 10 TRADES:
+2026-05-07 22:50:00,497 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 22:50:00,498 | INFO  |   ······························································
+2026-05-07 22:50:00,498 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 22:50:00,499 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 22:50:00,500 | INFO  | 🔍 XAUUSDm | Price: 4709.55 | RSI: 50.7 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:50:00,920 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:50:00,922 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.27 < 30% ATR=6.53 (drift)
+2026-05-07 22:51:00,453 | INFO  | 🔍 XAUUSDm | Price: 4709.12 | RSI: 50.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:51:00,872 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:51:00,872 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.85 < 30% ATR=6.57 (drift)
+2026-05-07 22:52:00,290 | INFO  | 🔍 XAUUSDm | Price: 4710.21 | RSI: 51.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:52:00,692 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:52:00,693 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.94 < 30% ATR=6.63 (drift)
+2026-05-07 22:53:00,161 | INFO  | 🔍 XAUUSDm | Price: 4706.88 | RSI: 47.7 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:53:00,567 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:53:00,568 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.40 < 30% ATR=6.92 (drift)
+2026-05-07 22:54:01,014 | INFO  | 🔍 XAUUSDm | Price: 4705.43 | RSI: 46.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:54:01,447 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:54:01,448 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.002% (flat, no conviction)
+2026-05-07 22:55:00,884 | INFO  | 🔍 XAUUSDm | Price: 4705.69 | RSI: 46.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:55:00,885 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 22:56:00,309 | INFO  | 🔍 XAUUSDm | Price: 4707.03 | RSI: 48.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:56:00,731 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:56:00,732 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.61 < 30% ATR=6.66 (drift)
+2026-05-07 22:57:00,167 | INFO  | 🔍 XAUUSDm | Price: 4706.94 | RSI: 47.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:57:00,575 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:57:00,575 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.52 < 30% ATR=6.66 (drift)
+2026-05-07 22:58:00,995 | INFO  | 🔍 XAUUSDm | Price: 4707.78 | RSI: 48.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 22:58:01,401 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 22:58:01,402 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.37 < 30% ATR=6.75 (drift)
+2026-05-07 22:59:00,890 | INFO  | 🔍 XAUUSDm | Price: 4704.22 | RSI: 44.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 22:59:00,890 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:00:00,309 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:00:00,309 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 23:00:00,309 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:00:00,310 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 23:00:00,310 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 23:00:00,310 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 23:00:00,310 | INFO  |   Balance: 1,777.97
+2026-05-07 23:00:00,311 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 23:00:00,311 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:00:00,312 | INFO  |   LAST 10 TRADES:
+2026-05-07 23:00:00,312 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 23:00:00,312 | INFO  |   ······························································
+2026-05-07 23:00:00,313 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 23:00:00,313 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:00:00,315 | INFO  | 🔍 XAUUSDm | Price: 4703.15 | RSI: 43.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:00:00,315 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:01:00,789 | INFO  | 🔍 XAUUSDm | Price: 4707.10 | RSI: 48.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:01:00,790 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:02:00,224 | INFO  | 🔍 XAUUSDm | Price: 4708.55 | RSI: 50.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:02:00,224 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:03:00,662 | INFO  | 🔍 XAUUSDm | Price: 4716.72 | RSI: 57.6 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:03:01,074 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:03:01,075 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.032% (flat, no conviction)
+2026-05-07 23:04:00,505 | INFO  | 🔍 XAUUSDm | Price: 4714.63 | RSI: 55.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:04:00,894 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:04:00,894 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.023% (flat, no conviction)
+2026-05-07 23:05:00,366 | INFO  | 🔍 XAUUSDm | Price: 4716.46 | RSI: 57.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:05:00,783 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:05:00,784 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.10 < 30% ATR=7.03 (drift)
+2026-05-07 23:06:00,217 | INFO  | 🔍 XAUUSDm | Price: 4715.27 | RSI: 56.1 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:06:00,600 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:06:00,601 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.29 < 30% ATR=7.28 (drift)
+2026-05-07 23:07:00,121 | INFO  | 🔍 XAUUSDm | Price: 4713.99 | RSI: 54.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:07:00,505 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:07:00,506 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.044% (flat, no conviction)
+2026-05-07 23:08:00,888 | INFO  | 🔍 XAUUSDm | Price: 4714.47 | RSI: 55.3 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:08:01,303 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:08:01,304 | INFO  | ⏭️  Technical gate rejected: TECH:body=2.09 < 30% ATR=7.30 (drift)
+2026-05-07 23:09:00,679 | INFO  | 🔍 XAUUSDm | Price: 4713.12 | RSI: 53.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:09:01,061 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:09:01,062 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.040% (flat, no conviction)
+2026-05-07 23:10:00,421 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:10:00,422 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 23:10:00,422 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:10:00,422 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 23:10:00,422 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 23:10:00,423 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 23:10:00,423 | INFO  |   Balance: 1,777.97
+2026-05-07 23:10:00,423 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 23:10:00,423 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:10:00,424 | INFO  |   LAST 10 TRADES:
+2026-05-07 23:10:00,424 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 23:10:00,424 | INFO  |   ······························································
+2026-05-07 23:10:00,425 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 23:10:00,425 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:10:00,428 | INFO  | 🔍 XAUUSDm | Price: 4711.45 | RSI: 52.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:10:00,820 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:10:00,821 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.00 < 30% ATR=6.92 (drift)
+2026-05-07 23:11:00,226 | INFO  | 🔍 XAUUSDm | Price: 4713.20 | RSI: 53.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:11:00,623 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:11:00,623 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.75 < 30% ATR=7.09 (drift)
+2026-05-07 23:12:00,996 | INFO  | 🔍 XAUUSDm | Price: 4712.13 | RSI: 52.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:12:01,382 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:12:01,383 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.68 < 30% ATR=7.09 (drift)
+2026-05-07 23:13:00,755 | INFO  | 🔍 XAUUSDm | Price: 4711.43 | RSI: 52.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:13:01,176 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:13:01,176 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.03 < 30% ATR=7.09 (drift)
+2026-05-07 23:14:00,533 | INFO  | 🔍 XAUUSDm | Price: 4712.26 | RSI: 53.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:14:00,912 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:14:00,913 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.81 < 30% ATR=7.09 (drift)
+2026-05-07 23:15:00,312 | INFO  | 🔍 XAUUSDm | Price: 4711.81 | RSI: 52.6 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:15:00,703 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:15:00,704 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.10 < 30% ATR=6.60 (drift)
+2026-05-07 23:16:00,078 | INFO  | 🔍 XAUUSDm | Price: 4710.39 | RSI: 51.1 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:16:00,487 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:16:00,491 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.32 < 30% ATR=6.72 (drift)
+2026-05-07 23:17:00,923 | INFO  | 🔍 XAUUSDm | Price: 4710.83 | RSI: 51.6 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:17:01,319 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:17:01,320 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.88 < 30% ATR=6.72 (drift)
+2026-05-07 23:18:00,687 | INFO  | 🔍 XAUUSDm | Price: 4711.03 | RSI: 51.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:18:01,122 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:18:01,123 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.68 < 30% ATR=6.78 (drift)
+2026-05-07 23:19:00,570 | INFO  | 🔍 XAUUSDm | Price: 4710.78 | RSI: 51.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:19:00,961 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:19:00,962 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.93 < 30% ATR=6.78 (drift)
+2026-05-07 23:20:00,325 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:20:00,326 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 23:20:00,326 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:20:00,326 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 23:20:00,326 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 23:20:00,327 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 23:20:00,327 | INFO  |   Balance: 1,777.97
+2026-05-07 23:20:00,327 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 23:20:00,327 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:20:00,328 | INFO  |   LAST 10 TRADES:
+2026-05-07 23:20:00,328 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 23:20:00,329 | INFO  |   ······························································
+2026-05-07 23:20:00,329 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 23:20:00,330 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:20:00,331 | INFO  | 🔍 XAUUSDm | Price: 4711.94 | RSI: 52.7 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:20:00,722 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:20:00,723 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.14 < 30% ATR=6.36 (drift)
+2026-05-07 23:21:00,116 | INFO  | 🔍 XAUUSDm | Price: 4712.00 | RSI: 52.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:21:00,503 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:21:00,505 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.08 < 30% ATR=6.42 (drift)
+2026-05-07 23:22:00,871 | INFO  | 🔍 XAUUSDm | Price: 4711.63 | RSI: 52.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:22:01,282 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:22:01,283 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.45 < 30% ATR=6.48 (drift)
+2026-05-07 23:23:00,688 | INFO  | 🔍 XAUUSDm | Price: 4711.57 | RSI: 52.3 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:23:01,113 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:23:01,115 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.51 < 30% ATR=6.49 (drift)
+2026-05-07 23:24:00,480 | INFO  | 🔍 XAUUSDm | Price: 4713.22 | RSI: 54.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:24:00,919 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:24:00,919 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.14 < 30% ATR=6.58 (drift)
+2026-05-07 23:25:00,288 | INFO  | 🔍 XAUUSDm | Price: 4713.10 | RSI: 53.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:25:00,681 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:25:00,681 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.02 < 30% ATR=6.58 (drift)
+2026-05-07 23:26:00,054 | INFO  | 🔍 XAUUSDm | Price: 4713.71 | RSI: 54.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:26:00,444 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:26:00,445 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.75 < 30% ATR=6.19 (drift)
+2026-05-07 23:27:00,826 | INFO  | 🔍 XAUUSDm | Price: 4712.57 | RSI: 53.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:27:01,210 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:27:01,211 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.38 < 30% ATR=6.24 (drift)
+2026-05-07 23:28:00,563 | INFO  | 🔍 XAUUSDm | Price: 4713.33 | RSI: 54.1 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:28:00,967 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:28:00,967 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.37 < 30% ATR=6.25 (drift)
+2026-05-07 23:29:00,342 | INFO  | 🔍 XAUUSDm | Price: 4713.07 | RSI: 53.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:29:00,782 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:29:00,783 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.12 < 30% ATR=6.25 (drift)
+2026-05-07 23:30:00,147 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:30:00,147 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 23:30:00,147 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:30:00,148 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 23:30:00,148 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 23:30:00,148 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 23:30:00,149 | INFO  |   Balance: 1,777.97
+2026-05-07 23:30:00,149 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 23:30:00,149 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:30:00,150 | INFO  |   LAST 10 TRADES:
+2026-05-07 23:30:00,151 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 23:30:00,151 | INFO  |   ······························································
+2026-05-07 23:30:00,152 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 23:30:00,152 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:30:00,155 | INFO  | 🔍 XAUUSDm | Price: 4713.06 | RSI: 53.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:30:00,536 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:30:00,537 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.11 < 30% ATR=6.25 (drift)
+2026-05-07 23:31:00,945 | INFO  | 🔍 XAUUSDm | Price: 4711.05 | RSI: 51.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:31:01,325 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:31:01,326 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.028% (flat, no conviction)
+2026-05-07 23:32:00,682 | INFO  | 🔍 XAUUSDm | Price: 4714.51 | RSI: 55.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:32:01,078 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:32:01,079 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.39 < 30% ATR=6.23 (drift)
+2026-05-07 23:33:00,476 | INFO  | 🔍 XAUUSDm | Price: 4714.03 | RSI: 54.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:33:00,863 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:33:00,864 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.91 < 30% ATR=6.23 (drift)
+2026-05-07 23:34:00,225 | INFO  | 🔍 XAUUSDm | Price: 4713.41 | RSI: 54.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:34:00,636 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:34:00,637 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.28 < 30% ATR=6.23 (drift)
+2026-05-07 23:35:01,010 | INFO  | 🔍 XAUUSDm | Price: 4713.04 | RSI: 53.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:35:01,393 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:35:01,393 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.08 < 30% ATR=5.81 (drift)
+2026-05-07 23:36:00,772 | INFO  | 🔍 XAUUSDm | Price: 4713.19 | RSI: 54.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:36:01,161 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:36:01,161 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.07 < 30% ATR=5.86 (drift)
+2026-05-07 23:37:00,552 | INFO  | 🔍 XAUUSDm | Price: 4713.56 | RSI: 54.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-07 23:37:00,961 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-07 23:37:00,962 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.44 < 30% ATR=5.87 (drift)
+2026-05-07 23:38:00,320 | INFO  | 🔍 XAUUSDm | Price: 4703.18 | RSI: 42.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:38:00,320 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:39:00,715 | INFO  | 🔍 XAUUSDm | Price: 4702.45 | RSI: 42.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:39:00,716 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:40:00,082 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:40:00,083 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 23:40:00,083 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:40:00,083 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 23:40:00,083 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 23:40:00,084 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 23:40:00,084 | INFO  |   Balance: 1,777.97
+2026-05-07 23:40:00,084 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 23:40:00,084 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:40:00,085 | INFO  |   LAST 10 TRADES:
+2026-05-07 23:40:00,085 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 23:40:00,086 | INFO  |   ······························································
+2026-05-07 23:40:00,086 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 23:40:00,086 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:40:00,088 | INFO  | 🔍 XAUUSDm | Price: 4698.35 | RSI: 38.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:40:00,088 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:41:00,452 | INFO  | 🔍 XAUUSDm | Price: 4704.03 | RSI: 45.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:41:00,452 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:42:00,817 | INFO  | 🔍 XAUUSDm | Price: 4703.02 | RSI: 44.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:42:00,819 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:43:00,185 | INFO  | 🔍 XAUUSDm | Price: 4704.27 | RSI: 45.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:43:00,185 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:44:00,563 | INFO  | 🔍 XAUUSDm | Price: 4702.68 | RSI: 43.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:44:00,564 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:45:00,950 | INFO  | 🔍 XAUUSDm | Price: 4703.58 | RSI: 44.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:45:00,950 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:46:00,351 | INFO  | 🔍 XAUUSDm | Price: 4702.12 | RSI: 43.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:46:00,351 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:47:00,731 | INFO  | 🔍 XAUUSDm | Price: 4702.70 | RSI: 43.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:47:00,731 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:48:00,097 | INFO  | 🔍 XAUUSDm | Price: 4701.55 | RSI: 42.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:48:00,097 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:49:00,463 | INFO  | 🔍 XAUUSDm | Price: 4700.92 | RSI: 42.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:49:00,464 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:50:00,888 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:50:00,889 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 23:50:00,889 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:50:00,889 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 23:50:00,889 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 23:50:00,890 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 23:50:00,890 | INFO  |   Balance: 1,777.97
+2026-05-07 23:50:00,890 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 23:50:00,890 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:50:00,891 | INFO  |   LAST 10 TRADES:
+2026-05-07 23:50:00,891 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 23:50:00,892 | INFO  |   ······························································
+2026-05-07 23:50:00,892 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 23:50:00,893 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 23:50:00,895 | INFO  | 🔍 XAUUSDm | Price: 4701.98 | RSI: 43.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:50:00,896 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:51:00,308 | INFO  | 🔍 XAUUSDm | Price: 4700.69 | RSI: 42.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:51:00,308 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:52:00,700 | INFO  | 🔍 XAUUSDm | Price: 4700.98 | RSI: 42.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:52:00,700 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:53:00,075 | INFO  | 🔍 XAUUSDm | Price: 4701.02 | RSI: 42.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:53:00,076 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:54:00,458 | INFO  | 🔍 XAUUSDm | Price: 4696.76 | RSI: 39.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:54:00,458 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:55:00,829 | INFO  | 🔍 XAUUSDm | Price: 4694.66 | RSI: 37.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:55:00,830 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:56:00,189 | INFO  | 🔍 XAUUSDm | Price: 4691.72 | RSI: 35.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:56:00,190 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:57:00,579 | INFO  | 🔍 XAUUSDm | Price: 4688.37 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:57:00,581 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:58:00,969 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:58:00,969 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 23:59:00,336 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-07 23:59:00,337 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:00:00,759 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:00:00,760 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 00:00:00,760 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:00:00,760 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 00:00:00,760 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 00:00:00,761 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 00:00:00,761 | INFO  |   Balance: 1,777.97
+2026-05-08 00:00:00,761 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 00:00:00,761 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:00:00,762 | INFO  |   LAST 10 TRADES:
+2026-05-08 00:00:00,763 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 00:00:00,763 | INFO  |   ······························································
+2026-05-08 00:00:00,764 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 00:00:00,764 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:00:00,768 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:00:00,769 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:01:00,158 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:01:00,158 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:02:00,542 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:02:00,542 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:03:00,905 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:03:00,905 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:04:00,276 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:04:00,277 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:05:00,639 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:05:00,639 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:06:01,013 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:06:01,014 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:07:00,382 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:07:00,382 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:08:00,778 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:08:00,779 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:09:00,128 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:09:00,129 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:10:00,504 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:10:00,504 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 00:10:00,505 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:10:00,505 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 00:10:00,505 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 00:10:00,506 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 00:10:00,506 | INFO  |   Balance: 1,777.97
+2026-05-08 00:10:00,506 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 00:10:00,506 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:10:00,507 | INFO  |   LAST 10 TRADES:
+2026-05-08 00:10:00,507 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 00:10:00,508 | INFO  |   ······························································
+2026-05-08 00:10:00,509 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 00:10:00,509 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:10:00,510 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:10:00,511 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:11:00,883 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:11:00,884 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:12:00,282 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:12:00,282 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:13:00,645 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:13:00,646 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:14:01,013 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:14:01,014 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:15:00,371 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:15:00,372 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:16:00,749 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:16:00,749 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:17:00,112 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:17:00,112 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:18:00,487 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:18:00,487 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:19:00,862 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:19:00,863 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:20:00,249 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:20:00,249 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 00:20:00,250 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:20:00,250 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 00:20:00,250 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 00:20:00,250 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 00:20:00,250 | INFO  |   Balance: 1,777.97
+2026-05-08 00:20:00,251 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 00:20:00,251 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:20:00,252 | INFO  |   LAST 10 TRADES:
+2026-05-08 00:20:00,252 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 00:20:00,252 | INFO  |   ······························································
+2026-05-08 00:20:00,252 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 00:20:00,253 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:20:00,254 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:20:00,255 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:21:00,627 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:21:00,629 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:22:00,034 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:22:00,035 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:23:00,394 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:23:00,394 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:24:00,777 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:24:00,777 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:25:00,161 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:25:00,162 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:26:00,530 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:26:00,530 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:27:00,923 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:27:00,924 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:28:00,280 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:28:00,281 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:29:00,662 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:29:00,662 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:30:00,032 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:30:00,033 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 00:30:00,033 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:30:00,033 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 00:30:00,034 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 00:30:00,034 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 00:30:00,034 | INFO  |   Balance: 1,777.97
+2026-05-08 00:30:00,034 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 00:30:00,035 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:30:00,035 | INFO  |   LAST 10 TRADES:
+2026-05-08 00:30:00,036 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 00:30:00,036 | INFO  |   ······························································
+2026-05-08 00:30:00,037 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 00:30:00,037 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:30:00,039 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:30:00,039 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:31:00,453 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:31:00,453 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:32:00,820 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:32:00,821 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:33:00,231 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:33:00,232 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:34:00,628 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:34:00,629 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:35:00,995 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:35:00,995 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:36:00,368 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:36:00,369 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:37:00,741 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:37:00,742 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:38:00,114 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:38:00,115 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:39:00,484 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:39:00,484 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:40:00,850 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:40:00,850 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 00:40:00,850 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:40:00,850 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 00:40:00,851 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 00:40:00,851 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 00:40:00,851 | INFO  |   Balance: 1,777.97
+2026-05-08 00:40:00,851 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 00:40:00,851 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:40:00,852 | INFO  |   LAST 10 TRADES:
+2026-05-08 00:40:00,852 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 00:40:00,853 | INFO  |   ······························································
+2026-05-08 00:40:00,853 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 00:40:00,853 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:40:00,856 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:40:00,858 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:41:00,279 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:41:00,282 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:42:00,653 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:42:00,654 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:43:00,044 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:43:00,044 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:44:00,404 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:44:00,405 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:45:00,783 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:45:00,784 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:46:00,158 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:46:00,159 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:47:00,553 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:47:00,554 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:48:00,932 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:48:00,933 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:49:00,331 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:49:00,331 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:50:00,694 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:50:00,694 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 00:50:00,694 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:50:00,695 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 00:50:00,695 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 00:50:00,695 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 00:50:00,695 | INFO  |   Balance: 1,777.97
+2026-05-08 00:50:00,695 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 00:50:00,695 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:50:00,697 | INFO  |   LAST 10 TRADES:
+2026-05-08 00:50:00,697 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 00:50:00,698 | INFO  |   ······························································
+2026-05-08 00:50:00,698 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 00:50:00,699 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 00:50:00,702 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:50:00,702 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:51:00,062 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:51:00,063 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:52:00,446 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:52:00,446 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:53:00,824 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:53:00,825 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:54:00,175 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:54:00,176 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:55:00,560 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:55:00,560 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:56:00,932 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:56:00,933 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:57:00,334 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:57:00,334 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:58:00,703 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:58:00,703 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 00:59:00,083 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 00:59:00,083 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:00:00,464 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:00:00,465 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 01:00:00,465 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:00:00,466 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 01:00:00,466 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 01:00:00,466 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 01:00:00,466 | INFO  |   Balance: 1,777.97
+2026-05-08 01:00:00,467 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 01:00:00,467 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:00:00,468 | INFO  |   LAST 10 TRADES:
+2026-05-08 01:00:00,468 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 01:00:00,468 | INFO  |   ······························································
+2026-05-08 01:00:00,469 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 01:00:00,469 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:00:00,471 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:00:00,471 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:01:00,950 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 33.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:01:00,951 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:02:00,337 | INFO  | 🔍 XAUUSDm | Price: 4689.54 | RSI: 34.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:02:00,337 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:03:00,743 | INFO  | 🔍 XAUUSDm | Price: 4690.45 | RSI: 35.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:03:00,743 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:04:00,105 | INFO  | 🔍 XAUUSDm | Price: 4693.72 | RSI: 39.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:04:00,105 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:05:00,513 | INFO  | 🔍 XAUUSDm | Price: 4693.31 | RSI: 39.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:05:00,514 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:06:00,890 | INFO  | 🔍 XAUUSDm | Price: 4687.79 | RSI: 35.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:06:00,891 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:07:00,277 | INFO  | 🔍 XAUUSDm | Price: 4692.29 | RSI: 38.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:07:00,277 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:08:00,653 | INFO  | 🔍 XAUUSDm | Price: 4688.93 | RSI: 36.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:08:00,654 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:09:00,073 | INFO  | 🔍 XAUUSDm | Price: 4689.82 | RSI: 36.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:09:00,073 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:10:00,469 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:10:00,469 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 01:10:00,470 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:10:00,470 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 01:10:00,470 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 01:10:00,470 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 01:10:00,470 | INFO  |   Balance: 1,777.97
+2026-05-08 01:10:00,470 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 01:10:00,471 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:10:00,473 | INFO  |   LAST 10 TRADES:
+2026-05-08 01:10:00,473 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 01:10:00,473 | INFO  |   ······························································
+2026-05-08 01:10:00,475 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 01:10:00,475 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:10:00,477 | INFO  | 🔍 XAUUSDm | Price: 4691.19 | RSI: 37.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:10:00,478 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:11:00,856 | INFO  | 🔍 XAUUSDm | Price: 4694.10 | RSI: 40.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:11:00,856 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:12:00,218 | INFO  | 🔍 XAUUSDm | Price: 4695.31 | RSI: 42.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:12:00,218 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:13:00,581 | INFO  | 🔍 XAUUSDm | Price: 4696.72 | RSI: 43.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:13:00,582 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:14:00,975 | INFO  | 🔍 XAUUSDm | Price: 4691.82 | RSI: 38.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:14:00,976 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:15:00,330 | INFO  | 🔍 XAUUSDm | Price: 4691.18 | RSI: 37.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:15:00,330 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:16:00,734 | INFO  | 🔍 XAUUSDm | Price: 4690.91 | RSI: 37.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:16:00,735 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:17:00,104 | INFO  | 🔍 XAUUSDm | Price: 4695.44 | RSI: 42.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:17:00,105 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:18:00,483 | INFO  | 🔍 XAUUSDm | Price: 4691.42 | RSI: 38.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:18:00,484 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:19:00,870 | INFO  | 🔍 XAUUSDm | Price: 4694.03 | RSI: 41.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:19:00,870 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:20:00,277 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:20:00,277 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 01:20:00,278 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:20:00,278 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 01:20:00,278 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 01:20:00,278 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 01:20:00,279 | INFO  |   Balance: 1,777.97
+2026-05-08 01:20:00,279 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 01:20:00,280 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:20:00,280 | INFO  |   LAST 10 TRADES:
+2026-05-08 01:20:00,281 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 01:20:00,281 | INFO  |   ······························································
+2026-05-08 01:20:00,281 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 01:20:00,281 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:20:00,283 | INFO  | 🔍 XAUUSDm | Price: 4694.06 | RSI: 41.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:20:00,283 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:21:00,650 | INFO  | 🔍 XAUUSDm | Price: 4693.01 | RSI: 40.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:21:00,651 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:22:00,053 | INFO  | 🔍 XAUUSDm | Price: 4696.77 | RSI: 44.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:22:00,054 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:23:00,415 | INFO  | 🔍 XAUUSDm | Price: 4696.02 | RSI: 43.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:23:00,416 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:24:00,802 | INFO  | 🔍 XAUUSDm | Price: 4696.93 | RSI: 44.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:24:00,802 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:25:00,171 | INFO  | 🔍 XAUUSDm | Price: 4696.33 | RSI: 43.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:25:00,172 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:26:00,580 | INFO  | 🔍 XAUUSDm | Price: 4696.68 | RSI: 44.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:26:00,581 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:27:00,956 | INFO  | 🔍 XAUUSDm | Price: 4696.44 | RSI: 44.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:27:00,956 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:28:00,327 | INFO  | 🔍 XAUUSDm | Price: 4696.64 | RSI: 44.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:28:00,327 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:29:00,723 | INFO  | 🔍 XAUUSDm | Price: 4694.71 | RSI: 42.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:29:00,723 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:30:00,101 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:30:00,101 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 01:30:00,101 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:30:00,101 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 01:30:00,102 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 01:30:00,102 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 01:30:00,102 | INFO  |   Balance: 1,777.97
+2026-05-08 01:30:00,103 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 01:30:00,103 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:30:00,104 | INFO  |   LAST 10 TRADES:
+2026-05-08 01:30:00,104 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 01:30:00,104 | INFO  |   ······························································
+2026-05-08 01:30:00,105 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 01:30:00,105 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:30:00,107 | INFO  | 🔍 XAUUSDm | Price: 4693.73 | RSI: 41.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:30:00,107 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:31:00,471 | INFO  | 🔍 XAUUSDm | Price: 4692.52 | RSI: 40.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:31:00,471 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:32:00,842 | INFO  | 🔍 XAUUSDm | Price: 4692.24 | RSI: 40.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:32:00,842 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:33:00,211 | INFO  | 🔍 XAUUSDm | Price: 4693.29 | RSI: 41.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:33:00,212 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:34:00,587 | INFO  | 🔍 XAUUSDm | Price: 4690.81 | RSI: 39.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:34:00,589 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:35:00,957 | INFO  | 🔍 XAUUSDm | Price: 4688.60 | RSI: 37.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:35:00,957 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:36:00,498 | INFO  | 🔍 XAUUSDm | Price: 4689.08 | RSI: 38.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:36:00,499 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:37:00,876 | INFO  | 🔍 XAUUSDm | Price: 4688.12 | RSI: 37.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:37:00,876 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:38:00,299 | INFO  | 🔍 XAUUSDm | Price: 4688.78 | RSI: 37.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:38:00,300 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:39:00,666 | INFO  | 🔍 XAUUSDm | Price: 4689.50 | RSI: 38.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:39:00,666 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:40:00,067 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:40:00,068 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 01:40:00,068 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:40:00,068 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 01:40:00,069 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 01:40:00,069 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 01:40:00,069 | INFO  |   Balance: 1,777.97
+2026-05-08 01:40:00,069 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 01:40:00,069 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:40:00,071 | INFO  |   LAST 10 TRADES:
+2026-05-08 01:40:00,071 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 01:40:00,072 | INFO  |   ······························································
+2026-05-08 01:40:00,073 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 01:40:00,073 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:40:00,075 | INFO  | 🔍 XAUUSDm | Price: 4689.87 | RSI: 39.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:40:00,075 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:41:00,455 | INFO  | 🔍 XAUUSDm | Price: 4688.44 | RSI: 37.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:41:00,455 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:42:00,835 | INFO  | 🔍 XAUUSDm | Price: 4687.86 | RSI: 37.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:42:00,835 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:43:00,193 | INFO  | 🔍 XAUUSDm | Price: 4687.12 | RSI: 36.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:43:00,195 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:44:00,570 | INFO  | 🔍 XAUUSDm | Price: 4687.10 | RSI: 36.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:44:00,570 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:45:00,950 | INFO  | 🔍 XAUUSDm | Price: 4687.11 | RSI: 36.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:45:00,950 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:46:00,335 | INFO  | 🔍 XAUUSDm | Price: 4684.41 | RSI: 34.7 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 01:46:00,878 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 01:46:00,879 | INFO  | ⏭️  Technical gate rejected: TECH:stale SELL (EMA cross already 2+ candles old)
+2026-05-08 01:47:00,246 | INFO  | 🔍 XAUUSDm | Price: 4684.18 | RSI: 34.5 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 01:47:00,638 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 01:47:00,640 | INFO  | ⏭️  Technical gate rejected: TECH:stale SELL (EMA cross already 2+ candles old)
+2026-05-08 01:48:00,025 | INFO  | 🔍 XAUUSDm | Price: 4684.58 | RSI: 34.8 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 01:48:00,414 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 01:48:00,415 | INFO  | ⏭️  Technical gate rejected: TECH:stale SELL (EMA cross already 2+ candles old)
+2026-05-08 01:49:00,792 | INFO  | 🔍 XAUUSDm | Price: 4684.77 | RSI: 34.9 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 01:49:01,177 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 01:49:01,177 | INFO  | ⏭️  Technical gate rejected: TECH:stale SELL (EMA cross already 2+ candles old)
+2026-05-08 01:50:00,553 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:50:00,553 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 01:50:00,553 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:50:00,553 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 01:50:00,553 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 01:50:00,554 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 01:50:00,554 | INFO  |   Balance: 1,777.97
+2026-05-08 01:50:00,554 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 01:50:00,554 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:50:00,555 | INFO  |   LAST 10 TRADES:
+2026-05-08 01:50:00,555 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 01:50:00,556 | INFO  |   ······························································
+2026-05-08 01:50:00,556 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 01:50:00,557 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 01:50:00,562 | INFO  | 🔍 XAUUSDm | Price: 4683.97 | RSI: 34.3 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 01:50:00,953 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 01:50:00,955 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.00 < 30% ATR=6.30 (drift)
+2026-05-08 01:51:00,314 | INFO  | 🔍 XAUUSDm | Price: 4683.65 | RSI: 34.1 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 01:51:00,807 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 01:51:00,810 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.32 < 30% ATR=6.47 (drift)
+2026-05-08 01:52:00,184 | INFO  | 🔍 XAUUSDm | Price: 4686.90 | RSI: 38.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:52:00,185 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:53:00,567 | INFO  | 🔍 XAUUSDm | Price: 4686.36 | RSI: 37.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:53:00,568 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:54:00,942 | INFO  | 🔍 XAUUSDm | Price: 4686.30 | RSI: 37.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:54:00,942 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:55:00,300 | INFO  | 🔍 XAUUSDm | Price: 4686.13 | RSI: 37.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:55:00,300 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:56:00,678 | INFO  | 🔍 XAUUSDm | Price: 4685.46 | RSI: 36.8 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 01:56:01,183 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 01:56:01,184 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.79 < 30% ATR=6.44 (drift)
+2026-05-08 01:57:00,540 | INFO  | 🔍 XAUUSDm | Price: 4687.37 | RSI: 39.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:57:00,541 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:58:00,935 | INFO  | 🔍 XAUUSDm | Price: 4686.95 | RSI: 38.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 01:58:00,935 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 01:59:00,296 | INFO  | 🔍 XAUUSDm | Price: 4684.92 | RSI: 36.3 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 01:59:00,680 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 01:59:00,680 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.34 < 30% ATR=6.54 (drift)
+2026-05-08 02:00:00,055 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:00:00,055 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 02:00:00,056 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:00:00,056 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 02:00:00,056 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 02:00:00,056 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 02:00:00,056 | INFO  |   Balance: 1,777.97
+2026-05-08 02:00:00,057 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 02:00:00,057 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:00:00,057 | INFO  |   LAST 10 TRADES:
+2026-05-08 02:00:00,058 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 02:00:00,058 | INFO  |   ······························································
+2026-05-08 02:00:00,058 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 02:00:00,059 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:00:00,061 | INFO  | 🔍 XAUUSDm | Price: 4685.97 | RSI: 37.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:00:00,061 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:01:00,444 | INFO  | 🔍 XAUUSDm | Price: 4687.16 | RSI: 39.1 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 02:01:00,854 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 02:01:00,859 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.33 < 30% ATR=6.27 (drift)
+2026-05-08 02:02:00,236 | INFO  | 🔍 XAUUSDm | Price: 4687.92 | RSI: 40.2 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 02:02:00,656 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 02:02:00,657 | INFO  | ⏭️  Technical gate rejected: TECH:stale SELL (EMA cross already 2+ candles old)
+2026-05-08 02:03:00,123 | INFO  | 🔍 XAUUSDm | Price: 4688.74 | RSI: 41.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:03:00,123 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:04:00,542 | INFO  | 🔍 XAUUSDm | Price: 4689.14 | RSI: 41.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:04:00,542 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:05:00,954 | INFO  | 🔍 XAUUSDm | Price: 4689.36 | RSI: 42.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:05:00,954 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:06:00,375 | INFO  | 🔍 XAUUSDm | Price: 4687.98 | RSI: 40.7 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 02:06:00,806 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 02:06:00,806 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.30 < 30% ATR=6.12 (drift)
+2026-05-08 02:07:00,256 | INFO  | 🔍 XAUUSDm | Price: 4688.13 | RSI: 40.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:07:00,256 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:08:00,665 | INFO  | 🔍 XAUUSDm | Price: 4687.51 | RSI: 40.3 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 02:08:01,091 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 02:08:01,092 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.77 < 30% ATR=6.18 (drift)
+2026-05-08 02:09:00,548 | INFO  | 🔍 XAUUSDm | Price: 4687.21 | RSI: 40.0 | H1: DOWN | EMA: ↓ | Streak: 1L
+2026-05-08 02:09:00,967 | INFO  | 📡 SELL signal detected | Running technical gate...
+2026-05-08 02:09:00,967 | INFO  | ⏭️  Technical gate rejected: TECH:stale SELL (EMA cross already 2+ candles old)
+2026-05-08 02:10:00,515 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:10:00,516 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 02:10:00,516 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:10:00,517 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 02:10:00,517 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 02:10:00,517 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 02:10:00,517 | INFO  |   Balance: 1,777.97
+2026-05-08 02:10:00,518 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 02:10:00,518 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:10:00,523 | INFO  |   LAST 10 TRADES:
+2026-05-08 02:10:00,523 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 02:10:00,524 | INFO  |   ······························································
+2026-05-08 02:10:00,525 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 02:10:00,525 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:10:00,527 | INFO  | 🔍 XAUUSDm | Price: 4691.14 | RSI: 44.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:10:00,527 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:11:00,135 | INFO  | 🔍 XAUUSDm | Price: 4690.72 | RSI: 44.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:11:00,135 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:12:00,545 | INFO  | 🔍 XAUUSDm | Price: 4693.13 | RSI: 47.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:12:00,546 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:13:00,971 | INFO  | 🔍 XAUUSDm | Price: 4692.38 | RSI: 46.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:13:00,972 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:14:00,403 | INFO  | 🔍 XAUUSDm | Price: 4690.61 | RSI: 43.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:14:00,404 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:15:00,171 | INFO  | 🔍 XAUUSDm | Price: 4691.64 | RSI: 45.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:15:00,171 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:16:00,628 | INFO  | 🔍 XAUUSDm | Price: 4692.81 | RSI: 46.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:16:00,629 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:17:00,076 | INFO  | 🔍 XAUUSDm | Price: 4693.23 | RSI: 47.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:17:00,077 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:18:00,513 | INFO  | 🔍 XAUUSDm | Price: 4693.69 | RSI: 48.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:18:00,513 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:19:00,084 | INFO  | 🔍 XAUUSDm | Price: 4693.29 | RSI: 47.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:19:00,084 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:20:00,532 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:20:00,532 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 02:20:00,532 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:20:00,533 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 02:20:00,533 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 02:20:00,533 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 02:20:00,534 | INFO  |   Balance: 1,777.97
+2026-05-08 02:20:00,534 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 02:20:00,534 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:20:00,538 | INFO  |   LAST 10 TRADES:
+2026-05-08 02:20:00,538 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 02:20:00,539 | INFO  |   ······························································
+2026-05-08 02:20:00,540 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 02:20:00,540 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:20:00,541 | INFO  | 🔍 XAUUSDm | Price: 4693.55 | RSI: 47.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 02:20:00,542 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 02:21:00,028 | INFO  | 🔍 XAUUSDm | Price: 4695.93 | RSI: 51.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:21:00,551 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:21:00,553 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.016% (flat, no conviction)
+2026-05-08 02:22:00,956 | INFO  | 🔍 XAUUSDm | Price: 4697.78 | RSI: 53.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:22:01,349 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:22:01,350 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.023% (flat, no conviction)
+2026-05-08 02:23:00,740 | INFO  | 🔍 XAUUSDm | Price: 4696.55 | RSI: 51.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:23:01,123 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:23:01,124 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.018% (flat, no conviction)
+2026-05-08 02:24:00,502 | INFO  | 🔍 XAUUSDm | Price: 4697.00 | RSI: 52.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:24:00,887 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:24:00,888 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.020% (flat, no conviction)
+2026-05-08 02:25:00,295 | INFO  | 🔍 XAUUSDm | Price: 4696.61 | RSI: 51.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:25:00,700 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:25:00,701 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.00 < 30% ATR=5.36 (drift)
+2026-05-08 02:26:00,099 | INFO  | 🔍 XAUUSDm | Price: 4697.82 | RSI: 53.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:26:00,584 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:26:00,585 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.21 < 30% ATR=5.48 (drift)
+2026-05-08 02:27:00,034 | INFO  | 🔍 XAUUSDm | Price: 4696.59 | RSI: 51.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:27:00,438 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:27:00,439 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.02 < 30% ATR=5.48 (drift)
+2026-05-08 02:28:00,958 | INFO  | 🔍 XAUUSDm | Price: 4697.31 | RSI: 52.8 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:28:01,363 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:28:01,363 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.70 < 30% ATR=5.48 (drift)
+2026-05-08 02:29:00,809 | INFO  | 🔍 XAUUSDm | Price: 4697.53 | RSI: 53.1 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:29:01,194 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:29:01,195 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.92 < 30% ATR=5.52 (drift)
+2026-05-08 02:30:00,653 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:30:00,654 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 02:30:00,654 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:30:00,654 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 02:30:00,654 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 02:30:00,655 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 02:30:00,655 | INFO  |   Balance: 1,777.97
+2026-05-08 02:30:00,655 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 02:30:00,655 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:30:00,658 | INFO  |   LAST 10 TRADES:
+2026-05-08 02:30:00,659 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 02:30:00,659 | INFO  |   ······························································
+2026-05-08 02:30:00,660 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 02:30:00,660 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:30:00,661 | INFO  | 🔍 XAUUSDm | Price: 4696.84 | RSI: 52.3 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:30:01,069 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:30:01,070 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.12 < 30% ATR=5.15 (drift)
+2026-05-08 02:31:00,468 | INFO  | 🔍 XAUUSDm | Price: 4696.54 | RSI: 51.9 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:31:00,953 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:31:00,953 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.19 < 30% ATR=5.18 (drift)
+2026-05-08 02:31:48,960 | INFO  | ================================================================
+2026-05-08 02:31:48,961 | INFO  | 🔥 SCURO ACCUMULATOR — REBUILT
+2026-05-08 02:31:48,961 | INFO  |    Symbol: XAUUSDm | Magic: 777777
+2026-05-08 02:31:48,962 | INFO  |    Daily loss limit: -500.00
+2026-05-08 02:31:48,962 | INFO  |    Max consecutive losses: 6
+2026-05-08 02:31:48,962 | INFO  | ================================================================
+2026-05-08 02:31:48,962 | INFO  | 📥 Initial MT5 history sync...
+2026-05-08 02:31:48,969 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-08 02:31:48,969 | INFO  |    ★ sl_atr_mult: 1.8 → 2.2
+2026-05-08 02:31:48,970 | INFO  |    ★ circuit_breaker_daily_loss_enabled: True → False
+2026-05-08 02:31:48,970 | INFO  |    ★ circuit_breaker_consecutive_losses_enabled: True → False
+2026-05-08 02:31:48,970 | INFO  |    💡 Reason: manual reset â€” restored safe EMA pair and SL distance
+2026-05-08 02:31:48,976 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:31:48,976 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 02:31:48,976 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:31:48,976 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 02:31:48,977 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 02:31:48,977 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 02:31:48,977 | INFO  |   Balance: 1,777.97
+2026-05-08 02:31:48,977 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 02:31:48,977 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:31:48,979 | INFO  |   LAST 10 TRADES:
+2026-05-08 02:31:48,979 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 02:31:48,980 | INFO  |   ······························································
+2026-05-08 02:31:48,982 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 02:31:48,982 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:31:49,003 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:31:49,003 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 02:31:49,004 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:31:49,004 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 02:31:49,004 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 02:31:49,004 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 02:31:49,005 | INFO  |   Balance: 1,777.97
+2026-05-08 02:31:49,005 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 02:31:49,005 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:31:49,006 | INFO  |   LAST 10 TRADES:
+2026-05-08 02:31:49,006 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 02:31:49,006 | INFO  |   ······························································
+2026-05-08 02:31:49,006 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 02:31:49,007 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:31:49,008 | INFO  | 🔍 XAUUSDm | Price: 4695.32 | RSI: 50.1 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:31:49,553 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:31:49,554 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.41 < 30% ATR=5.29 (drift)
+2026-05-08 02:32:00,624 | INFO  | 🔍 XAUUSDm | Price: 4695.58 | RSI: 50.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:32:01,027 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:32:01,028 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.15 < 30% ATR=5.29 (drift)
+2026-05-08 02:33:00,400 | INFO  | 🔍 XAUUSDm | Price: 4696.94 | RSI: 52.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:33:00,788 | WARNING | ⚠️  News source blocked (429 Client Error: Too Many Requests for url: https://nfs.faireconomy.media/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:33:01,191 | WARNING | ⚠️  News source blocked (403 Client Error: Forbidden for url: https://www.forexfactory.com/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:33:01,192 | ERROR | ❌ All news sources failed — trading without news context
+2026-05-08 02:33:01,192 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:33:01,194 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.21 < 30% ATR=5.29 (drift)
+2026-05-08 02:34:00,618 | INFO  | 🔍 XAUUSDm | Price: 4697.62 | RSI: 53.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:34:01,001 | WARNING | ⚠️  News source blocked (429 Client Error: Too Many Requests for url: https://nfs.faireconomy.media/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:34:01,387 | WARNING | ⚠️  News source blocked (403 Client Error: Forbidden for url: https://www.forexfactory.com/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:34:01,387 | ERROR | ❌ All news sources failed — trading without news context
+2026-05-08 02:34:01,388 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:34:01,388 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.89 < 30% ATR=5.31 (drift)
+2026-05-08 02:35:00,766 | INFO  | 🔍 XAUUSDm | Price: 4697.51 | RSI: 53.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:35:01,146 | WARNING | ⚠️  News source blocked (429 Client Error: Too Many Requests for url: https://nfs.faireconomy.media/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:35:01,548 | WARNING | ⚠️  News source blocked (403 Client Error: Forbidden for url: https://www.forexfactory.com/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:35:01,550 | ERROR | ❌ All news sources failed — trading without news context
+2026-05-08 02:35:01,550 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:35:01,551 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.34 < 30% ATR=4.99 (drift)
+2026-05-08 02:36:00,157 | INFO  | 🔍 XAUUSDm | Price: 4697.35 | RSI: 53.0 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:36:00,538 | WARNING | ⚠️  News source blocked (429 Client Error: Too Many Requests for url: https://nfs.faireconomy.media/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:36:00,968 | WARNING | ⚠️  News source blocked (403 Client Error: Forbidden for url: https://www.forexfactory.com/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:36:00,969 | ERROR | ❌ All news sources failed — trading without news context
+2026-05-08 02:36:00,969 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:36:00,970 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.18 < 30% ATR=5.04 (drift)
+2026-05-08 02:37:00,391 | INFO  | 🔍 XAUUSDm | Price: 4698.28 | RSI: 54.3 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:37:00,963 | WARNING | ⚠️  News source blocked (429 Client Error: Too Many Requests for url: https://nfs.faireconomy.media/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:37:01,343 | WARNING | ⚠️  News source blocked (403 Client Error: Forbidden for url: https://www.forexfactory.com/ff_calendar_thisweek.xml) — trying next...
+2026-05-08 02:37:01,343 | ERROR | ❌ All news sources failed — trading without news context
+2026-05-08 02:37:01,344 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:37:01,344 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.12 < 30% ATR=5.10 (drift)
+2026-05-08 02:37:56,495 | INFO  | ================================================================
+2026-05-08 02:37:56,495 | INFO  | 🔥 SCURO ACCUMULATOR — REBUILT
+2026-05-08 02:37:56,495 | INFO  |    Symbol: XAUUSDm | Magic: 777777
+2026-05-08 02:37:56,496 | INFO  |    Daily loss limit: -500.00
+2026-05-08 02:37:56,496 | INFO  |    Max consecutive losses: 6
+2026-05-08 02:37:56,496 | INFO  | ================================================================
+2026-05-08 02:37:56,497 | INFO  | 📥 Initial MT5 history sync...
+2026-05-08 02:37:56,502 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-08 02:37:56,502 | INFO  |    ★ sl_atr_mult: 1.8 → 2.2
+2026-05-08 02:37:56,503 | INFO  |    ★ circuit_breaker_daily_loss_enabled: True → False
+2026-05-08 02:37:56,503 | INFO  |    ★ circuit_breaker_consecutive_losses_enabled: True → False
+2026-05-08 02:37:56,503 | INFO  |    💡 Reason: manual reset â€” restored safe EMA pair and SL distance
+2026-05-08 02:37:56,510 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:37:56,511 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 02:37:56,511 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:37:56,511 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 02:37:56,511 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 02:37:56,511 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 02:37:56,512 | INFO  |   Balance: 1,777.97
+2026-05-08 02:37:56,512 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 02:37:56,512 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:37:56,513 | INFO  |   LAST 10 TRADES:
+2026-05-08 02:37:56,513 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 02:37:56,513 | INFO  |   ······························································
+2026-05-08 02:37:56,514 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 02:37:56,514 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:37:56,529 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:37:56,530 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 02:37:56,530 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:37:56,530 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 02:37:56,530 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 02:37:56,531 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 02:37:56,531 | INFO  |   Balance: 1,777.97
+2026-05-08 02:37:56,531 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 02:37:56,531 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:37:56,532 | INFO  |   LAST 10 TRADES:
+2026-05-08 02:37:56,532 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 02:37:56,532 | INFO  |   ······························································
+2026-05-08 02:37:56,533 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 02:37:56,533 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:37:56,534 | INFO  | 🔍 XAUUSDm | Price: 4697.85 | RSI: 53.7 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:37:57,120 | WARNING | ⚠️  News source https://sslecal2.investing.com/ajax/getC... → 403 Client Error: Forbidden for url: https://sslecal2.investing.com/ajax/getCalendarRSS/?time_filter=time_only&dateFrom=thisWeek&countries=5 — trying next
+2026-05-08 02:37:57,532 | WARNING | ⚠️  News source https://nfs.faireconomy.media/ff_calenda... → 429 Client Error: Too Many Requests for url: https://nfs.faireconomy.media/ff_calendar_thisweek.xml — trying next
+2026-05-08 02:37:57,934 | WARNING | ⚠️  News source https://www.forexfactory.com/ff_calendar... → 403 Client Error: Forbidden for url: https://www.forexfactory.com/ff_calendar_thisweek.xml — trying next
+2026-05-08 02:37:57,934 | ERROR | ❌ All news sources failed — trading without news context
+2026-05-08 02:37:57,935 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:37:57,936 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.68 < 30% ATR=5.11 (drift)
+2026-05-08 02:38:00,959 | INFO  | 🔍 XAUUSDm | Price: 4697.85 | RSI: 53.7 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:38:01,345 | WARNING | ⚠️  News source https://sslecal2.investing.com/ajax/getC... → 403 Client Error: Forbidden for url: https://sslecal2.investing.com/ajax/getCalendarRSS/?time_filter=time_only&dateFrom=thisWeek&countries=5 — trying next
+2026-05-08 02:38:01,759 | INFO  | 📰 News cache refreshed (0 USD events) — next in 30 min
+2026-05-08 02:38:01,760 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:38:01,761 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.68 < 30% ATR=5.11 (drift)
+2026-05-08 02:39:00,173 | INFO  | 🔍 XAUUSDm | Price: 4698.24 | RSI: 54.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:39:00,174 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:39:00,174 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.07 < 30% ATR=5.14 (drift)
+2026-05-08 02:40:00,648 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:40:00,649 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 02:40:00,649 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:40:00,649 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 02:40:00,649 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 02:40:00,649 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 02:40:00,650 | INFO  |   Balance: 1,777.97
+2026-05-08 02:40:00,650 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 02:40:00,650 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:40:00,651 | INFO  |   LAST 10 TRADES:
+2026-05-08 02:40:00,651 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 02:40:00,651 | INFO  |   ······························································
+2026-05-08 02:40:00,652 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 02:40:00,653 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 02:40:00,655 | INFO  | 🔍 XAUUSDm | Price: 4699.03 | RSI: 55.2 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:40:00,656 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:40:00,656 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.00 < 30% ATR=4.79 (drift)
+2026-05-08 02:41:00,063 | INFO  | 🔍 XAUUSDm | Price: 4697.98 | RSI: 53.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:41:00,063 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:41:00,064 | INFO  | ⏭️  Technical gate rejected: TECH:body=1.06 < 30% ATR=4.88 (drift)
+2026-05-08 02:42:00,558 | INFO  | 🔍 XAUUSDm | Price: 4697.30 | RSI: 52.4 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:42:00,559 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:42:00,559 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.045% (flat, no conviction)
+2026-05-08 02:43:00,093 | INFO  | 🔍 XAUUSDm | Price: 4698.34 | RSI: 54.1 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:43:00,094 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:43:00,094 | INFO  | ⏭️  Technical gate rejected: TECH:body=0.69 < 30% ATR=4.92 (drift)
+2026-05-08 02:44:00,582 | INFO  | 🔍 XAUUSDm | Price: 4697.34 | RSI: 52.5 | H1: UP | EMA: ↑ | Streak: 1L
+2026-05-08 02:44:00,583 | INFO  | 📡 BUY signal detected | Running technical gate...
+2026-05-08 02:44:00,584 | INFO  | ⏭️  Technical gate rejected: TECH:EMA gap=0.045% (flat, no conviction)

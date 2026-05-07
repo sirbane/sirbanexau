@@ -415,23 +415,59 @@ def get_h1_context() -> str:
     ema50 = ta.ema(df['close'], length=50).iloc[-1]
     return "UP" if df['close'].iloc[-1] > ema50 else "DOWN"
 
-def fetch_news() -> str:
-    """
-    Fetch this week's high/medium impact economic events.
+# ─── NEWS CACHE ──────────────────────────────────────────────
+# Economic calendars don't change every minute.
+# We fetch once every 30 min and cache the result so every source
+# only gets ~2 requests/hour instead of 60 — no more 429s.
+#
+# Source waterfall (tried in order, first success wins):
+#   1. Finnhub  — proper financial API, free tier, very reliable.
+#      Add FINNHUB_KEY=your_key to your .env (free at finnhub.io).
+#   2. nfs.faireconomy.media — ForexFactory mirror, allows bots.
+#   3. forexfactory.com — original, blocks most bots but worth a try.
+#
+# If every source fails, is_high_impact_news_now() falls back to a
+# TIME-BASED BLACKOUT — blocking trades during the fixed windows when
+# major USD data almost always drops (8:30, 10:00, 14:00 EST).
+# This means the bot is ALWAYS protected, even without internet.
 
-    Source priority:
-      1. nfs.faireconomy.media  — public mirror of the FF calendar that
-         allows bot traffic (same XML format, no bot-blocking).
-      2. forexfactory.com       — original source with browser headers as
-         fallback in case the mirror is down.
+FINNHUB_KEY = os.getenv("FINNHUB_KEY", "")   # free at finnhub.io
 
-    Returns up to 2 upcoming events as a short string, "Quiet" if none
-    found, or "Offline" if both sources fail.
+# Known high-impact USD release windows (UTC hour, minute).
+# EST = UTC-5 in winter, UTC-4 in summer — we use UTC to avoid DST bugs.
+# 8:30 EST = 13:30 UTC | 10:00 EST = 15:00 UTC | 14:00 EST = 19:00 UTC
+_HIGH_IMPACT_UTC_WINDOWS = [
+    (13, 30),   # 8:30 AM EST  — NFP, CPI, PPI, jobless claims, retail sales
+    (15,  0),   # 10:00 AM EST — ISM, consumer confidence, existing home sales
+    (19,  0),   # 2:00 PM EST  — FOMC rate decision
+    (19, 30),   # 2:30 PM EST  — FOMC press conference
+]
+_NEWS_BLACKOUT_MINS = 20   # block ±20 min around each window
+
+
+def _is_in_time_blackout() -> bool:
     """
-    CALENDAR_URLS = [
-        "https://nfs.faireconomy.media/ff_calendar_thisweek.xml",  # bot-friendly mirror
-        "https://www.forexfactory.com/ff_calendar_thisweek.xml",   # original (may block bots)
-    ]
+    Pure time-based guard — no network required.
+    Blocks trading during the ±20-minute window around each known
+    high-impact USD release time (in UTC).
+    Used as a fallback when all calendar sources are unreachable.
+    """
+    now_utc = datetime.now(timezone.utc)
+    for h, m in _HIGH_IMPACT_UTC_WINDOWS:
+        window_start = now_utc.replace(hour=h, minute=m, second=0, microsecond=0)
+        delta_secs   = (now_utc - window_start).total_seconds()
+        if -(_NEWS_BLACKOUT_MINS * 60) <= delta_secs <= (_NEWS_BLACKOUT_MINS * 60):
+            logger.warning(
+                f"🕐 Time blackout: near known high-impact window "
+                f"{h:02d}:{m:02d} UTC (±{_NEWS_BLACKOUT_MINS} min) — skipping trade"
+            )
+            return True
+    return False
+
+
+class _NewsCache:
+    TTL_SECONDS = 1800   # fetch at most once every 30 minutes
+
     HEADERS = {
         "User-Agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -442,95 +478,175 @@ def fetch_news() -> str:
         "Accept-Language": "en-US,en;q=0.9",
     }
 
-    for url in CALENDAR_URLS:
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=12)
-            r.raise_for_status()
-            root = ET.fromstring(r.content)
-            events = []
-            for item in root.findall("event"):
-                impact_el    = item.find("impact")
-                title_el     = item.find("title")
-                currency_el  = item.find("currency")
-                if impact_el is None or title_el is None:
-                    continue
-                if impact_el.text not in ("High", "Medium"):
-                    continue
-                currency = currency_el.text if currency_el is not None else ""
-                if currency != "USD":          # gold moves most on USD events
-                    continue
-                title = title_el.text or ""
-                tag   = "🔴" if impact_el.text == "High" else "🟡"
-                events.append(f"{tag}{title}")
-            return " | ".join(events[:2]) if events else "Quiet"
-        except requests.exceptions.HTTPError as e:
-            logger.warning(f"⚠️  News source blocked ({e}) — trying next...")
-        except requests.exceptions.Timeout:
-            logger.warning(f"⚠️  News source timed out — trying next...")
-        except ET.ParseError as e:
-            logger.warning(f"⚠️  News XML parse error: {e} — trying next...")
-        except Exception as e:
-            logger.warning(f"⚠️  News fetch error: {e} — trying next...")
+    def __init__(self):
+        self._events: list[dict] = []
+        self._label:  str        = "Offline"
+        self._fetched_at: float  = 0.0
+        self._source_ok:  str    = ""   # which source last succeeded
 
-    logger.error("❌ All news sources failed — trading without news context")
-    return "Offline"
+    def _is_stale(self) -> bool:
+        return (time.time() - self._fetched_at) > self.TTL_SECONDS
 
-def is_high_impact_news_now() -> bool:
-    """
-    Returns True if a High-impact USD news event is within 15 minutes.
-    Avoids trading into news spikes — a common cause of stop-outs.
-    Uses the same bot-friendly mirror as fetch_news().
-    Returns True (blocks trading) on any fetch failure — better safe than sorry.
-    """
-    CALENDAR_URLS = [
-        "https://nfs.faireconomy.media/ff_calendar_thisweek.xml",
-        "https://www.forexfactory.com/ff_calendar_thisweek.xml",
-    ]
-    HEADERS = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/124.0.0.0 Safari/537.36"
-        ),
-        "Accept": "application/xml,text/xml,*/*;q=0.9",
-    }
+    # ── Source 1: Finnhub ─────────────────────────────────────
+    def _try_finnhub(self) -> list[dict] | None:
+        """
+        Finnhub free economic calendar.
+        Endpoint: /calendar/economic  (returns JSON)
+        Sign up free at https://finnhub.io — takes ~30 seconds.
+        Add FINNHUB_KEY=your_key to your .env file.
+        """
+        if not FINNHUB_KEY:
+            return None   # skip silently if not configured
+        today = datetime.now()
+        week_end = today + __import__('datetime').timedelta(days=7)
+        url = (
+            f"https://finnhub.io/api/v1/calendar/economic"
+            f"?from={today.strftime('%Y-%m-%d')}"
+            f"&to={week_end.strftime('%Y-%m-%d')}"
+            f"&token={FINNHUB_KEY}"
+        )
+        r = requests.get(url, timeout=12)
+        r.raise_for_status()
+        data = r.json()
+        events = []
+        for ev in data.get("economicCalendar", []):
+            if ev.get("country") != "US":
+                continue
+            impact = ev.get("impact", "").capitalize()
+            if impact not in ("High", "Medium"):
+                continue
+            event_dt = None
+            try:
+                event_dt = datetime.strptime(ev["time"], "%Y-%m-%d %H:%M:%S")
+            except Exception:
+                pass
+            events.append({
+                "title":  ev.get("event", "Unknown"),
+                "impact": impact,
+                "dt":     event_dt,
+            })
+        return events
 
-    for url in CALENDAR_URLS:
-        try:
-            r    = requests.get(url, headers=HEADERS, timeout=12)
-            r.raise_for_status()
-            root = ET.fromstring(r.content)
-            now  = datetime.now()
-            for item in root.findall("event"):
-                impact_el   = item.find("impact")
-                currency_el = item.find("currency")
-                date_el     = item.find("date")
-                time_el     = item.find("time")
-                if impact_el is None or impact_el.text != "High":
-                    continue
-                if currency_el is None or currency_el.text != "USD":
-                    continue
-                if date_el is None or time_el is None or not (time_el.text or "").strip():
-                    continue
+    # ── Source 2 & 3: ForexFactory XML (mirror + original) ────
+    def _try_ff_xml(self, url: str) -> list[dict] | None:
+        r = requests.get(url, headers=self.HEADERS, timeout=12)
+        r.raise_for_status()
+        root = ET.fromstring(r.content)
+        now  = datetime.now()
+        events = []
+        for item in root.findall("event"):
+            impact_el   = item.find("impact")
+            title_el    = item.find("title")
+            currency_el = item.find("currency")
+            date_el     = item.find("date")
+            time_el     = item.find("time")
+            if not impact_el or not title_el:
+                continue
+            impact   = impact_el.text   or ""
+            currency = currency_el.text if currency_el is not None else ""
+            if impact not in ("High", "Medium") or currency != "USD":
+                continue
+            event_dt = None
+            raw_time = (time_el.text or "").strip() if time_el is not None else ""
+            if date_el is not None and raw_time:
                 try:
                     event_dt = datetime.strptime(
-                        f"{date_el.text} {time_el.text}", "%a %b %d %I:%M%p"
+                        f"{date_el.text} {raw_time}", "%a %b %d %I:%M%p"
                     ).replace(year=now.year)
-                    if abs((event_dt - now).total_seconds()) < 900:   # 15-min window
-                        logger.warning(f"📰 High-impact news in {round((event_dt-now).total_seconds()/60,1)} min — skipping trade")
-                        return True
                 except Exception:
-                    continue
-            return False   # parsed OK, no event within 15 min
-        except requests.exceptions.HTTPError:
-            logger.warning("⚠️  News guard: source blocked — trying next...")
-        except requests.exceptions.Timeout:
-            logger.warning("⚠️  News guard: timed out — trying next...")
-        except Exception as e:
-            logger.warning(f"⚠️  News guard error: {e} — trying next...")
+                    pass
+            events.append({
+                "title":  title_el.text or "",
+                "impact": impact,
+                "dt":     event_dt,
+            })
+        return events
 
-    logger.warning("⚠️  News guard: all sources failed — blocking trade as precaution")
-    return True   # fail-safe: block trading if we can't check news
+    def _fetch_and_parse(self):
+        """Try all sources in order. Cache whichever succeeds first."""
+        sources = [
+            ("Finnhub",          lambda: self._try_finnhub()),
+            ("nfs.faireconomy",  lambda: self._try_ff_xml(
+                "https://nfs.faireconomy.media/ff_calendar_thisweek.xml")),
+            ("ForexFactory",     lambda: self._try_ff_xml(
+                "https://www.forexfactory.com/ff_calendar_thisweek.xml")),
+        ]
+
+        for name, fetcher in sources:
+            try:
+                events = fetcher()
+                if events is None:
+                    continue   # source skipped (e.g. no API key)
+                self._events     = events
+                self._fetched_at = time.time()
+                self._source_ok  = name
+                tags = [
+                    ("🔴" if e["impact"] == "High" else "🟡") + e["title"]
+                    for e in events[:2]
+                ]
+                self._label = " | ".join(tags) if tags else "Quiet"
+                logger.info(
+                    f"📰 News cache refreshed via {name} "
+                    f"({len(events)} USD events) — next fetch in 30 min"
+                )
+                return   # success
+            except requests.exceptions.HTTPError as e:
+                logger.warning(f"⚠️  News [{name}] HTTP {e.response.status_code} — trying next")
+            except requests.exceptions.Timeout:
+                logger.warning(f"⚠️  News [{name}] timed out — trying next")
+            except Exception as e:
+                logger.warning(f"⚠️  News [{name}] error: {e} — trying next")
+
+        # All sources failed
+        if self._fetched_at > 0:
+            logger.warning("⚠️  All news sources down — reusing cached data")
+        else:
+            logger.error("❌ All news sources failed and no cache — using time blackout")
+            self._label = "Offline"
+
+    def get_label(self) -> str:
+        if self._is_stale():
+            self._fetch_and_parse()
+        return self._label
+
+    def is_high_impact_imminent(self, window_secs: int = 900) -> bool:
+        """
+        Returns True if a High-impact USD event is within window_secs.
+        Falls back to time-based blackout if all sources are unavailable.
+        """
+        if self._is_stale():
+            self._fetch_and_parse()
+
+        # If we have real calendar data, use it
+        if self._fetched_at > 0 and self._events:
+            now = datetime.now()
+            for ev in self._events:
+                if ev["impact"] != "High" or ev["dt"] is None:
+                    continue
+                delta = (ev["dt"] - now).total_seconds()
+                if -window_secs <= delta <= window_secs:
+                    mins = round(delta / 60, 1)
+                    logger.warning(
+                        f"📰 High-impact news in {mins} min ({ev['title']}) — skipping trade"
+                    )
+                    return True
+            return False
+
+        # No calendar data at all — fall back to time-based blackout
+        return _is_in_time_blackout()
+
+
+_news_cache = _NewsCache()
+
+
+def fetch_news() -> str:
+    """Return a short string of upcoming high/medium USD news events."""
+    return _news_cache.get_label()
+
+
+def is_high_impact_news_now() -> bool:
+    """True if a High-impact USD event is within 15 minutes of now."""
+    return _news_cache.is_high_impact_imminent(window_secs=900)
 
 def technical_confirmation(signal: str, df: pd.DataFrame, h1_trend: str) -> tuple[bool, str]:
     """
