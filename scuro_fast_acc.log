@@ -1164,3 +1164,24 @@
 2026-05-07 19:03:00,890 | INFO  | ⏸️  Circuit breaker active — 297 min remaining
 2026-05-07 19:04:00,339 | INFO  | ⏸️  Circuit breaker active — 296 min remaining
 2026-05-07 19:05:00,766 | INFO  | ⏸️  Circuit breaker active — 295 min remaining
+2026-05-07 19:06:00,163 | INFO  | ⏸️  Circuit breaker active — 294 min remaining
+2026-05-07 19:07:00,536 | INFO  | ⏸️  Circuit breaker active — 293 min remaining
+2026-05-07 19:08:00,057 | INFO  | ⏸️  Circuit breaker active — 292 min remaining
+2026-05-07 19:09:00,589 | INFO  | ⏸️  Circuit breaker active — 291 min remaining
+2026-05-07 19:10:00,092 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 19:10:00,093 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 19:10:00,094 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 19:10:00,094 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 19:10:00,094 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 19:10:00,095 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 19:10:00,095 | INFO  |   Balance: 1,777.97
+2026-05-07 19:10:00,096 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 19:10:00,096 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 19:10:00,097 | INFO  |   LAST 10 TRADES:
+2026-05-07 19:10:00,097 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 19:10:00,098 | INFO  |   ······························································
+2026-05-07 19:10:00,098 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 19:10:00,099 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 19:10:00,099 | INFO  | ⏸️  Circuit breaker active — 290 min remaining
+2026-05-07 19:11:00,563 | INFO  | ⏸️  Circuit breaker active — 289 min remaining
+2026-05-07 19:12:00,050 | INFO  | ⏸️  Circuit breaker active — 288 min remaining
