@@ -26,7 +26,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-DATA_FILE = "scuro_live_data.json"
+DATA_FILE    = "scuro_live_data.json"
+MAGIC_NUMBER = 234000          # ← set this to your EA's magic number
 
 # ─── GLOBAL STYLES ───────────────────────────────────────────
 st.markdown("""
@@ -265,6 +266,24 @@ CHART_LAYOUT = dict(
 )
 
 
+def chart_layout(**overrides) -> dict:
+    """Return CHART_LAYOUT merged with any keyword overrides.
+
+    Handles nested dicts (e.g. yaxis) by merging rather than replacing,
+    so callers can do:
+        fig.update_layout(**chart_layout(yaxis=dict(tickformat=",.0f")))
+    without hitting 'multiple values for keyword argument' errors that
+    occur when ** -unpacking CHART_LAYOUT and also passing the same key.
+    """
+    result = dict(CHART_LAYOUT)
+    for key, val in overrides.items():
+        if key in result and isinstance(result[key], dict) and isinstance(val, dict):
+            result[key] = {**result[key], **val}
+        else:
+            result[key] = val
+    return result
+
+
 def build_equity_chart(equity_curve: list, open_positions: list) -> go.Figure:
     if not equity_curve:
         return go.Figure()
@@ -283,12 +302,11 @@ def build_equity_chart(equity_curve: list, open_positions: list) -> go.Figure:
         hovertemplate="%{x|%H:%M}<br>KES %{y:,.2f}<extra></extra>",
     ))
 
-    fig.update_layout(
-        **CHART_LAYOUT,
+    fig.update_layout(**chart_layout(
         title=dict(text="EQUITY CURVE", font=dict(size=10, color="#6b6b8a"), x=0.01),
         height=220,
-        yaxis=dict(**CHART_LAYOUT["yaxis"], tickformat=",.0f"),
-    )
+        yaxis=dict(tickformat=",.0f"),
+    ))
     return fig
 
 
@@ -309,12 +327,11 @@ def build_pnl_bar(closed_trades: list) -> go.Figure:
         marker_color=colors,
         hovertemplate="%{x|%H:%M}<br>KES %{y:+,.2f}<extra></extra>",
     ))
-    fig.update_layout(
-        **CHART_LAYOUT,
+    fig.update_layout(**chart_layout(
         title=dict(text="HOURLY P&L", font=dict(size=10, color="#6b6b8a"), x=0.01),
         height=220,
-        yaxis=dict(**CHART_LAYOUT["yaxis"], tickformat="+,.0f"),
-    )
+        yaxis=dict(tickformat="+,.0f"),
+    ))
     return fig
 
 
@@ -392,12 +409,11 @@ def build_drawdown_chart(account: dict, equity_curve: list) -> go.Figure:
         fillcolor="rgba(240,79,95,0.1)",
         hovertemplate="%{x|%H:%M}<br>DD: %{y:.1f}%<extra></extra>",
     ))
-    fig.update_layout(
-        **CHART_LAYOUT,
+    fig.update_layout(**chart_layout(
         title=dict(text="DRAWDOWN %", font=dict(size=10, color="#6b6b8a"), x=0.01),
         height=180,
-        yaxis=dict(**CHART_LAYOUT["yaxis"], tickformat=".1f", ticksuffix="%"),
-    )
+        yaxis=dict(tickformat=".1f", ticksuffix="%"),
+    ))
     return fig
 
 

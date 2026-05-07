@@ -36,8 +36,8 @@ st.set_page_config(
 )
 
 # ─── SUPABASE CONFIG ──────────────────────────────────────────
-SUPABASE_URL = st.secrets.get("SUPABASE_URL") or os.getenv("SUPABASE_URL")
-SUPABASE_KEY = st.secrets.get("SUPABASE_KEY") or os.getenv("SUPABASE_KEY")
+SUPABASE_URL = os.getenv("SUPABASE_URL", "https://amykrtiekuyccddwyvbb.supabase.co")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY", "sb_publishable_49Ob7v2rKNuzBaRaNGfhEg_DKoFqUQe")
 TABLE_NAME = "live_trading_data"
 MAGIC_NUMBER = 20250101  # Your EA magic number
 
@@ -268,8 +268,9 @@ CHART_LAYOUT = dict(
     font=dict(family="Space Mono", color="#6b6b8a", size=11),
     margin=dict(l=10, r=10, t=30, b=10),
     showlegend=False,
+    xaxis=dict(gridcolor="#1e1e35", linecolor="#1e1e35", showgrid=True),
+    yaxis=dict(gridcolor="#1e1e35", linecolor="#1e1e35", showgrid=True),
 )
-CHART_AXIS = dict(gridcolor="#1e1e35", linecolor="#1e1e35", showgrid=True)
 
 
 def build_equity_chart(equity_curve: list, open_positions: list) -> go.Figure:
@@ -294,8 +295,7 @@ def build_equity_chart(equity_curve: list, open_positions: list) -> go.Figure:
         **CHART_LAYOUT,
         title=dict(text="EQUITY CURVE", font=dict(size=10, color="#6b6b8a"), x=0.01),
         height=220,
-        xaxis=CHART_AXIS,
-        yaxis=dict(**CHART_AXIS, tickformat=",.0f"),
+        yaxis=dict(**CHART_LAYOUT["yaxis"], tickformat=",.0f"),
     )
     return fig
 
@@ -321,8 +321,7 @@ def build_pnl_bar(closed_trades: list) -> go.Figure:
         **CHART_LAYOUT,
         title=dict(text="HOURLY P&L", font=dict(size=10, color="#6b6b8a"), x=0.01),
         height=220,
-        xaxis=CHART_AXIS,
-        yaxis=dict(**CHART_AXIS, tickformat="+,.0f"),
+        yaxis=dict(**CHART_LAYOUT["yaxis"], tickformat="+,.0f"),
     )
     return fig
 
@@ -405,8 +404,7 @@ def build_drawdown_chart(account: dict, equity_curve: list) -> go.Figure:
         **CHART_LAYOUT,
         title=dict(text="DRAWDOWN %", font=dict(size=10, color="#6b6b8a"), x=0.01),
         height=180,
-        xaxis=CHART_AXIS,
-        yaxis=dict(**CHART_AXIS, tickformat=".1f", ticksuffix="%"),
+        yaxis=dict(**CHART_LAYOUT["yaxis"], tickformat=".1f", ticksuffix="%"),
     )
     return fig
 
@@ -744,6 +742,4 @@ def render():
 
 # ─── RENDER ──────────────────────────────────────────────────
 render()
-# Replace the bare st.rerun() with:
-time.sleep(10)
 st.rerun()
