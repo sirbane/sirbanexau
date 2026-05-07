@@ -54,7 +54,7 @@ CHANGELOG_LOG = "advisor_changelog.log"
 # ─── ADVISOR SETTINGS ────────────────────────────────────────
 ADVISOR_MODEL    = "meta-llama/llama-4-scout-17b-16e-instruct"
 ADVISOR_INTERVAL = 30          # minutes between analysis cycles
-MIN_CLOSED_TRADES = 5          # don't advise until we have enough data
+MIN_CLOSED_TRADES = 3          # don't advise until we have enough data
 
 # How far back to look for history (days). 30 gives enough context
 # without drowning the model in ancient trades.
@@ -85,7 +85,7 @@ DEFAULT_CONFIG = {
     "reward_ratio":       2.5,     # raised from 2.0 — need bigger wins to offset losses
     "rsi_buy_threshold":  45,      # raised from 47 — be more selective on buys
     "rsi_sell_threshold": 55,      # lowered from 53 — be more selective on sells
-    "sl_atr_mult":        1.8,
+    "sl_atr_mult":        2.2,     # widened from 1.8 — prevent stop-hunts on gold
     "trail_atr_mult":     1.4,
     "ema_fast":           5,
     "ema_slow":           13,      # widened from 8 — reduces noise-triggered signals

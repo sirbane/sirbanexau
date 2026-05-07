@@ -307,7 +307,7 @@ def build_pnl_bar(closed_trades: list) -> go.Figure:
     df = pd.DataFrame(closed_trades)
     df = df[df.get("magic", 0) != 0]
     df["close_time"] = pd.to_datetime(df["close_time"])
-    df["hour"] = df["close_time"].dt.floor("H")
+    df["hour"] = df["close_time"].dt.floor("h")
     hourly = df.groupby("hour")["profit"].sum().reset_index()
 
     colors = ["#22d3a0" if v >= 0 else "#f04f5f" for v in hourly["profit"]]

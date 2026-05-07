@@ -3,7 +3,7 @@
   "reward_ratio": 2.5,
   "rsi_buy_threshold": 45,
   "rsi_sell_threshold": 55,
-  "sl_atr_mult": 1.8,
+  "sl_atr_mult": 2.2,
   "trail_atr_mult": 1.4,
   "ema_fast": 5,
   "ema_slow": 13,

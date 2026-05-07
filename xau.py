@@ -453,7 +453,7 @@ def is_high_impact_news_now() -> bool:
             except:
                 continue
     except:
-        pass
+        return True
     return False
 
 def technical_confirmation(signal: str, df: pd.DataFrame, h1_trend: str) -> tuple[bool, str]:
@@ -490,7 +490,7 @@ def technical_confirmation(signal: str, df: pd.DataFrame, h1_trend: str) -> tupl
         return False, f"TECH:H1={h1_trend} (need DOWN)"
 
     # 2. RSI not extended (avoid chasing)
-    if signal == "BUY"  and rsi > 70:
+    if signal == "BUY"  and rsi > 65:
         return False, f"TECH:RSI={rsi:.0f} overbought"
     if signal == "SELL" and rsi < 30:
         return False, f"TECH:RSI={rsi:.0f} oversold"
