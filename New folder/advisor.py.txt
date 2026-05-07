@@ -1,0 +1,421 @@
+"""
+advisor.py  ─  Scuro Adaptive Learning Engine
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Runs alongside xau2.py. Every ADVISOR_INTERVAL minutes it:
+  1. Reads trade_history.csv and computes performance stats
+  2. Sends stats + current config to GPT-OSS-120B (text analysis)
+  3. Parses the model's JSON parameter recommendations
+  4. Writes validated changes to scuro_config.json
+  5. xau2.py hot-reloads that file each minute — no restart needed
+
+NOTE: xau2.py now uses TEXT-BASED chart analysis (~150 tokens vs 2500+ images).
+This reduces token costs by 94%. No Vision TPD limits — free tier sustainable.
+
+Run in a separate terminal:
+    python advisor.py
+"""
+
+import os
+import json
+import time
+import logging
+import requests
+import pandas as pd
+from datetime import datetime
+from dotenv import load_dotenv
+
+# ─── LOGGING ─────────────────────────────────────────────────
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)-5s | %(message)s",
+    handlers=[
+        logging.FileHandler("advisor.log", encoding="utf-8"),
+        logging.StreamHandler(),
+    ],
+)
+logger = logging.getLogger(__name__)
+
+load_dotenv()
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+# ─── PATHS ───────────────────────────────────────────────────
+HISTORY_CSV    = "trade_history.csv"
+CONFIG_JSON    = "scuro_config.json"
+CHANGELOG_LOG  = "advisor_changelog.log"
+
+# ─── ADVISOR SETTINGS ────────────────────────────────────────
+ADVISOR_MODEL    = "meta-llama/llama-4-scout-17b-16e-instruct"
+ADVISOR_INTERVAL = 30          # minutes between analysis cycles
+MIN_CLOSED_TRADES = 5          # don't advise until we have enough data
+
+# ─── PARAMETER BOUNDS (hard safety limits) ───────────────────
+# Advisor cannot push values outside these ranges
+PARAM_BOUNDS = {
+    "accumulation_lot":   (0.01,  0.10),
+    "reward_ratio":       (1.5,   4.0),
+    "rsi_buy_threshold":  (40,    55),
+    "rsi_sell_threshold": (45,    60),
+    "sl_atr_mult":        (1.0,   2.5),
+    "trail_atr_mult":     (0.8,   2.0),
+    "ema_fast":           (3,     10),
+    "ema_slow":           (7,     21),
+}
+
+# ─── DEFAULT CONFIG ──────────────────────────────────────────
+DEFAULT_CONFIG = {
+    "accumulation_lot":   0.02,
+    "reward_ratio":       2.0,
+    "rsi_buy_threshold":  47,
+    "rsi_sell_threshold": 53,
+    "sl_atr_mult":        1.3,
+    "trail_atr_mult":     1.2,
+    "ema_fast":           5,
+    "ema_slow":           8,
+    "last_updated":       "",
+    "update_reason":      "default",
+    "cycle":              0,
+}
+
+# ─── CONFIG HELPERS ──────────────────────────────────────────
+
+def load_config() -> dict:
+    if os.path.exists(CONFIG_JSON):
+        try:
+            with open(CONFIG_JSON) as f:
+                cfg = json.load(f)
+            # Backfill any missing keys from defaults
+            for k, v in DEFAULT_CONFIG.items():
+                cfg.setdefault(k, v)
+            return cfg
+        except Exception as e:
+            logger.warning(f"⚠️  Config read error: {e} — using defaults")
+    return DEFAULT_CONFIG.copy()
+
+def save_config(cfg: dict):
+    with open(CONFIG_JSON, "w") as f:
+        json.dump(cfg, f, indent=2)
+
+def init_config():
+    """Write default config if it doesn't exist yet."""
+    if not os.path.exists(CONFIG_JSON):
+        save_config(DEFAULT_CONFIG.copy())
+        logger.info(f"📁 Created default {CONFIG_JSON}")
+
+# ─── TRADE STATS ─────────────────────────────────────────────
+
+def compute_stats(df: pd.DataFrame) -> dict:
+    """Compute key performance metrics from the history dataframe."""
+    closed  = df[df["outcome"].isin(["WIN", "LOSS", "BE"])]
+    wins    = closed[closed["outcome"] == "WIN"]
+    losses  = closed[closed["outcome"] == "LOSS"]
+
+    pnl = pd.to_numeric(closed["profit"], errors="coerce").dropna()
+
+    # Streak analysis
+    outcomes = closed["outcome"].tolist()
+    current_streak, streak_type = 0, ""
+    if outcomes:
+        streak_type = outcomes[-1]
+        for o in reversed(outcomes):
+            if o == streak_type: current_streak += 1
+            else: break
+
+    # Direction breakdown
+    buy_trades  = closed[closed["direction"] == "BUY"]
+    sell_trades = closed[closed["direction"] == "SELL"]
+    buy_wr  = (len(buy_trades[buy_trades["outcome"] == "WIN"]) / len(buy_trades)  * 100) if len(buy_trades)  > 0 else 0
+    sell_wr = (len(sell_trades[sell_trades["outcome"] == "WIN"]) / len(sell_trades) * 100) if len(sell_trades) > 0 else 0
+
+    # RSI at entry for wins vs losses
+    win_rsi  = pd.to_numeric(wins["rsi"],   errors="coerce").mean()
+    loss_rsi = pd.to_numeric(losses["rsi"], errors="coerce").mean()
+
+    return {
+        "total_trades":       len(df),
+        "closed_trades":      len(closed),
+        "open_trades":        len(df[df["outcome"] == "OPEN"]),
+        "wins":               len(wins),
+        "losses":             len(losses),
+        "win_rate_pct":       round(len(wins) / len(closed) * 100, 1) if len(closed) > 0 else 0,
+        "total_pnl_usd":      round(pnl.sum(), 2),
+        "avg_win_usd":        round(pnl[pnl > 0].mean(), 2) if len(pnl[pnl > 0]) > 0 else 0,
+        "avg_loss_usd":       round(pnl[pnl < 0].mean(), 2) if len(pnl[pnl < 0]) > 0 else 0,
+        "profit_factor":      round(pnl[pnl > 0].sum() / abs(pnl[pnl < 0].sum()), 2) if abs(pnl[pnl < 0].sum()) > 0 else 999,
+        "best_trade_usd":     round(pnl.max(), 2) if not pnl.empty else 0,
+        "worst_trade_usd":    round(pnl.min(), 2) if not pnl.empty else 0,
+        "buy_win_rate_pct":   round(buy_wr, 1),
+        "sell_win_rate_pct":  round(sell_wr, 1),
+        "current_streak":     current_streak,
+        "current_streak_type": streak_type,
+        "avg_rsi_on_wins":    round(win_rsi, 1) if not pd.isna(win_rsi) else None,
+        "avg_rsi_on_losses":  round(loss_rsi, 1) if not pd.isna(loss_rsi) else None,
+        "last_5_outcomes":    outcomes[-5:],
+    }
+
+# ─── LLAMA ADVISOR ───────────────────────────────────────────
+
+SYSTEM_PROMPT = """You are an expert algorithmic trading advisor for a XAUUSD scalping bot.
+You receive live performance statistics and the bot's current parameter config.
+Your job: recommend SPECIFIC parameter changes that will improve profitability.
+
+You MUST respond with ONLY a valid JSON object — no markdown, no explanation outside the JSON.
+The JSON must have exactly this structure:
+{
+  "changes": {
+    "param_name": new_value,
+    ...
+  },
+  "reasoning": "one concise sentence explaining the key insight",
+  "confidence": "HIGH | MEDIUM | LOW"
+}
+
+Only include parameters you actually want to change in "changes".
+If the strategy is performing well, return an empty changes object: {"changes": {}, ...}
+
+Tunable parameters and their types:
+  accumulation_lot    (float, e.g. 0.02)
+  reward_ratio        (float, e.g. 2.0)
+  rsi_buy_threshold   (int,   e.g. 47)
+  rsi_sell_threshold  (int,   e.g. 53)
+  sl_atr_mult         (float, e.g. 1.3)
+  trail_atr_mult      (float, e.g. 1.2)
+  ema_fast            (int,   e.g. 5)
+  ema_slow            (int,   e.g. 8)
+"""
+
+def ask_llama(stats: dict, config: dict) -> dict | None:
+    """Send stats + config to Llama 4 Scout and get parameter recommendations."""
+    prompt = f"""
+CURRENT PERFORMANCE STATISTICS:
+{json.dumps(stats, indent=2)}
+
+CURRENT BOT PARAMETERS:
+{json.dumps({k: config[k] for k in PARAM_BOUNDS}, indent=2)}
+
+Analysis cycle: #{config.get('cycle', 0) + 1}
+Previous update reason: {config.get('update_reason', 'N/A')}
+
+Based on this data, recommend specific parameter adjustments to improve the bot's performance.
+Remember: respond ONLY with the JSON object.
+"""
+
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type":  "application/json",
+    }
+    payload = {
+        "model":    ADVISOR_MODEL,
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user",   "content": prompt},
+        ],
+        "max_tokens":  512,
+        "temperature": 0.3,   # low temp = consistent, analytical responses
+    }
+
+    try:
+        resp = requests.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers=headers, json=payload, timeout=30
+        )
+        data = resp.json()
+
+        if "choices" not in data:
+            err = data.get("error", {})
+            logger.error(f"❌ Groq error [{err.get('type')}]: {err.get('message')}")
+            return None
+
+        raw_text = data["choices"][0]["message"]["content"].strip()
+
+        # Strip markdown fences if model added them despite instructions
+        if raw_text.startswith("```"):
+            raw_text = raw_text.split("```")[1]
+            if raw_text.startswith("json"):
+                raw_text = raw_text[4:]
+        raw_text = raw_text.strip()
+
+        return json.loads(raw_text)
+
+    except json.JSONDecodeError as e:
+        logger.error(f"❌ JSON parse error: {e}\nRaw response: {raw_text[:300]}")
+        return None
+    except requests.exceptions.Timeout:
+        logger.error("❌ Llama request timed out")
+        return None
+    except Exception as e:
+        logger.error(f"❌ Advisor request failed: {e}")
+        return None
+
+# ─── VALIDATION & APPLICATION ────────────────────────────────
+
+def validate_and_apply(recommendation: dict, current_config: dict) -> dict:
+    """
+    Validate each recommended parameter against PARAM_BOUNDS.
+    Apply safe changes, skip unsafe ones.
+    Returns the updated config dict and a summary of what changed.
+    """
+    changes   = recommendation.get("changes", {})
+    reasoning = recommendation.get("reasoning", "no reason given")
+    confidence= recommendation.get("confidence", "UNKNOWN")
+    applied   = {}
+    rejected  = {}
+
+    new_config = current_config.copy()
+
+    for param, new_val in changes.items():
+        if param not in PARAM_BOUNDS:
+            rejected[param] = f"unknown parameter"
+            continue
+
+        lo, hi = PARAM_BOUNDS[param]
+
+        # Enforce correct type
+        try:
+            if isinstance(lo, int):
+                new_val = int(new_val)
+            else:
+                new_val = float(round(float(new_val), 3))
+        except (ValueError, TypeError):
+            rejected[param] = f"bad type: {new_val}"
+            continue
+
+        # Enforce bounds
+        if not (lo <= new_val <= hi):
+            rejected[param] = f"{new_val} out of bounds [{lo}, {hi}]"
+            continue
+
+        old_val = current_config.get(param)
+        if new_val == old_val:
+            continue   # no actual change
+
+        new_config[param] = new_val
+        applied[param] = {"from": old_val, "to": new_val}
+
+    # Sanity check: ema_fast must be < ema_slow
+    if new_config["ema_fast"] >= new_config["ema_slow"]:
+        rejected["ema_fast/slow"] = "ema_fast must be < ema_slow — reverting"
+        new_config["ema_fast"]  = current_config["ema_fast"]
+        new_config["ema_slow"]  = current_config["ema_slow"]
+
+    # RSI: buy threshold must be < sell threshold
+    if new_config["rsi_buy_threshold"] >= new_config["rsi_sell_threshold"]:
+        rejected["rsi_thresholds"] = "buy threshold must be < sell threshold — reverting"
+        new_config["rsi_buy_threshold"]  = current_config["rsi_buy_threshold"]
+        new_config["rsi_sell_threshold"] = current_config["rsi_sell_threshold"]
+
+    new_config["last_updated"]  = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    new_config["update_reason"] = reasoning
+    new_config["cycle"]         = current_config.get("cycle", 0) + 1
+
+    return new_config, applied, rejected, confidence, reasoning
+
+def log_changes(stats, applied, rejected, confidence, reasoning, cycle):
+    """Append a human-readable entry to the changelog."""
+    sep  = "─" * 60
+    ts   = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open(CHANGELOG_LOG, "a", encoding="utf-8") as f:
+        f.write(f"\n{sep}\n")
+        f.write(f"CYCLE #{cycle}  |  {ts}  |  Confidence: {confidence}\n")
+        f.write(f"Reasoning: {reasoning}\n")
+        f.write(f"Performance: WR={stats['win_rate_pct']}%  PF={stats['profit_factor']}  "
+                f"PnL={stats['total_pnl_usd']:+.2f}  Streak={stats['current_streak']}x{stats['current_streak_type']}\n")
+        if applied:
+            f.write("APPLIED CHANGES:\n")
+            for p, v in applied.items():
+                f.write(f"  {p}: {v['from']} → {v['to']}\n")
+        else:
+            f.write("NO CHANGES — strategy performing acceptably\n")
+        if rejected:
+            f.write("REJECTED (out of bounds or invalid):\n")
+            for p, r in rejected.items():
+                f.write(f"  {p}: {r}\n")
+        f.write(f"{sep}\n")
+
+# ─── MAIN ADVISOR LOOP ───────────────────────────────────────
+
+def run_advisor():
+    init_config()
+
+    logger.info("=" * 64)
+    logger.info("🧠 SCURO ADAPTIVE ADVISOR — Llama 4 Scout Engine")
+    logger.info(f"   Model    : {ADVISOR_MODEL}")
+    logger.info(f"   Interval : every {ADVISOR_INTERVAL} minutes")
+    logger.info(f"   Config   : {os.path.abspath(CONFIG_JSON)}")
+    logger.info(f"   Changelog: {os.path.abspath(CHANGELOG_LOG)}")
+    logger.info("=" * 64)
+
+    while True:
+        logger.info("─" * 64)
+        logger.info(f"🔄 Starting analysis cycle...")
+
+        # ── 1. Load trade history ────────────────────────────
+        if not os.path.exists(HISTORY_CSV):
+            logger.info(f"📋 No {HISTORY_CSV} yet — waiting for xau2.py to place trades.")
+            time.sleep(ADVISOR_INTERVAL * 60)
+            continue
+
+        try:
+            df = pd.read_csv(HISTORY_CSV, dtype={"ticket": str})
+        except Exception as e:
+            logger.error(f"❌ Failed to read {HISTORY_CSV}: {e}")
+            time.sleep(60)
+            continue
+
+        closed = df[df["outcome"].isin(["WIN", "LOSS", "BE"])]
+        if len(closed) < MIN_CLOSED_TRADES:
+            logger.info(f"📊 Only {len(closed)} closed trades (need {MIN_CLOSED_TRADES}) — waiting...")
+            time.sleep(ADVISOR_INTERVAL * 60)
+            continue
+
+        # ── 2. Compute stats ─────────────────────────────────
+        stats = compute_stats(df)
+        logger.info(
+            f"📊 Stats → Trades: {stats['closed_trades']} | "
+            f"WR: {stats['win_rate_pct']}% | "
+            f"PF: {stats['profit_factor']} | "
+            f"PnL: {stats['total_pnl_usd']:+.2f} USD | "
+            f"Streak: {stats['current_streak']}x{stats['current_streak_type']}"
+        )
+
+        # ── 3. Load current config ───────────────────────────
+        config = load_config()
+        logger.info(f"📁 Current config (cycle #{config.get('cycle', 0)}):")
+        for p in PARAM_BOUNDS:
+            logger.info(f"     {p}: {config[p]}")
+
+        # ── 4. Ask Llama ─────────────────────────────────────
+        logger.info(f"🤖 Querying {ADVISOR_MODEL}...")
+        recommendation = ask_llama(stats, config)
+
+        if recommendation is None:
+            logger.warning("⚠️  No valid recommendation received — skipping this cycle")
+            time.sleep(ADVISOR_INTERVAL * 60)
+            continue
+
+        # ── 5. Validate & apply ──────────────────────────────
+        new_config, applied, rejected, confidence, reasoning = validate_and_apply(recommendation, config)
+
+        if applied:
+            save_config(new_config)
+            logger.info(f"✅ Config updated [{confidence} confidence] — {reasoning}")
+            for param, change in applied.items():
+                logger.info(f"   📈 {param}: {change['from']} → {change['to']}")
+        else:
+            # Still save to bump cycle count and update timestamp
+            save_config(new_config)
+            logger.info(f"〰  No parameter changes this cycle [{confidence}] — {reasoning}")
+
+        if rejected:
+            for param, reason in rejected.items():
+                logger.warning(f"   ⚠️  Rejected {param}: {reason}")
+
+        # ── 6. Write changelog ───────────────────────────────
+        log_changes(stats, applied, rejected, confidence, reasoning, new_config["cycle"])
+
+        # ── 7. Sleep until next cycle ────────────────────────
+        next_run = datetime.now().strftime("%H:%M")
+        logger.info(f"⏳ Next analysis in {ADVISOR_INTERVAL} minutes (last run: {next_run})")
+        time.sleep(ADVISOR_INTERVAL * 60)
+
+if __name__ == "__main__":
+    run_advisor()

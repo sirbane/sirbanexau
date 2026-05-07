@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "refreshed_at": "2026-05-07 13:11:00",
+    "symbol": "XAUUSDm",
+    "magic": 777777,
+    "lookback_days": 30
+  },
+  "account": {
+    "login": 435784370,
+    "name": "SIR BANE - XAUUSD",
+    "server": "ExnessKE-MT5Trial9",
+    "broker": "Exness (KE) Limited",
+    "currency": "KES",
+    "balance": 5000.0,
+    "equity": 5000.0,
+    "margin": 0.0,
+    "free_margin": 5000.0,
+    "margin_pct": 0,
+    "drawdown_pct": 0.0,
+    "leverage": 400,
+    "type": "demo"
+  },
+  "live_tick": {
+    "bid": 4733.01,
+    "ask": 4733.29,
+    "spread": 0.28,
+    "time": "2026-05-07 13:11:00"
+  },
+  "live_indicators": {
+    "rsi": 48.1,
+    "atr": 5.08,
+    "ema_fast": 4732.52,
+    "ema_slow": 4733.59,
+    "ema_trend": "DOWN",
+    "close": 4733.01
+  },
+  "h1_trend": "UP",
+  "stats": {
+    "robot_trades": 0,
+    "total_trades": 0
+  },
+  "today": {
+    "pnl": 0,
+    "trades": 0,
+    "wins": 0,
+    "losses": 0
+  },
+  "open_positions": [],
+  "closed_trades": [],
+  "equity_curve": [],
+  "advisor_config": {
+    "accumulation_lot": 0.02,
+    "reward_ratio": 2.5,
+    "rsi_buy_threshold": 45,
+    "rsi_sell_threshold": 55,
+    "sl_atr_mult": 1.8,
+    "trail_atr_mult": 1.4,
+    "ema_fast": 5,
+    "ema_slow": 13,
+    "max_open_positions": 2,
+    "cooldown_mins": 15,
+    "last_updated": "2026-05-07 12:00:00",
+    "update_reason": "manual reset \u00e2\u20ac\u201d restored safe EMA pair and SL distance",
+    "cycle": 80
+  }
+}

@@ -1,0 +1,271 @@
+"""
+AUTO-PUSH SETUP GUIDE
+═══════════════════════════════════════════════════════════════════
+Automatically commit and push code to GitHub every time you make changes.
+
+No more manual: git add . → git commit → git push
+Just run once and it handles everything!
+"""
+
+# ─── STEP 1: UPDATE THE SCRIPT (1 minute) ──────────────────────
+
+"""
+Open auto_push_github.py and find this line:
+
+    REPO_OWNER = "your-username"
+
+Change "your-username" to your actual GitHub username.
+
+Example:
+    REPO_OWNER = "sirbane"
+    REPO_NAME = "sirbanexau"
+
+Save the file.
+"""
+
+# ─── STEP 2: SET UP GITHUB AUTHENTICATION (5 minutes) ──────────
+
+"""
+Choose ONE option:
+
+OPTION A: Personal Access Token (RECOMMENDED)
+──────────────────────────────────────────────
+Best for automation. One-time setup.
+
+1. Go to https://github.com/settings/tokens
+2. Click "Generate new token" → "Generate new token (classic)"
+3. Set:
+   - Token name: "sir_bane_v1_auto_push"
+   - Expiration: 90 days (or No expiration)
+   - Scopes: ☑ repo (full control of private repositories)
+4. Click "Generate token"
+5. COPY the token (starts with ghp_)
+
+6. Set as Windows environment variable (PowerShell):
+   
+   $env:GITHUB_TOKEN = 'ghp_11B4FGSOI0EcK58hfEyD5e_WIHJQF4BwbAk5ULE7sZvYKOhqUeWjBvRU4DUs3xQTzaVPY6DJTLLQgllsDX'
+   
+   (Replace xxxxx with your actual token)
+
+The script will use this automatically!
+
+
+OPTION B: SSH Key
+─────────────────
+More secure, slightly more setup.
+
+1. Open PowerShell
+2. Generate key:
+   ssh-keygen -t ed25519 -C "your_email@example.com"
+3. Press Enter 3 times (use defaults)
+4. Find your public key:
+   Get-Content ~/.ssh/id_ed25519.pub
+5. Copy the output
+6. Go to https://github.com/settings/keys → New SSH key
+7. Paste and save
+8. Change remote in script:
+   git remote set-url origin git@github.com:USERNAME/sir_bane_v1.git
+
+
+OPTION C: Git Credentials Manager
+──────────────────────────────────
+Built into recent Windows Git.
+
+1. Install Git Credentials Manager with Git for Windows
+2. Run script
+3. First push will prompt for GitHub login
+4. Credentials cached automatically after
+"""
+
+# ─── STEP 3: INITIALIZE GITHUB REPOSITORY (2 minutes) ─────────
+
+"""
+If you don't have a repo yet:
+
+1. Go to https://github.com/new
+2. Repository name: sir_bane_v1
+3. Description: "Scuro trading bot with cloud dashboard"
+4. Choose: Public (so dashboard works) or Private
+5. ☐ Initialize with README (optional)
+6. Click "Create repository"
+
+The script will automatically set it up!
+"""
+
+# ─── STEP 4: TEST THE SCRIPT (30 seconds) ────────────────────
+
+"""
+Before setting up auto-push, test it once:
+
+PowerShell:
+    cd "C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1"
+    python auto_push_github.py "Initial commit"
+
+You should see:
+    ✓ Git is installed
+    ✓ Git repository already initialized
+    ✓ Initialize git repo
+    ✓ Stage all changes
+    ✓ Commit: "Initial commit (2026-05-07 14:23:45)"
+    ✓ Push to GitHub (main branch)
+    
+    ✓ Successfully pushed to GitHub!
+      Repository: https://github.com/username/sir_bane_v1
+
+Great! Your repo is on GitHub!
+"""
+
+# ─── STEP 5: ENABLE AUTO-PUSH (30 seconds) ──────────────────
+
+"""
+Now set it to run automatically.
+
+OPTION A: From PowerShell (Simple)
+───────────────────────────────────
+    python auto_push_github.py --auto
+
+Runs forever, pushing every 5 minutes.
+Keep PowerShell window open (can minimize to taskbar).
+
+Press Ctrl+C to stop.
+
+
+OPTION B: Double-Click (Easiest)
+─────────────────────────────────
+1. Find auto_push.bat in your sir_bane_v1 folder
+2. Double-click it
+3. PowerShell opens and starts auto-pushing
+4. Minimize to taskbar
+5. It runs forever until you close the window
+
+No commands to remember!
+
+
+OPTION C: Windows Task Scheduler (Runs in background)
+──────────────────────────────────────────────────────
+Most professional. Runs even if you're not logged in.
+
+1. Open Task Scheduler (search "Task Scheduler")
+2. Right-click "Task Scheduler Library" → New Basic Task
+3. Name: "SCURO Auto-Push GitHub"
+4. Trigger: At startup (or specific time)
+5. Action: Start a program
+   Program: python
+   Arguments: auto_push_github.py --auto
+   Start in: C:\\Users\\obung\\OneDrive\\Documents\\Trading Apps\\sir_bane_v1
+6. ☑ Run with highest privileges
+7. Click Finish
+
+Now it starts automatically on PC boot!
+"""
+
+# ─── STEP 6: VERIFY IT'S WORKING (1 minute) ───────────────────
+
+"""
+Check that commits are being pushed:
+
+1. Go to your GitHub repo:
+   https://github.com/USERNAME/sir_bane_v1
+
+2. Click "Commits" tab
+
+3. You should see new commits appearing every 5 minutes:
+   - "Auto-sync trading data (2026-05-07 14:23:45)"
+   - "Auto-sync trading data (2026-05-07 14:28:45)"
+   - "Auto-sync trading data (2026-05-07 14:33:45)"
+
+If you see them: ✓ AUTO-PUSH IS WORKING!
+
+If nothing shows up after 5 minutes:
+  → Check auth (GITHUB_TOKEN set?)
+  → Check internet connection
+  → Look for error messages in PowerShell
+"""
+
+# ─── CUSTOMIZATION ──────────────────────────────────────────
+
+"""
+Change how often it pushes:
+
+In auto_push_github.py, find:
+    AUTO_INTERVAL = 300  # 5 minutes
+
+Change to:
+    AUTO_INTERVAL = 60   # 1 minute
+    AUTO_INTERVAL = 600  # 10 minutes
+    AUTO_INTERVAL = 3600 # 1 hour
+
+Save and restart the script.
+
+
+Change which files to track:
+
+By default, tracks ALL changed files.
+To track only specific files, edit:
+
+    FILES_TO_COMMIT = [
+        "upload_to_supabase.py",
+        "dashboard_cloud.py",
+        "scuro_config.json",
+    ]
+
+Leave empty [] to track all files (recommended).
+"""
+
+# ─── TROUBLESHOOTING ────────────────────────────────────────
+
+"""
+Script says "No changes to commit"
+  → Normal! Repo is up to date
+  → Script waits 5 mins and tries again
+  → When files change, they'll auto-push
+
+"✗ Git is not installed"
+  → Install from https://git-scm.com/
+
+"✗ Commit failed"
+  → Usually means no changes (not an error)
+
+"✗ Push failed"
+  → Check GITHUB_TOKEN is set:
+    $env:GITHUB_TOKEN  # Should show your token
+  → Check repo exists:
+    https://github.com/USERNAME/sir_bane_v1
+  → Check internet connection
+
+"✗ Add GitHub remote failed"
+  → Repo doesn't exist yet
+  → Create it: https://github.com/new
+  → Name: sir_bane_v1
+
+Still having issues?
+  → Check logs in PowerShell window
+  → Make sure you completed STEP 1 (update REPO_OWNER)
+  → Run test first: python auto_push_github.py "test"
+"""
+
+# ─── QUICK START ────────────────────────────────────────────
+
+"""
+1. Update REPO_OWNER in auto_push_github.py
+2. Set GITHUB_TOKEN env var (or use SSH)
+3. Create repo on GitHub
+4. Test: python auto_push_github.py "test"
+5. Enable auto: python auto_push_github.py --auto
+6. Verify at https://github.com/USERNAME/sir_bane_v1
+
+Done! Your code now automatically syncs to GitHub every 5 minutes.
+"""
+
+# ─── NEXT STEP ──────────────────────────────────────────────
+
+"""
+Once auto-push is running:
+
+1. Your code is safely backed up on GitHub
+2. Streamlit Cloud can deploy directly from GitHub
+3. Changes automatically sync to the cloud
+4. Your dashboard always has the latest version
+
+You now have a complete DevOps pipeline! 🚀
+"""

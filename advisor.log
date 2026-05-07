@@ -1,0 +1,21 @@
+2026-05-07 11:30:46,284 | INFO  | ================================================================
+2026-05-07 11:30:46,285 | INFO  | 🧠 SCURO ADAPTIVE ADVISOR — MT5-Native Edition
+2026-05-07 11:30:46,285 | INFO  |    Model    : meta-llama/llama-4-scout-17b-16e-instruct
+2026-05-07 11:30:46,286 | INFO  |    Interval : every 30 minutes
+2026-05-07 11:30:46,286 | INFO  |    Symbol   : XAUUSDm | Magic: 777777
+2026-05-07 11:30:46,287 | INFO  |    Lookback : 30 days of MT5 history
+2026-05-07 11:30:46,288 | INFO  |    Config   : C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1\scuro_config.json
+2026-05-07 11:30:46,289 | INFO  |    Changelog: C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1\advisor_changelog.log
+2026-05-07 11:30:46,290 | INFO  | ================================================================
+2026-05-07 11:30:46,290 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 11:30:46,290 | INFO  | 🔄 Starting analysis cycle...
+2026-05-07 11:30:46,295 | INFO  | 📋 No closed deals found in MT5 history.
+2026-05-07 11:30:46,296 | INFO  | 📋 No MT5 history yet (need 5 closed trades) — waiting...
+2026-05-07 12:00:46,321 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 12:00:46,342 | INFO  | 🔄 Starting analysis cycle...
+2026-05-07 12:00:46,505 | INFO  | 📋 No closed deals found in MT5 history.
+2026-05-07 12:00:46,506 | INFO  | 📋 No MT5 history yet (need 5 closed trades) — waiting...
+2026-05-07 12:30:46,524 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 12:30:46,546 | INFO  | 🔄 Starting analysis cycle...
+2026-05-07 12:30:46,633 | INFO  | 📋 No closed deals found in MT5 history.
+2026-05-07 12:30:46,643 | INFO  | 📋 No MT5 history yet (need 5 closed trades) — waiting...

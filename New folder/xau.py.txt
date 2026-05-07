@@ -1,0 +1,656 @@
+import MetaTrader5 as mt5
+import pandas as pd
+import pandas_ta as ta
+import time
+import os
+import csv
+import json
+import logging
+import requests
+import base64
+import xml.etree.ElementTree as ET
+from dotenv import load_dotenv
+from datetime import datetime, timezone
+
+# ─── LOGGING SETUP ───────────────────────────────────────────
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)-5s | %(message)s",
+    handlers=[
+        logging.FileHandler("scuro_fast_acc.log", encoding="utf-8"),
+        logging.StreamHandler(),
+    ],
+)
+logger = logging.getLogger(__name__)
+
+load_dotenv()
+MT5_LOGIN    = os.getenv("MT5_LOGIN")
+MT5_PASSWORD = os.getenv("MT5_PASSWORD")
+MT5_SERVER   = os.getenv("MT5_SERVER")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+# ─── FIXED SETTINGS (never changed by advisor) ───────────────
+SYMBOL           = "XAUUSDm"
+TIMEFRAME        = mt5.TIMEFRAME_M5
+MAGIC_NUMBER     = 777777
+LOGIC_MODEL      = "llama-3.3-70b-versatile"
+SECONDARY_MODEL  = "llama-3.1-8b-instant"   # fast Groq model for quick confirmation
+HISTORY_CSV      = "trade_history.csv"
+SUMMARY_INTERVAL = 10
+CONFIG_JSON      = "scuro_config.json"
+MAX_OPEN_POSITIONS = 3                       # hard cap on concurrent positions
+POST_TRADE_COOLDOWN_MINS = 5                 # don't trade again for 5 min after placing one
+
+# ─── ADAPTIVE CONFIG (hot-reloaded from advisor.py) ──────────
+# These are the live values used by the bot. advisor.py writes
+# changes to scuro_config.json; load_adaptive_config() picks
+# them up every minute without restarting the bot.
+
+_ADAPTIVE = {
+    "accumulation_lot":   0.02,
+    "reward_ratio":       2.0,
+    "rsi_buy_threshold":  48,
+    "rsi_sell_threshold": 52,
+    "sl_atr_mult":        1.8,
+    "trail_atr_mult":     1.2,
+    "ema_fast":           5,
+    "ema_slow":           8,
+}
+_last_config_mtime = 0.0
+_last_trade_time = 0.0  # Unix timestamp of last trade placement
+
+def load_adaptive_config():
+    """
+    Hot-reload scuro_config.json if it has changed on disk.
+    Called every minute in the main loop. Logs any parameter change.
+    """
+    global _ADAPTIVE, _last_config_mtime
+    if not os.path.exists(CONFIG_JSON):
+        return
+    try:
+        mtime = os.path.getmtime(CONFIG_JSON)
+        if mtime <= _last_config_mtime:
+            return
+        with open(CONFIG_JSON) as f:
+            cfg = json.load(f)
+        _last_config_mtime = mtime
+        changed = []
+        for key in _ADAPTIVE:
+            if key in cfg and cfg[key] != _ADAPTIVE[key]:
+                changed.append(f"{key}: {_ADAPTIVE[key]} \u2192 {cfg[key]}")
+                _ADAPTIVE[key] = cfg[key]
+        if changed:
+            logger.info("\ud83d\udd04 ADVISOR UPDATE APPLIED:")
+            for c in changed:
+                logger.info(f"   \u2726 {c}")
+            reason = cfg.get("update_reason", "")
+            if reason:
+                logger.info(f"   \ud83d\udca1 Reason: {reason}")
+    except Exception as e:
+        logger.warning(f"\u26a0\ufe0f  Config reload error: {e}")
+
+# ─── TRADE HISTORY ───────────────────────────────────────────
+# trade_history.csv is the single source of truth for advisor.py.
+# It contains ALL closed trades pulled from MT5 deal history —
+# not just trades placed in this session — plus live context
+# (RSI, trend, news, AI reason) for trades placed by this bot.
+
+HISTORY_COLS = [
+    "ticket", "open_time", "close_time", "symbol", "direction",
+    "lot", "entry_price", "sl", "tp",
+    "close_price", "profit", "outcome",
+    "rsi", "h1_trend", "news", "ai_reason",
+]
+
+def _load_history() -> pd.DataFrame:
+    if os.path.exists(HISTORY_CSV):
+        return pd.read_csv(HISTORY_CSV, dtype={"ticket": str})
+    return pd.DataFrame(columns=HISTORY_COLS)
+
+def _save_history(df: pd.DataFrame):
+    df.to_csv(HISTORY_CSV, index=False)
+
+def _fmt_ts(unix_ts: int) -> str:
+    return datetime.fromtimestamp(unix_ts).strftime("%Y-%m-%d %H:%M:%S")
+
+def sync_mt5_history():
+    """
+    Pull ALL closed deals for SYMBOL from MT5 deal history,
+    reconstruct full trade records (entry + exit), and upsert
+    them into trade_history.csv.
+
+    - Pairs DEAL_ENTRY_IN (open) with DEAL_ENTRY_OUT (close) by position_id.
+    - Skips positions that are still open (no closing deal yet).
+    - Preserves rsi / h1_trend / news / ai_reason for rows already in CSV.
+    - For historical trades not placed by this session, those columns = "N/A".
+    - Deduplicates by ticket so re-runs are safe.
+    - Also updates any OPEN rows whose positions have now closed.
+    """
+    from datetime import timedelta
+    date_from = datetime(2000, 1, 1)
+    date_to   = datetime.now() + timedelta(days=1)
+
+    deals = mt5.history_deals_get(date_from, date_to)
+    if deals is None:
+        logger.warning("⚠️  MT5 returned no deal history.")
+        return
+
+    # Group deals by position_id
+    entries: dict = {}   # position_id → IN deal
+    exits:   dict = {}   # position_id → OUT deal
+
+    for d in deals:
+        if d.symbol != SYMBOL or d.magic != MAGIC_NUMBER:
+            continue
+        pid = str(d.position_id)
+        if d.entry == mt5.DEAL_ENTRY_IN:
+            entries[pid] = d
+        elif d.entry == mt5.DEAL_ENTRY_OUT:
+            exits[pid] = d
+
+    if not exits:
+        return   # nothing closed yet
+
+    df              = _load_history()
+    existing_tickets = set(df["ticket"].astype(str).tolist())
+    new_rows        = []
+    updated         = False
+
+    for pid, out_deal in exits.items():
+        in_deal  = entries.get(pid)
+        ticket   = pid
+        profit   = round(out_deal.profit, 2)
+        outcome  = "WIN" if profit > 0 else ("LOSS" if profit < 0 else "BE")
+
+        if ticket in existing_tickets:
+            # Update outcome/close fields for rows that were OPEN
+            mask = (df["ticket"].astype(str) == ticket) & (df["outcome"] == "OPEN")
+            if mask.any():
+                df.loc[mask, "close_price"] = round(out_deal.price, 2)
+                df.loc[mask, "profit"]      = profit
+                df.loc[mask, "close_time"]  = _fmt_ts(out_deal.time)
+                df.loc[mask, "outcome"]     = outcome
+                logger.info(f"📊 Trade #{ticket} closed → {outcome} | P&L: {profit:+.2f}")
+                updated = True
+        else:
+            # Brand-new historical trade — reconstruct from MT5 data
+            direction   = "BUY"  if (in_deal and in_deal.type == mt5.DEAL_TYPE_BUY)  else "SELL"
+            entry_price = round(in_deal.price, 2) if in_deal else round(out_deal.price, 2)
+            open_time   = _fmt_ts(in_deal.time)  if in_deal else ""
+            lot         = in_deal.volume          if in_deal else out_deal.volume
+
+            # Try to recover SL/TP from MT5 order history for this position
+            sl, tp = "", ""
+            orders = mt5.history_orders_get(position=int(pid))
+            if orders:
+                for o in orders:
+                    if o.sl: sl = round(o.sl, 2)
+                    if o.tp: tp = round(o.tp, 2)
+
+            new_rows.append({
+                "ticket":      ticket,
+                "open_time":   open_time,
+                "close_time":  _fmt_ts(out_deal.time),
+                "symbol":      SYMBOL,
+                "direction":   direction,
+                "lot":         lot,
+                "entry_price": entry_price,
+                "sl":          sl,
+                "tp":          tp,
+                "close_price": round(out_deal.price, 2),
+                "profit":      profit,
+                "outcome":     outcome,
+                "rsi":         "N/A",
+                "h1_trend":    "N/A",
+                "news":        "N/A",
+                "ai_reason":   "historical",
+            })
+
+    if new_rows:
+        df = pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True)
+        # Sort chronologically
+        df = df.sort_values("open_time", na_position="last").reset_index(drop=True)
+        logger.info(f"📥 Synced {len(new_rows)} new historical trade(s) into {HISTORY_CSV}")
+        updated = True
+
+    if updated:
+        _save_history(df)
+
+def record_trade_open(ticket, signal, price, sl, tp, rsi, h1_trend, news, ai_reason):
+    """Log a new trade row immediately after placement with full context."""
+    df  = _load_history()
+    row = {
+        "ticket":      str(ticket),
+        "open_time":   datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "close_time":  "",
+        "symbol":      SYMBOL,
+        "direction":   signal,
+        "lot":         _ADAPTIVE["accumulation_lot"],
+        "entry_price": round(price, 2),
+        "sl":          round(sl, 2),
+        "tp":          round(tp, 2),
+        "close_price": "",
+        "profit":      "",
+        "outcome":     "OPEN",
+        "rsi":         round(rsi, 1),
+        "h1_trend":    h1_trend,
+        "news":        news,
+        "ai_reason":   ai_reason,
+    }
+    df = pd.concat([df, pd.DataFrame([row])], ignore_index=True)
+    _save_history(df)
+    logger.info(f"📋 Trade #{ticket} logged to {HISTORY_CSV}")
+
+def print_summary_table():
+    """Print a formatted summary of all trades to the terminal."""
+    df = _load_history()
+    if df.empty:
+        logger.info("📋 No trade history yet.")
+        return
+
+    closed      = df[df["outcome"] != "OPEN"]
+    wins        = len(closed[closed["outcome"] == "WIN"])
+    losses      = len(closed[closed["outcome"] == "LOSS"])
+    be          = len(closed[closed["outcome"] == "BE"])
+    open_n      = len(df[df["outcome"] == "OPEN"])
+    wr          = (wins / len(closed) * 100) if len(closed) > 0 else 0.0
+    pnl_series  = pd.to_numeric(closed["profit"], errors="coerce").dropna()
+    total_pnl   = pnl_series.sum()
+    best_trade  = pnl_series.max() if not pnl_series.empty else 0
+    worst_trade = pnl_series.min() if not pnl_series.empty else 0
+    
+    # Get current account balance
+    account_info = mt5.account_info()
+    balance = account_info.balance if account_info else "N/A"
+
+    sep = "─" * 64
+    logger.info(sep)
+    logger.info("📊  SCURO TRADE HISTORY SUMMARY")
+    logger.info(sep)
+    logger.info(f"  Total Trades : {len(df)}  (Open: {open_n}  Closed: {len(closed)})")
+    logger.info(f"  Results      : ✅ Wins: {wins}  ❌ Losses: {losses}  〰 BE: {be}")
+    logger.info(f"  Win Rate     : {wr:.1f}%")
+    logger.info(f"  Total P&L    : {total_pnl:+.2f} KES")
+    logger.info(f"  Best Trade   : {best_trade:+.2f} KES")
+    logger.info(f"  Worst Trade  : {worst_trade:+.2f} KES")
+    logger.info(f"  💰 Balance    : {balance:,.2f} KES" if balance != "N/A" else f"  💰 Balance    : {balance}")
+    logger.info(sep)
+
+    # Last 10 trades
+    recent = df.tail(10)
+    logger.info("  LAST 10 TRADES:")
+    logger.info(f"  {'Opened':<20} {'Dir':<5} {'Entry':>8} {'SL':>8} "
+                f"{'TP':>8} {'Close':>8} {'P&L':>7}  Result")
+    logger.info("  " + "·" * 62)
+    for _, r in recent.iterrows():
+        try:
+            pnl_str = f"{float(r['profit']):+.2f}"
+        except (ValueError, TypeError):
+            pnl_str = "  OPEN"
+        close_str = str(r['close_price']) if r['close_price'] != "" else "  —"
+        logger.info(
+            f"  {str(r['open_time']):<20} {str(r['direction']):<5} "
+            f"{float(r['entry_price']):>8.2f} {float(r['sl']):>8.2f} "
+            f"{float(r['tp']):>8.2f} {close_str:>8} {pnl_str:>7}  {r['outcome']}"
+        )
+    logger.info(sep)
+
+# ─── RATE LIMITER ────────────────────────────────────────────
+class GroqLimiter:
+    def __init__(self, rpm):
+        self.interval = 60.0 / rpm
+        self.last_call = 0.0
+    def wait(self):
+        elapsed = time.time() - self.last_call
+        if (gap := self.interval - elapsed) > 0: time.sleep(gap)
+        self.last_call = time.time()
+
+_limiter = GroqLimiter(20)
+
+# ─── TOKEN BUDGETER (Groq Free Tier) ──────────────────────────
+# Vision model has TPD (Tokens Per Day) limit of 500,000.
+# Each screenshot costs 2,000–3,000 tokens. To stay within budget,
+# we enforce a 10-minute cooldown between Vision calls (50% fewer calls).
+# During cooldown, Logic Agent decides alone.
+
+class TokenBudgeter:
+    def __init__(self, vision_cooldown_secs=300):
+        self.vision_cooldown = vision_cooldown_secs  # 5 minutes default
+        self.last_vision_call = 0.0
+        self.vision_calls_today = 0
+        self.last_reset = time.time()
+    
+    def can_call_vision(self):
+        """Check if enough time has passed since last Vision call."""
+        elapsed = time.time() - self.last_vision_call
+        return elapsed >= self.vision_cooldown
+    
+    def record_vision_call(self):
+        """Log a Vision call and update cooldown timer."""
+        self.last_vision_call = time.time()
+        self.vision_calls_today += 1
+    
+    def get_time_until_next_vision(self):
+        """Return seconds remaining in Vision cooldown."""
+        elapsed = time.time() - self.last_vision_call
+        remaining = max(0, self.vision_cooldown - elapsed)
+        return remaining
+
+_budgeter = TokenBudgeter(vision_cooldown_secs=600)
+
+# ─── CORE UTILITIES ──────────────────────────────────────────
+
+def get_h1_context():
+    rates = mt5.copy_rates_from_pos(SYMBOL, mt5.TIMEFRAME_H1, 0, 50)
+    if rates is None: return "UNKNOWN"
+    df    = pd.DataFrame(rates)
+    ema50 = ta.ema(df['close'], length=50).iloc[-1]
+    return "UP" if df['close'].iloc[-1] > ema50 else "DOWN"
+
+def generate_chart_text_summary(df: pd.DataFrame, last_n: int = 15) -> str:
+    """Generate text-based chart (~150 tokens vs 2500+ for PNG)."""
+    recent = df.tail(last_n).reset_index(drop=True)
+    if len(recent) == 0:
+        return "No price data"
+    chart_lines = []
+    chart_lines.append("═" * 70)
+    chart_lines.append(f"📊 {SYMBOL} M5 (Last {last_n} candles)")
+    chart_lines.append("═" * 70)
+    for i, (_, row) in enumerate(recent.iterrows()):
+        color = "🟢" if row['close'] > row['open'] else "🔴"
+        ema_st = "↑" if row.get('EMA_5', 0) > row.get('EMA_8', 0) else "↓"
+        chart_lines.append(f"[{i+1:2d}] {color} O:{row['open']:.2f} H:{row['high']:.2f} L:{row['low']:.2f} C:{row['close']:.2f} RSI:{row.get('RSI', 0):.0f} {ema_st}")
+    chart_lines.append("═" * 70)
+    curr = recent.iloc[-1]
+    chart_lines.append(f"CURRENT: {curr['close']:.2f} | RSI:{curr.get('RSI', 0):.1f} | Trend:{'BULLISH↑' if curr.get('EMA_5', 0) > curr.get('EMA_8', 0) else 'BEARISH↓'}")
+    chart_lines.append("═" * 70)
+    return "\n".join(chart_lines)
+
+def fetch_news():
+    try:
+        url  = "https://www.forexfactory.com/ff_calendar_thisweek.xml"
+        r    = requests.get(url, timeout=10)
+        root = ET.fromstring(r.content)
+        events = [item.find('title').text for item in root.findall('event')
+                  if item.find('impact').text in ['High', 'Medium']]
+        return " | ".join(events[:2]) if events else "Quiet"
+    except: return "Offline"
+
+def take_screenshot(img_path: str) -> bool:
+    try:
+        import pyautogui
+        from PIL import Image
+        
+        # Take screenshot at full resolution
+        screenshot = pyautogui.screenshot()
+        
+        # Resize to max 1080p to save tokens (avoid 4K bloat)
+        max_width, max_height = 1920, 1080
+        if screenshot.width > max_width or screenshot.height > max_height:
+            screenshot.thumbnail((max_width, max_height), Image.Resampling.LANCZOS)
+        
+        screenshot.save(img_path)
+        return True
+    except ImportError:
+        logger.warning("⚠️  pyautogui not installed — vision skipped. Run: pip install pyautogui pillow")
+        return False
+    except Exception as e:
+        logger.warning(f"⚠️  Screenshot failed: {e}")
+        return False
+
+def _groq_chat(headers: dict, model: str, prompt: str, timeout: int = 15) -> str:
+    """
+    Helper: send a single chat completion to Groq and return the text.
+    Raises a descriptive Exception if the API returns an error instead of choices.
+    This is the single place that handles the API response — so 'choices' KeyError
+    can never silently swallow the real error message again.
+    """
+    resp = requests.post(
+        "https://api.groq.com/openai/v1/chat/completions",
+        headers=headers,
+        json={"model": model, "messages": [{"role": "user", "content": prompt}], "max_tokens": 50},
+        timeout=timeout,
+    )
+    data = resp.json()
+
+    if "choices" not in data:
+        # Groq returned an error — surface the real reason
+        err = data.get("error", {})
+        err_type = err.get("type", "unknown")
+        err_msg  = err.get("message", str(data))
+        raise Exception(f"Groq [{err_type}]: {err_msg}")
+
+    return data["choices"][0]["message"]["content"].strip().upper()
+
+
+def get_dual_ai_consensus(signal, rsi, atr, h1_trend, news, chart_text=""):
+    """Dual AI consensus using TEXT (~150 tokens) instead of images (2500+)."""
+    headers = {"Authorization": f"Bearer {GROQ_API_KEY}", "Content-Type": "application/json"}
+
+    # 1. Primary Logic Agent (70B) ─ mandatory gate
+    _limiter.wait()
+    try:
+        l_prompt = (
+            f"Analyze {SYMBOL} {signal} signal.\n"
+            f"Chart:\n{chart_text}\n"
+            f"RSI:{rsi:.1f}, Trend:{h1_trend}, News:{news}\n"
+            f"Confirm {signal}? Reply: CONFIRM or REJECT"
+        )
+        l_res = _groq_chat(headers, LOGIC_MODEL, l_prompt)
+    except Exception as e:
+        logger.error(f"❌ Logic agent error: {e}")
+        return False, "L:ERROR"
+
+    # 2. Secondary Agent — quick sanity check (fails open → CONFIRM)
+    v_res = "CONFIRM"
+    if chart_text:
+        _limiter.wait()
+        try:
+            v_prompt = f"Does chart support {signal}?\n{chart_text}\nReply: CONFIRM or REJECT"
+            v_res = _groq_chat(headers, SECONDARY_MODEL, v_prompt)
+            logger.info(f"✅ Both agents OK (~200 tokens total, no cooldown)")
+        except Exception as e:
+            logger.warning(f"⚠️  Secondary check failed: {e} — proceeding with logic agent only")
+
+    return ("CONFIRM" in l_res and "CONFIRM" in v_res), f"L:{l_res[:8]} S:{v_res[:8]}"
+
+
+
+# (duplicate fetch_news removed — using the full version defined above)
+
+def lock_profitable_trades():
+    positions = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
+    if not positions: return
+    for pos in positions:
+        point = mt5.symbol_info(SYMBOL).point
+        profit_pts = (pos.price_current - pos.price_open) / point if pos.type == 0 else (pos.price_open - pos.price_current) / point
+        if profit_pts > 100 and pos.sl != pos.price_open:
+            new_sl = pos.price_open + (10 * point) if pos.type == 0 else pos.price_open - (10 * point)
+            mt5.order_send({"action": mt5.TRADE_ACTION_SLTP, "position": pos.ticket, "sl": new_sl, "tp": pos.tp})
+
+def trail_stops():
+    """Milestone Trail: Locks in profit in steps of 1,000."""
+    STEP = 1000 
+    positions = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
+    if not positions: return
+    
+    for pos in positions:
+        # Only act if profit has reached at least one full step
+        if pos.profit < STEP:
+            continue
+
+        # Calculate how many steps to lock in
+        # (e.g., Profit 3,500 -> num_steps is 3. We lock (3-1)*1000 = 2,000)
+        num_steps = int(pos.profit // STEP)
+        lock_amount = (num_steps - 1) * STEP
+        
+        # Convert the currency lock_amount back into a price level
+        symbol_info = mt5.symbol_info(SYMBOL)
+        # Price change = Profit / (Volume * ContractSize)
+        price_offset = lock_amount / (pos.volume * symbol_info.trade_contract_size)
+
+        if pos.type == mt5.POSITION_TYPE_BUY:
+            target_sl = pos.price_open + price_offset
+            # Only update if the new SL is higher than the current one
+            if target_sl > pos.sl + (10 * symbol_info.point):
+                mt5.order_send({
+                    "action": mt5.TRADE_ACTION_SLTP,
+                    "position": pos.ticket,
+                    "sl": target_sl,
+                    "tp": pos.tp
+                })
+        elif pos.type == mt5.POSITION_TYPE_SELL:
+            target_sl = pos.price_open - price_offset
+            # Only update if the new SL is lower than the current one
+            if pos.sl == 0 or target_sl < pos.sl - (10 * symbol_info.point):
+                mt5.order_send({
+                    "action": mt5.TRADE_ACTION_SLTP,
+                    "position": pos.ticket,
+                    "sl": target_sl,
+                    "tp": pos.tp
+                })
+
+def close_on_profit_target(target=1000):
+    """Surgical exit: Closes any trade that hits the 1,000 KES profit mark."""
+    positions = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
+    if not positions:
+        return
+
+    for pos in positions:
+        # Check if the current profit of this ticket meets your goal
+        if pos.profit >= target:
+            tick = mt5.symbol_info_tick(SYMBOL)
+            # Flip the order type to close (Buy becomes Sell, Sell becomes Buy)
+            type_close = mt5.ORDER_TYPE_SELL if pos.type == mt5.POSITION_TYPE_BUY else mt5.ORDER_TYPE_BUY
+            price_close = tick.bid if pos.type == mt5.POSITION_TYPE_BUY else tick.ask
+            
+            request = {
+                "action": mt5.TRADE_ACTION_DEAL,
+                "position": pos.ticket,
+                "symbol": SYMBOL,
+                "volume": pos.volume,
+                "type": type_close,
+                "price": price_close,
+                "magic": MAGIC_NUMBER,
+                "type_time": mt5.ORDER_TIME_GTC,
+                "type_filling": mt5.ORDER_FILLING_IOC,
+            }
+            res = mt5.order_send(request)
+            if res.retcode == mt5.TRADE_RETCODE_DONE:
+                logger.info(f"💰 TARGET REACHED: Closed Ticket {pos.ticket} at {pos.profit:.2f} profit.")
+            else:
+                logger.error(f"❌ Target Close Failed: {res.comment}")                
+# ─── MAIN ENGINE ─────────────────────────────────────────────
+
+def run_bot():
+    if not mt5.initialize(login=int(MT5_LOGIN), password=MT5_PASSWORD, server=MT5_SERVER):
+        logger.error("❌ MT5 Init Failed")
+        return
+
+    logger.info("=" * 64)
+    logger.info("🔥 SCURO ACCUMULATOR V2: LLAMA 4 SCOUT ACTIVE")
+    logger.info(f"   Symbol: {SYMBOL} | Lot: {_ADAPTIVE['accumulation_lot']} | Risk: Aggressive")
+    logger.info(f"   History file: {os.path.abspath(HISTORY_CSV)}")
+    logger.info("=" * 64)
+
+    # Pull full MT5 closed-trade history into CSV before anything else
+    logger.info("📥 Syncing full MT5 trade history...")
+    sync_mt5_history()
+    print_summary_table()
+
+    last_min     = -1
+    last_summary = -1
+
+    while True:
+        now   = datetime.now()
+        rates = mt5.copy_rates_from_pos(SYMBOL, TIMEFRAME, 0, 100)
+        if rates is None:
+            time.sleep(1)
+            continue
+
+        df = pd.DataFrame(rates)
+        df['EMA_5'] = ta.ema(df['close'], int(_ADAPTIVE['ema_fast']))
+        df['EMA_8'] = ta.ema(df['close'], int(_ADAPTIVE['ema_slow']))
+        df['RSI']   = ta.rsi(df['close'], 14)
+        df['ATR']   = ta.atr(df['high'], df['low'], df['close'], 14)
+
+        # Inside run_bot while loop:
+        curr, prev = df.iloc[-1], df.iloc[-2]
+        
+        # Monitor for profit bags
+        close_on_profit_target(1000)
+        trail_stops()
+        # lock_profitable_trades()
+        # Sync all closed trades from MT5 (new closes + historical)
+        sync_mt5_history()
+
+        # Print summary every SUMMARY_INTERVAL minutes
+        summary_slot = (now.hour * 60 + now.minute) // SUMMARY_INTERVAL
+        if summary_slot != last_summary:
+            print_summary_table()
+            last_summary = summary_slot
+
+        if now.minute != last_min:
+            h1_trend = get_h1_context()
+            logger.info(f"🔍 Scan: {SYMBOL} | Price: {curr['close']:.2f} | RSI: {curr['RSI']:.1f} | H1: {h1_trend}")
+
+            signal = "NONE"
+            if curr['EMA_5'] > curr['EMA_8'] and curr['RSI'] > _ADAPTIVE['rsi_buy_threshold']: signal = "BUY"
+            elif curr['EMA_5'] < curr['EMA_8'] and curr['RSI'] < _ADAPTIVE['rsi_sell_threshold']: signal = "SELL"
+
+            if signal != "NONE":
+                news = fetch_news()
+                chart_text = generate_chart_text_summary(df)
+                logger.info(f"📡 {signal} signal found. Text-based AI analysis...")
+                ok, reason = get_dual_ai_consensus(signal, curr['RSI'], curr['ATR'], h1_trend, news, chart_text)
+
+                if ok:
+                    # AutoTrading guard
+                    term_info = mt5.terminal_info()
+                    if term_info and not term_info.trade_allowed:
+                        logger.error(
+                            "❌ AutoTrading DISABLED — click [AutoTrading] in MT5 toolbar, "
+                            "or Tools → Options → Expert Advisors → Allow automated trading."
+                        )
+                        last_min = now.minute
+                        time.sleep(1)
+                        continue
+
+                    tick    = mt5.symbol_info_tick(SYMBOL)
+                    price   = tick.ask if signal == "BUY" else tick.bid
+                    sl_dist = curr['ATR'] * _ADAPTIVE['sl_atr_mult']
+                    sl      = price - sl_dist if signal == "BUY" else price + sl_dist
+                    tp      = price + (sl_dist * _ADAPTIVE['reward_ratio']) if signal == "BUY" else price - (sl_dist * _ADAPTIVE['reward_ratio'])
+
+                    req = {
+                        "action":       mt5.TRADE_ACTION_DEAL,
+                        "symbol":       SYMBOL,
+                        "volume":       _ADAPTIVE["accumulation_lot"],
+                        "type":         mt5.ORDER_TYPE_BUY if signal == "BUY" else mt5.ORDER_TYPE_SELL,
+                        "price":        price,
+                        "sl":           sl,
+                        "tp":           tp,
+                        "magic":        MAGIC_NUMBER,
+                        "type_time":    mt5.ORDER_TIME_GTC,
+                        "type_filling": mt5.ORDER_FILLING_IOC,
+                    }
+                    res = mt5.order_send(req)
+
+                    if res.retcode == mt5.TRADE_RETCODE_DONE:
+                        logger.info(f"✅ TRADE PLACED: {signal} @ {price:.2f} | AI: {reason}")
+                        record_trade_open(
+                            ticket=res.order, signal=signal,
+                            price=price, sl=sl, tp=tp,
+                            rsi=curr['RSI'], h1_trend=h1_trend,
+                            news=news, ai_reason=reason,
+                        )
+                    else:
+                        logger.error(f"❌ Execution Error: {res.comment}")
+                else:
+                    logger.info(f"⏭️  Rejected by AI: {reason}")
+
+            last_min = now.minute
+        time.sleep(1)
+
+if __name__ == "__main__":
+    run_bot()
