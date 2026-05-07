@@ -416,47 +416,121 @@ def get_h1_context() -> str:
     return "UP" if df['close'].iloc[-1] > ema50 else "DOWN"
 
 def fetch_news() -> str:
-    """Fetch high/medium impact news events from ForexFactory."""
-    try:
-        url  = "https://www.forexfactory.com/ff_calendar_thisweek.xml"
-        r    = requests.get(url, timeout=10)
-        root = ET.fromstring(r.content)
-        events = [
-            item.find('title').text for item in root.findall('event')
-            if item.find('impact').text in ['High', 'Medium']
-        ]
-        return " | ".join(events[:2]) if events else "Quiet"
-    except:
-        return "Offline"
+    """
+    Fetch this week's high/medium impact economic events.
+
+    Source priority:
+      1. nfs.faireconomy.media  — public mirror of the FF calendar that
+         allows bot traffic (same XML format, no bot-blocking).
+      2. forexfactory.com       — original source with browser headers as
+         fallback in case the mirror is down.
+
+    Returns up to 2 upcoming events as a short string, "Quiet" if none
+    found, or "Offline" if both sources fail.
+    """
+    CALENDAR_URLS = [
+        "https://nfs.faireconomy.media/ff_calendar_thisweek.xml",  # bot-friendly mirror
+        "https://www.forexfactory.com/ff_calendar_thisweek.xml",   # original (may block bots)
+    ]
+    HEADERS = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/124.0.0.0 Safari/537.36"
+        ),
+        "Accept": "application/xml,text/xml,*/*;q=0.9",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+
+    for url in CALENDAR_URLS:
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=12)
+            r.raise_for_status()
+            root = ET.fromstring(r.content)
+            events = []
+            for item in root.findall("event"):
+                impact_el    = item.find("impact")
+                title_el     = item.find("title")
+                currency_el  = item.find("currency")
+                if impact_el is None or title_el is None:
+                    continue
+                if impact_el.text not in ("High", "Medium"):
+                    continue
+                currency = currency_el.text if currency_el is not None else ""
+                if currency != "USD":          # gold moves most on USD events
+                    continue
+                title = title_el.text or ""
+                tag   = "🔴" if impact_el.text == "High" else "🟡"
+                events.append(f"{tag}{title}")
+            return " | ".join(events[:2]) if events else "Quiet"
+        except requests.exceptions.HTTPError as e:
+            logger.warning(f"⚠️  News source blocked ({e}) — trying next...")
+        except requests.exceptions.Timeout:
+            logger.warning(f"⚠️  News source timed out — trying next...")
+        except ET.ParseError as e:
+            logger.warning(f"⚠️  News XML parse error: {e} — trying next...")
+        except Exception as e:
+            logger.warning(f"⚠️  News fetch error: {e} — trying next...")
+
+    logger.error("❌ All news sources failed — trading without news context")
+    return "Offline"
 
 def is_high_impact_news_now() -> bool:
     """
-    Returns True if a High-impact news event is within 15 minutes.
+    Returns True if a High-impact USD news event is within 15 minutes.
     Avoids trading into news spikes — a common cause of stop-outs.
+    Uses the same bot-friendly mirror as fetch_news().
+    Returns True (blocks trading) on any fetch failure — better safe than sorry.
     """
-    try:
-        url  = "https://www.forexfactory.com/ff_calendar_thisweek.xml"
-        r    = requests.get(url, timeout=10)
-        root = ET.fromstring(r.content)
-        now  = datetime.now()
-        for item in root.findall('event'):
-            if item.find('impact') is None or item.find('impact').text != 'High':
-                continue
-            date_el = item.find('date')
-            time_el = item.find('time')
-            if date_el is None or time_el is None:
-                continue
-            try:
-                event_dt = datetime.strptime(
-                    f"{date_el.text} {time_el.text}", "%a %b %d %I:%M%p"
-                ).replace(year=now.year)
-                if abs((event_dt - now).total_seconds()) < 900:   # 15 min window
-                    return True
-            except:
-                continue
-    except:
-        return True
-    return False
+    CALENDAR_URLS = [
+        "https://nfs.faireconomy.media/ff_calendar_thisweek.xml",
+        "https://www.forexfactory.com/ff_calendar_thisweek.xml",
+    ]
+    HEADERS = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/124.0.0.0 Safari/537.36"
+        ),
+        "Accept": "application/xml,text/xml,*/*;q=0.9",
+    }
+
+    for url in CALENDAR_URLS:
+        try:
+            r    = requests.get(url, headers=HEADERS, timeout=12)
+            r.raise_for_status()
+            root = ET.fromstring(r.content)
+            now  = datetime.now()
+            for item in root.findall("event"):
+                impact_el   = item.find("impact")
+                currency_el = item.find("currency")
+                date_el     = item.find("date")
+                time_el     = item.find("time")
+                if impact_el is None or impact_el.text != "High":
+                    continue
+                if currency_el is None or currency_el.text != "USD":
+                    continue
+                if date_el is None or time_el is None or not (time_el.text or "").strip():
+                    continue
+                try:
+                    event_dt = datetime.strptime(
+                        f"{date_el.text} {time_el.text}", "%a %b %d %I:%M%p"
+                    ).replace(year=now.year)
+                    if abs((event_dt - now).total_seconds()) < 900:   # 15-min window
+                        logger.warning(f"📰 High-impact news in {round((event_dt-now).total_seconds()/60,1)} min — skipping trade")
+                        return True
+                except Exception:
+                    continue
+            return False   # parsed OK, no event within 15 min
+        except requests.exceptions.HTTPError:
+            logger.warning("⚠️  News guard: source blocked — trying next...")
+        except requests.exceptions.Timeout:
+            logger.warning("⚠️  News guard: timed out — trying next...")
+        except Exception as e:
+            logger.warning(f"⚠️  News guard error: {e} — trying next...")
+
+    logger.warning("⚠️  News guard: all sources failed — blocking trade as precaution")
+    return True   # fail-safe: block trading if we can't check news
 
 def technical_confirmation(signal: str, df: pd.DataFrame, h1_trend: str) -> tuple[bool, str]:
     """
