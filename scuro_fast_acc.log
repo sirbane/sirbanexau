@@ -250,3 +250,5 @@
 2026-05-07 13:10:00,130 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
 2026-05-07 13:11:00,537 | INFO  | 🔍 XAUUSDm | Price: 4732.77 | RSI: 47.9 | H1: UP | EMA: ↓ | Streak: 0L
 2026-05-07 13:11:00,538 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-07 13:12:00,988 | INFO  | 🔍 XAUUSDm | Price: 4734.07 | RSI: 50.0 | H1: UP | EMA: ↓ | Streak: 0L
+2026-05-07 13:12:00,988 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
