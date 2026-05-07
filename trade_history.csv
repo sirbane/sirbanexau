@@ -1,0 +1,2 @@
+ticket,open_time,close_time,symbol,direction,lot,entry_price,sl,tp,close_price,profit,outcome,rsi,h1_trend,news,ai_reason
+2718931717,2026-05-07 16:34:01,,XAUUSDm,BUY,0.02,4758.22,4745.75,4789.39,,,OPEN,63.2,UP,Offline,TECH:OK RSI=63 body=11.9 ATR=6.9 EMAgap=0.06% H1=UP

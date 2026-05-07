@@ -1,6 +1,6 @@
 {
   "meta": {
-    "refreshed_at": "2026-05-07 13:27:32",
+    "refreshed_at": "2026-05-07 16:42:24",
     "symbol": "XAUUSDm",
     "magic": 777777,
     "lookback_days": 30
@@ -12,27 +12,27 @@
     "broker": "Exness (KE) Limited",
     "currency": "KES",
     "balance": 5000.0,
-    "equity": 5000.0,
-    "margin": 0.0,
-    "free_margin": 5000.0,
-    "margin_pct": 0,
-    "drawdown_pct": 0.0,
+    "equity": 3001.69,
+    "margin": 3074.34,
+    "free_margin": -72.65,
+    "margin_pct": 97.64,
+    "drawdown_pct": 39.97,
     "leverage": 400,
     "type": "demo"
   },
   "live_tick": {
-    "bid": 4732.53,
-    "ask": 4732.81,
-    "spread": 0.28,
-    "time": "2026-05-07 13:27:32"
+    "bid": 4750.48,
+    "ask": 4750.79,
+    "spread": 0.31,
+    "time": "2026-05-07 16:42:24"
   },
   "live_indicators": {
-    "rsi": 49.8,
-    "atr": 4.99,
-    "ema_fast": 4732.49,
-    "ema_slow": 4733.21,
-    "ema_trend": "DOWN",
-    "close": 4732.53
+    "rsi": 57.5,
+    "atr": 6.68,
+    "ema_fast": 4749.43,
+    "ema_slow": 4746.36,
+    "ema_trend": "UP",
+    "close": 4750.48
   },
   "h1_trend": "UP",
   "stats": {
@@ -45,7 +45,26 @@
     "wins": 0,
     "losses": 0
   },
-  "open_positions": [],
+  "open_positions": [
+    {
+      "ticket": "2718931717",
+      "magic": 777777,
+      "open_time": "2026-05-07 16:34:01",
+      "open_ts": 1778160841,
+      "symbol": "XAUUSDm",
+      "direction": "BUY",
+      "volume": 0.02,
+      "entry_price": 4758.22,
+      "current_px": 4750.48,
+      "sl": 4745.75,
+      "tp": 4789.39,
+      "float_pnl": -1998.31,
+      "swap": 0.0,
+      "pips": -7.73,
+      "hold_mins": 8.4,
+      "comment": ""
+    }
+  ],
   "closed_trades": [],
   "equity_curve": [],
   "advisor_config": {
