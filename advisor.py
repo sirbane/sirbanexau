@@ -91,6 +91,8 @@ DEFAULT_CONFIG = {
     "ema_slow":           13,      # widened from 8 — reduces noise-triggered signals
     "max_open_positions": 2,       # start conservative
     "cooldown_mins":      15,      # start with 15-min cooldown between trades
+    "circuit_breaker_daily_loss_enabled": True,
+    "circuit_breaker_consecutive_losses_enabled": True,
     "last_updated":       "",
     "update_reason":      "default",
     "cycle":              0,

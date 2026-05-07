@@ -1,6 +1,6 @@
 {
   "meta": {
-    "refreshed_at": "2026-05-07 21:07:02",
+    "refreshed_at": "2026-05-07 21:26:24",
     "symbol": "XAUUSDm",
     "magic": 777777,
     "lookback_days": 30
@@ -21,18 +21,18 @@
     "type": "demo"
   },
   "live_tick": {
-    "bid": 4710.8,
-    "ask": 4711.1,
+    "bid": 4707.72,
+    "ask": 4708.03,
     "spread": 0.31,
-    "time": "2026-05-07 21:07:02"
+    "time": "2026-05-07 21:26:23"
   },
   "live_indicators": {
-    "rsi": 47.3,
-    "atr": 8.11,
-    "ema_fast": 4707.76,
-    "ema_slow": 4708.16,
+    "rsi": 43.8,
+    "atr": 7.02,
+    "ema_fast": 4707.4,
+    "ema_slow": 4707.67,
     "ema_trend": "DOWN",
-    "close": 4710.8
+    "close": 4707.72
   },
   "h1_trend": "UP",
   "stats": {
@@ -120,6 +120,8 @@
     "ema_slow": 13,
     "max_open_positions": 2,
     "cooldown_mins": 15,
+    "circuit_breaker_daily_loss_enabled": false,
+    "circuit_breaker_consecutive_losses_enabled": false,
     "last_updated": "2026-05-07 12:00:00",
     "update_reason": "manual reset \u00e2\u20ac\u201d restored safe EMA pair and SL distance",
     "cycle": 80

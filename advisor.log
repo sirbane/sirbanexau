@@ -87,3 +87,16 @@
 2026-05-07 21:00:48,000 | INFO  | 🔄 Starting analysis cycle...
 2026-05-07 21:00:48,069 | INFO  | 📊 MT5 Stats (Robot) → Trades: 1 | WR: 0.0% | PF: 0.0 | PnL: -3222.03 | Streak: 1xLOSS | Balance: 1,777.97
 2026-05-07 21:00:48,073 | INFO  | 📊 Only 1 robot trades (need 5) — waiting...
+2026-05-07 21:20:24,191 | INFO  | ================================================================
+2026-05-07 21:20:24,192 | INFO  | 🧠 SCURO ADAPTIVE ADVISOR — MT5-Native Edition
+2026-05-07 21:20:24,192 | INFO  |    Model    : meta-llama/llama-4-scout-17b-16e-instruct
+2026-05-07 21:20:24,192 | INFO  |    Interval : every 30 minutes
+2026-05-07 21:20:24,193 | INFO  |    Symbol   : XAUUSDm | Magic: 777777
+2026-05-07 21:20:24,193 | INFO  |    Lookback : 30 days of MT5 history
+2026-05-07 21:20:24,193 | INFO  |    Config   : C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1\scuro_config.json
+2026-05-07 21:20:24,193 | INFO  |    Changelog: C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1\advisor_changelog.log
+2026-05-07 21:20:24,193 | INFO  | ================================================================
+2026-05-07 21:20:24,194 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:20:24,194 | INFO  | 🔄 Starting analysis cycle...
+2026-05-07 21:20:24,208 | INFO  | 📊 MT5 Stats (Robot) → Trades: 1 | WR: 0.0% | PF: 0.0 | PnL: -3222.03 | Streak: 1xLOSS | Balance: 1,777.97
+2026-05-07 21:20:24,209 | INFO  | 📊 Only 1 robot trades (need 3) — waiting...

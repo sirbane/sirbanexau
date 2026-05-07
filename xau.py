@@ -68,6 +68,8 @@ _ADAPTIVE = {
     "ema_slow":           13,   # advisor floor enforced in load_adaptive_config()
     "max_open_positions": 2,
     "cooldown_mins":      15,
+    "circuit_breaker_daily_loss_enabled": True,
+    "circuit_breaker_consecutive_losses_enabled": True,
 }
 
 # Hard floors the advisor is NOT allowed to breach (enforced on hot-reload)
@@ -655,13 +657,13 @@ def run_bot():
                 logger.info(f"⏸️  Circuit breaker active — {remaining:.0f} min remaining")
                 trading_halted = True
 
-            if not trading_halted and check_daily_loss_circuit_breaker():
+            if not trading_halted and _ADAPTIVE.get('circuit_breaker_daily_loss_enabled', True) and check_daily_loss_circuit_breaker():
                 # Daily loss — halt until end of day
                 end_of_day = now.replace(hour=23, minute=59, second=59)
                 circuit_break_until = end_of_day.timestamp()
                 trading_halted = True
 
-            if not trading_halted and check_consecutive_loss_circuit_breaker():
+            if not trading_halted and _ADAPTIVE.get('circuit_breaker_consecutive_losses_enabled', True) and check_consecutive_loss_circuit_breaker():
                 # Consecutive losses — pause for cooldown_mins
                 pause_secs = _ADAPTIVE['cooldown_mins'] * 60
                 circuit_break_until = time.time() + pause_secs

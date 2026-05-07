@@ -1450,3 +1450,94 @@
 2026-05-07 21:01:00,662 | INFO  | ⏸️  Circuit breaker active — 179 min remaining
 2026-05-07 21:02:00,202 | INFO  | ⏸️  Circuit breaker active — 178 min remaining
 2026-05-07 21:03:00,658 | INFO  | ⏸️  Circuit breaker active — 177 min remaining
+2026-05-07 21:04:00,168 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-07 21:04:00,169 | INFO  |    ★ sl_atr_mult: 1.8 → 2.2
+2026-05-07 21:04:00,169 | INFO  |    💡 Reason: manual reset â€” restored safe EMA pair and SL distance
+2026-05-07 21:04:00,174 | INFO  | ⏸️  Circuit breaker active — 176 min remaining
+2026-05-07 21:05:00,569 | INFO  | ⏸️  Circuit breaker active — 175 min remaining
+2026-05-07 21:06:01,003 | INFO  | ⏸️  Circuit breaker active — 174 min remaining
+2026-05-07 21:07:00,464 | INFO  | ⏸️  Circuit breaker active — 173 min remaining
+2026-05-07 21:08:00,910 | INFO  | ⏸️  Circuit breaker active — 172 min remaining
+2026-05-07 21:09:00,303 | INFO  | ⏸️  Circuit breaker active — 171 min remaining
+2026-05-07 21:10:00,695 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:10:00,695 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 21:10:00,696 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:10:00,696 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 21:10:00,696 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 21:10:00,697 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 21:10:00,697 | INFO  |   Balance: 1,777.97
+2026-05-07 21:10:00,697 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 21:10:00,697 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:10:00,699 | INFO  |   LAST 10 TRADES:
+2026-05-07 21:10:00,700 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 21:10:00,700 | INFO  |   ······························································
+2026-05-07 21:10:00,701 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 21:10:00,701 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:10:00,701 | INFO  | ⏸️  Circuit breaker active — 170 min remaining
+2026-05-07 21:11:00,064 | INFO  | ⏸️  Circuit breaker active — 169 min remaining
+2026-05-07 21:12:00,482 | INFO  | ⏸️  Circuit breaker active — 168 min remaining
+2026-05-07 21:13:00,858 | INFO  | ⏸️  Circuit breaker active — 167 min remaining
+2026-05-07 21:14:00,291 | INFO  | ⏸️  Circuit breaker active — 166 min remaining
+2026-05-07 21:15:00,731 | INFO  | ⏸️  Circuit breaker active — 165 min remaining
+2026-05-07 21:16:00,322 | INFO  | ⏸️  Circuit breaker active — 164 min remaining
+2026-05-07 21:17:00,745 | INFO  | ⏸️  Circuit breaker active — 163 min remaining
+2026-05-07 21:18:00,235 | INFO  | ⏸️  Circuit breaker active — 162 min remaining
+2026-05-07 21:18:20,438 | INFO  | ================================================================
+2026-05-07 21:18:20,439 | INFO  | 🔥 SCURO ACCUMULATOR — REBUILT
+2026-05-07 21:18:20,439 | INFO  |    Symbol: XAUUSDm | Magic: 777777
+2026-05-07 21:18:20,439 | INFO  |    Daily loss limit: -500.00
+2026-05-07 21:18:20,439 | INFO  |    Max consecutive losses: 6
+2026-05-07 21:18:20,440 | INFO  | ================================================================
+2026-05-07 21:18:20,440 | INFO  | 📥 Initial MT5 history sync...
+2026-05-07 21:18:20,449 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-07 21:18:20,450 | INFO  |    ★ sl_atr_mult: 1.8 → 2.2
+2026-05-07 21:18:20,450 | INFO  |    💡 Reason: manual reset â€” restored safe EMA pair and SL distance
+2026-05-07 21:18:20,464 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:18:20,464 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 21:18:20,464 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:18:20,464 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 21:18:20,465 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 21:18:20,465 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 21:18:20,465 | INFO  |   Balance: 1,777.97
+2026-05-07 21:18:20,465 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 21:18:20,465 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:18:20,467 | INFO  |   LAST 10 TRADES:
+2026-05-07 21:18:20,467 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 21:18:20,467 | INFO  |   ······························································
+2026-05-07 21:18:20,468 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 21:18:20,468 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:18:20,485 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:18:20,485 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 21:18:20,486 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:18:20,486 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 21:18:20,486 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 21:18:20,486 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 21:18:20,486 | INFO  |   Balance: 1,777.97
+2026-05-07 21:18:20,487 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 21:18:20,487 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:18:20,487 | INFO  |   LAST 10 TRADES:
+2026-05-07 21:18:20,488 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 21:18:20,488 | INFO  |   ······························································
+2026-05-07 21:18:20,488 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 21:18:20,488 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:18:20,488 | WARNING | 🛑 CIRCUIT BREAKER: Daily P&L = -3222.03 (limit: -500.00) — trading halted for today
+2026-05-07 21:19:00,764 | INFO  | ⏸️  Circuit breaker active — 161 min remaining
+2026-05-07 21:20:00,230 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:20:00,230 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-07 21:20:00,231 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:20:00,231 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-07 21:20:00,231 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-07 21:20:00,231 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-07 21:20:00,232 | INFO  |   Balance: 1,777.97
+2026-05-07 21:20:00,232 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-07 21:20:00,232 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:20:00,233 | INFO  |   LAST 10 TRADES:
+2026-05-07 21:20:00,233 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-07 21:20:00,234 | INFO  |   ······························································
+2026-05-07 21:20:00,234 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-07 21:20:00,235 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-07 21:20:00,235 | INFO  | ⏸️  Circuit breaker active — 160 min remaining
+2026-05-07 21:21:00,658 | INFO  | ⏸️  Circuit breaker active — 159 min remaining
+2026-05-07 21:22:00,239 | INFO  | ⏸️  Circuit breaker active — 158 min remaining
+2026-05-07 21:23:00,749 | INFO  | ⏸️  Circuit breaker active — 157 min remaining
+2026-05-07 21:24:00,420 | INFO  | ⏸️  Circuit breaker active — 156 min remaining
