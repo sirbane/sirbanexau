@@ -1,6 +1,6 @@
 {
   "meta": {
-    "refreshed_at": "2026-05-08 23:27:42",
+    "refreshed_at": "2026-05-09 00:02:26",
     "symbol": "XAUUSDm",
     "magic": 777777,
     "lookback_days": 30
@@ -11,30 +11,30 @@
     "server": "ExnessKE-MT5Trial9",
     "broker": "Exness (KE) Limited",
     "currency": "KES",
-    "balance": 3483.77,
-    "equity": 3614.15,
-    "margin": 1529.3,
-    "free_margin": 2084.85,
-    "margin_pct": 236.33,
-    "drawdown_pct": -3.74,
+    "balance": 3762.12,
+    "equity": 3762.12,
+    "margin": 0.0,
+    "free_margin": 3762.12,
+    "margin_pct": 0,
+    "drawdown_pct": 0.0,
     "leverage": 400,
     "type": "demo"
   },
   "live_tick": {
-    "bid": 4715.65,
-    "ask": 4716.05,
+    "bid": 4715.08,
+    "ask": 4715.48,
     "spread": 0.4,
-    "time": "2026-05-08 23:27:41"
+    "time": "2026-05-08 23:57:57"
   },
   "live_indicators": {
-    "rsi": 37.1,
-    "atr": 2.66,
-    "ema_fast": 4717.67,
-    "ema_slow": 4718.99,
+    "rsi": 32.2,
+    "atr": 2.38,
+    "ema_fast": 4715.76,
+    "ema_slow": 4716.52,
     "ema_trend": "DOWN",
-    "close": 4715.65
+    "close": 4715.08
   },
-  "h1_trend": "UP",
+  "h1_trend": "DOWN",
   "stats": {
     "robot_trades": 11,
     "robot_wins": 3,
@@ -58,56 +58,57 @@
       "LOSS",
       "LOSS"
     ],
-    "total_trades": 15,
-    "total_wins": 7,
+    "total_trades": 16,
+    "total_wins": 8,
     "total_losses": 7,
-    "total_win_rate_pct": 46.7,
-    "total_net_pnl": -10916.23,
-    "total_gross_profit": 6737.19,
+    "total_win_rate_pct": 50.0,
+    "total_net_pnl": -10637.88,
+    "total_gross_profit": 7015.54,
     "total_gross_loss": 17653.42,
-    "total_profit_factor": 0.382,
-    "total_avg_win": 962.46,
+    "total_profit_factor": 0.397,
+    "total_avg_win": 876.94,
     "total_avg_loss": 2521.92,
     "total_best_trade": 2540.29,
     "total_worst_trade": -3222.03,
     "total_current_streak": 1,
-    "total_current_streak_type": "LOSS",
+    "total_current_streak_type": "WIN",
     "total_max_consecutive_losses": 3,
     "total_last_5_outcomes": [
-      "LOSS",
       "WIN",
       "LOSS",
+      "WIN",
       "LOSS",
       "LOSS"
     ]
   },
   "today": {
-    "pnl": -9814.57,
-    "trades": 10,
-    "wins": 3,
-    "losses": 6
+    "pnl": 0,
+    "trades": 0,
+    "wins": 0,
+    "losses": 0
   },
-  "open_positions": [
+  "open_positions": [],
+  "closed_trades": [
     {
       "ticket": "2724949035",
-      "magic": 777777,
+      "magic": 0,
       "open_time": "2026-05-08 19:24:04",
+      "close_time": "2026-05-08 23:36:04",
       "open_ts": 1778257444,
+      "close_ts": 1778272564,
       "symbol": "XAUUSDm",
       "direction": "BUY",
       "volume": 0.01,
       "entry_price": 4714.61,
-      "current_px": 4715.65,
-      "sl": 4714.61,
+      "close_price": 4716.82,
+      "sl": 4695.19,
       "tp": 4772.88,
-      "float_pnl": 130.38,
+      "profit": 278.35,
       "swap": 0.0,
-      "pips": 1.04,
-      "hold_mins": 243.6,
+      "commission": 0.0,
+      "outcome": "WIN",
       "comment": "SCURO-TREND"
-    }
-  ],
-  "closed_trades": [
+    },
     {
       "ticket": "2724043244",
       "magic": 777777,
@@ -411,79 +412,84 @@
   ],
   "equity_curve": [
     {
+      "ts": 1778272564,
+      "time": "2026-05-08 23:36:04",
+      "balance": 14678.35
+    },
+    {
       "ts": 1778249432,
       "time": "2026-05-08 17:10:32",
-      "balance": 11513.87
+      "balance": 11792.22
     },
     {
       "ts": 1778247220,
       "time": "2026-05-08 16:33:40",
-      "balance": 14054.16
+      "balance": 14332.51
     },
     {
       "ts": 1778244334,
       "time": "2026-05-08 15:45:34",
-      "balance": 14054.16
+      "balance": 14332.51
     },
     {
       "ts": 1778242034,
       "time": "2026-05-08 15:07:14",
-      "balance": 12213.62
+      "balance": 12491.97
     },
     {
       "ts": 1778237734,
       "time": "2026-05-08 13:55:34",
-      "balance": 10756.66
+      "balance": 11035.01
     },
     {
       "ts": 1778236958,
       "time": "2026-05-08 13:42:38",
-      "balance": 11460.06
+      "balance": 11738.41
     },
     {
       "ts": 1778236958,
       "time": "2026-05-08 13:42:38",
-      "balance": 12030.15
+      "balance": 12308.5
     },
     {
       "ts": 1778236958,
       "time": "2026-05-08 13:42:38",
-      "balance": 12708.16
+      "balance": 12986.51
     },
     {
       "ts": 1778236958,
       "time": "2026-05-08 13:42:38",
-      "balance": 12877.03
+      "balance": 13155.38
     },
     {
       "ts": 1778233938,
       "time": "2026-05-08 12:52:18",
-      "balance": 9848.1
+      "balance": 10126.45
     },
     {
       "ts": 1778232835,
       "time": "2026-05-08 12:33:55",
-      "balance": 7223.05
+      "balance": 7501.4
     },
     {
       "ts": 1778232833,
       "time": "2026-05-08 12:33:53",
-      "balance": 4629.27
+      "balance": 4907.62
     },
     {
       "ts": 1778228508,
       "time": "2026-05-08 11:21:48",
-      "balance": 5709.82
+      "balance": 5988.17
     },
     {
       "ts": 1778228508,
       "time": "2026-05-08 11:21:48",
-      "balance": 6705.8
+      "balance": 6984.15
     },
     {
       "ts": 1778161546,
       "time": "2026-05-07 16:45:46",
-      "balance": 3483.77
+      "balance": 3762.12
     }
   ],
   "advisor_config": {
@@ -491,7 +497,7 @@
     "reward_ratio": 3.0,
     "rsi_buy_threshold": 50,
     "rsi_sell_threshold": 55,
-    "sl_atr_mult": 2.5,
+    "sl_atr_mult": 3.0,
     "trail_atr_mult": 2.0,
     "ema_fast": 5,
     "ema_slow": 8,
@@ -499,9 +505,9 @@
     "cooldown_mins": 60,
     "circuit_breaker_daily_loss_enabled": false,
     "circuit_breaker_consecutive_losses_enabled": false,
-    "last_updated": "2026-05-08 23:09:50",
-    "update_reason": "Tightening filters, reducing position size, and increasing cooldown to address low profit factor, consecutive losses, and high drawdown.",
-    "cycle": 104,
+    "last_updated": "2026-05-08 23:39:51",
+    "update_reason": "Tightening RSI buy threshold, increasing cooldown, reducing position size, and widening SL to address low profit factor and consecutive losses.",
+    "cycle": 105,
     "dip_rsi_recovery": 38,
     "breakout_swing_lookback": 10,
     "breakout_sl_atr_mult": 1.5

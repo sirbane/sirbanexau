@@ -342,3 +342,17 @@ REJECTED:
   cooldown_mins: 90 out of bounds [5, 60]
   rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
 ────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #105  |  2026-05-08 23:39:51  |  Confidence: MEDIUM
+Reasoning: Tightening RSI buy threshold, increasing cooldown, reducing position size, and widening SL to address low profit factor and consecutive losses.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3762.12  Drawdown=0.0%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 2.5 → 3.0
+REJECTED:
+  cooldown_mins: 90 out of bounds [5, 60]
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────

@@ -26,6 +26,10 @@ import json
 import logging
 import requests
 from dotenv import load_dotenv
+from pattern_memory import PatternMemory
+
+# Singleton — one shared instance across all calls
+_pattern_mem = PatternMemory()
 
 load_dotenv()
 GROQ_API_KEY   = os.getenv("GROQ_API_KEY")
@@ -218,8 +222,9 @@ def get_ai_confidence(
     open_count: int,
     last_5_outcomes: list,
     drawdown_pct: float,
-    budgeter=None,          # pass xau.py's _budgeter instance
-    limiter=None,           # pass xau.py's _limiter instance
+    budgeter=None,
+    limiter=None,
+    df=None,               # M5 DataFrame — needed for pattern memory query
 ) -> tuple[bool, str]:
     """
     Returns (confirmed: bool, reason_string: str).
@@ -233,6 +238,19 @@ def get_ai_confidence(
       3. secondary AI confidence >= MIN_CONFIDENCE_SEC
     """
     recent_losses = last_5_outcomes.count("LOSS") if last_5_outcomes else 0
+
+    # ── Pattern memory query ─────────────────────────────────
+    pat_score, pat_summary = (50, "Pattern memory: no df provided")
+    if df is not None:
+        pat_score, pat_summary = _pattern_mem.query(df, signal, signal_type)
+
+    # Hard block: strong historical evidence AGAINST this setup
+    if pat_score < 25 and len(_pattern_mem.patterns) >= 20:
+        logger.info(
+            f"⛔ Pattern memory blocked trade: score={pat_score}/100 — "
+            f"historical edge strongly negative"
+        )
+        return False, f"PATTERN:{pat_score}/100 historical edge negative"
 
     # ── Hard quality gate (no AI needed) ─────────────────────
     if quality_score < MIN_QUALITY_SCORE:
