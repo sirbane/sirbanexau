@@ -57,6 +57,7 @@ _ADAPTIVE = {
     "dip_enabled":        True, # master switch for dip-buy logic
 }
 _last_config_mtime = 0.0
+_last_trade_time = 0.0   # Unix timestamp of last trade placement
 
 def load_adaptive_config():
     global _ADAPTIVE, _last_config_mtime
@@ -668,6 +669,8 @@ def close_on_profit_target(target=1000):
 # ─── MAIN ENGINE ─────────────────────────────────────────────
 
 def run_bot():
+    global _last_trade_time
+    
     if not mt5.initialize(login=int(MT5_LOGIN), password=MT5_PASSWORD, server=MT5_SERVER):
         logger.error("❌ MT5 Init Failed")
         return
@@ -701,7 +704,7 @@ def run_bot():
 
         curr, prev = df.iloc[-1], df.iloc[-2]
 
-        close_on_profit_target(1000)
+        close_on_profit_target(2500)  # Increased from 1000 to match 2,500+ KES loss potential
         trail_stops()
         sync_mt5_history()
 
@@ -740,16 +743,23 @@ def run_bot():
             elif curr['EMA_5'] < curr['EMA_8'] and curr['RSI'] < _ADAPTIVE['rsi_sell_threshold']:
                 logger.info(f"⛔ SELL signal suppressed — H4 is {h4_trend} (need DOWN)")
 
-            # ── NEW: Dip-buy check (runs even when standard signals are NONE) ──
-            # In plain English: even if the 5-min chart looks bearish,
-            # check if we're in a golden "buy the pullback" scenario.
-            if signal == "NONE":
-                if check_dip_buy_signal(curr, prev, df, h1_trend, h4_trend, h1_ema_price):
-                    signal      = "BUY"
-                    signal_type = "DIP"
-                    logger.info("💧 Dip-buy signal activated — price pulled back into H1 uptrend zone")
+            # ── Cooldown gate: Don't fire new trades too frequently ──
+            mins_since_last_trade = (time.time() - _last_trade_time) / 60
+            cooldown_active = (_last_trade_time > 0) and (mins_since_last_trade < _ADAPTIVE.get('cooldown_mins', 30))
+            
+            if cooldown_active:
+                logger.info(f"⏱️  Cooldown active: {_ADAPTIVE.get('cooldown_mins', 30) - mins_since_last_trade:.1f}m remaining")
+            else:
+                # ── NEW: Dip-buy check (runs even when standard signals are NONE) ──
+                # In plain English: even if the 5-min chart looks bearish,
+                # check if we're in a golden "buy the pullback" scenario.
+                if signal == "NONE":
+                    if check_dip_buy_signal(curr, prev, df, h1_trend, h4_trend, h1_ema_price):
+                        signal      = "BUY"
+                        signal_type = "DIP"
+                        logger.info("💧 Dip-buy signal activated — price pulled back into H1 uptrend zone")
 
-            if signal != "NONE":
+            if signal != "NONE" and not cooldown_active:
                 news       = fetch_news()
                 chart_text = generate_chart_text_summary(df)
                 logger.info(f"📡 {signal} signal [{signal_type}] found. AI analysis...")
@@ -759,54 +769,62 @@ def run_bot():
                 )
 
                 if ok:
-                    term_info = mt5.terminal_info()
-                    if term_info and not term_info.trade_allowed:
-                        logger.error(
-                            "❌ AutoTrading DISABLED — click [AutoTrading] in MT5 toolbar."
-                        )
-                        last_min = now.minute
-                        time.sleep(1)
-                        continue
-
-                    tick    = mt5.symbol_info_tick(SYMBOL)
-                    price   = tick.ask if signal == "BUY" else tick.bid
-
-                    # ── DIP trades get a tighter SL (we're counter-momentum on M5)
-                    # Standard trades use the normal ATR multiplier.
-                    sl_mult = (
-                        _ADAPTIVE['sl_atr_mult'] * 0.8   # 20% tighter SL for dip entries
-                        if signal_type == "DIP"
-                        else _ADAPTIVE['sl_atr_mult']
-                    )
-                    sl_dist = curr['ATR'] * sl_mult
-                    sl      = price - sl_dist if signal == "BUY" else price + sl_dist
-                    tp      = price + (sl_dist * _ADAPTIVE['reward_ratio']) if signal == "BUY" else price - (sl_dist * _ADAPTIVE['reward_ratio'])
-
-                    req = {
-                        "action":       mt5.TRADE_ACTION_DEAL,
-                        "symbol":       SYMBOL,
-                        "volume":       _ADAPTIVE["accumulation_lot"],
-                        "type":         mt5.ORDER_TYPE_BUY if signal == "BUY" else mt5.ORDER_TYPE_SELL,
-                        "price":        price,
-                        "sl":           sl,
-                        "tp":           tp,
-                        "magic":        MAGIC_NUMBER,
-                        "type_time":    mt5.ORDER_TIME_GTC,
-                        "type_filling": mt5.ORDER_FILLING_IOC,
-                    }
-                    res = mt5.order_send(req)
-
-                    if res.retcode == mt5.TRADE_RETCODE_DONE:
-                        logger.info(f"✅ TRADE PLACED: {signal} [{signal_type}] @ {price:.2f} | AI: {reason}")
-                        record_trade_open(
-                            ticket=res.order, signal=signal,
-                            price=price, sl=sl, tp=tp,
-                            rsi=curr['RSI'], h1_trend=h1_trend,
-                            news=news, ai_reason=reason,
-                            signal_type=signal_type,
-                        )
+                    # ── MAX OPEN POSITIONS CHECK ──
+                    open_positions = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
+                    open_count = len(open_positions) if open_positions else 0
+                    max_allowed = int(_ADAPTIVE.get('max_open_positions', 1))
+                    if open_count >= max_allowed:
+                        logger.info(f"📊 Max positions reached ({open_count}/{max_allowed}) — skipping trade")
                     else:
-                        logger.error(f"❌ Execution Error: {res.comment}")
+                        term_info = mt5.terminal_info()
+                        if term_info and not term_info.trade_allowed:
+                            logger.error(
+                                "❌ AutoTrading DISABLED — click [AutoTrading] in MT5 toolbar."
+                            )
+                            last_min = now.minute
+                            time.sleep(1)
+                            continue
+
+                        tick    = mt5.symbol_info_tick(SYMBOL)
+                        price   = tick.ask if signal == "BUY" else tick.bid
+
+                        # ── DIP trades get a tighter SL (we're counter-momentum on M5)
+                        # Standard trades use the normal ATR multiplier.
+                        sl_mult = (
+                            _ADAPTIVE['sl_atr_mult'] * 0.8   # 20% tighter SL for dip entries
+                            if signal_type == "DIP"
+                            else _ADAPTIVE['sl_atr_mult']
+                        )
+                        sl_dist = curr['ATR'] * sl_mult
+                        sl      = price - sl_dist if signal == "BUY" else price + sl_dist
+                        tp      = price + (sl_dist * _ADAPTIVE['reward_ratio']) if signal == "BUY" else price - (sl_dist * _ADAPTIVE['reward_ratio'])
+
+                        req = {
+                            "action":       mt5.TRADE_ACTION_DEAL,
+                            "symbol":       SYMBOL,
+                            "volume":       _ADAPTIVE["accumulation_lot"],
+                            "type":         mt5.ORDER_TYPE_BUY if signal == "BUY" else mt5.ORDER_TYPE_SELL,
+                            "price":        price,
+                            "sl":           sl,
+                            "tp":           tp,
+                            "magic":        MAGIC_NUMBER,
+                            "type_time":    mt5.ORDER_TIME_GTC,
+                            "type_filling": mt5.ORDER_FILLING_IOC,
+                        }
+                        res = mt5.order_send(req)
+
+                        if res.retcode == mt5.TRADE_RETCODE_DONE:
+                            _last_trade_time = time.time()
+                            logger.info(f"✅ TRADE PLACED: {signal} [{signal_type}] @ {price:.2f} | AI: {reason}")
+                            record_trade_open(
+                                ticket=res.order, signal=signal,
+                                price=price, sl=sl, tp=tp,
+                                rsi=curr['RSI'], h1_trend=h1_trend,
+                                news=news, ai_reason=reason,
+                                signal_type=signal_type,
+                            )
+                        else:
+                            logger.error(f"❌ Execution Error: {res.comment}")
                 else:
                     logger.info(f"⏭️  Rejected by AI: {reason}")
 

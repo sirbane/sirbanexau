@@ -1,0 +1,59 @@
+
+────────────────────────────────────────────────────────────
+CYCLE #81  |  2026-05-08 11:50:27  |  Confidence: MEDIUM
+Reasoning: Tightening RSI thresholds and increasing cooldown to reduce overtrading, while also reducing position size and max open positions to preserve capital due to profit factor below 1.0 and drawdown concerns.
+Performance: WR=66.7%  PF=0.64  PnL=-1145.5  Streak=2xWIN
+Balance=8854.5  Drawdown=16.53%
+APPLIED CHANGES:
+  rsi_buy_threshold: 45 → 50
+  rsi_sell_threshold: 55 → 50
+  cooldown_mins: 15 → 30
+  accumulation_lot: 0.02 → 0.01
+  max_open_positions: 2 → 1
+REJECTED:
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #82  |  2026-05-08 12:20:28  |  Confidence: MEDIUM
+Reasoning: Tightening filters and reducing position size to address profit factor below 1.0 and potential overtrading
+Performance: WR=66.7%  PF=0.64  PnL=-1145.5  Streak=2xWIN
+Balance=8854.5  Drawdown=9.15%
+APPLIED CHANGES:
+  rsi_buy_threshold: 45 → 50
+  rsi_sell_threshold: 55 → 50
+  cooldown_mins: 30 → 45
+  reward_ratio: 2.5 → 3.0
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #83  |  2026-05-08 12:50:29  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and increasing stop loss to address low profit factor, high drawdown, and potential overtrading
+Performance: WR=40.0%  PF=0.25  PnL=-6364.33  Streak=2xLOSS
+Balance=3635.67  Drawdown=65.01%
+APPLIED CHANGES:
+  rsi_buy_threshold: 45 → 50
+  rsi_sell_threshold: 55 → 50
+  cooldown_mins: 45 → 60
+  sl_atr_mult: 2.2 → 2.5
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #84  |  2026-05-08 13:20:30  |  Confidence: MEDIUM
+Reasoning: Tightening filters and reducing position size to address low profit factor and potential overtrading
+Performance: WR=33.3%  PF=0.18  PnL=-9393.26  Streak=3xLOSS
+Balance=606.74  Drawdown=0.0%
+APPLIED CHANGES:
+  rsi_buy_threshold: 45 → 50
+  rsi_sell_threshold: 55 → 50
+  cooldown_mins: 60 → 30
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────

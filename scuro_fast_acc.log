@@ -4953,3 +4953,1220 @@
 2026-05-08 10:45:00,062 | WARNING |    🛡️  CONFIG GUARD blocked: ema_slow: 8 rejected (need >= ema_fast+5=10) — keeping 13
 2026-05-08 10:45:00,069 | INFO  | 🔍 XAUUSDm | Price: 4708.26 | RSI: 34.4 | H1: UP | EMA: ↓ | Streak: 1L
 2026-05-08 10:45:00,069 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:46:01,507 | INFO  | ================================================================
+2026-05-08 10:46:01,507 | INFO  | 🔥 SCURO ACCUMULATOR — REBUILT
+2026-05-08 10:46:01,507 | INFO  |    Symbol: XAUUSDm | Magic: 777777
+2026-05-08 10:46:01,507 | INFO  |    Daily loss limit: -500.00
+2026-05-08 10:46:01,508 | INFO  |    Max consecutive losses: 6
+2026-05-08 10:46:01,508 | INFO  | ================================================================
+2026-05-08 10:46:01,508 | INFO  | 📥 Initial MT5 history sync...
+2026-05-08 10:46:01,514 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-08 10:46:01,514 | INFO  |    ★ sl_atr_mult: 1.8 → 2.2
+2026-05-08 10:46:01,514 | INFO  |    ★ circuit_breaker_daily_loss_enabled: True → False
+2026-05-08 10:46:01,514 | INFO  |    ★ circuit_breaker_consecutive_losses_enabled: True → False
+2026-05-08 10:46:01,514 | INFO  |    💡 Reason: switched EMA pair from 5/13 to 5/8 â€” faster crossover signals
+2026-05-08 10:46:01,527 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:46:01,527 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 10:46:01,527 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:46:01,527 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 10:46:01,527 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 10:46:01,527 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 10:46:01,528 | INFO  |   Balance: 1,777.97
+2026-05-08 10:46:01,528 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 10:46:01,528 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:46:01,530 | INFO  |   LAST 10 TRADES:
+2026-05-08 10:46:01,530 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 10:46:01,530 | INFO  |   ······························································
+2026-05-08 10:46:01,531 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 10:46:01,531 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:46:01,546 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:46:01,547 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 10:46:01,547 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:46:01,547 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 10:46:01,547 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 10:46:01,548 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 10:46:01,548 | INFO  |   Balance: 1,777.97
+2026-05-08 10:46:01,548 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 10:46:01,548 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:46:01,549 | INFO  |   LAST 10 TRADES:
+2026-05-08 10:46:01,549 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 10:46:01,549 | INFO  |   ······························································
+2026-05-08 10:46:01,550 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 10:46:01,550 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:46:01,551 | INFO  | 🔍 XAUUSDm | Price: 4709.94 | RSI: 37.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:46:01,551 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:47:01,015 | INFO  | 🔍 XAUUSDm | Price: 4710.57 | RSI: 38.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:47:01,016 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:48:00,487 | INFO  | 🔍 XAUUSDm | Price: 4709.91 | RSI: 37.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:48:00,487 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:49:00,036 | INFO  | 🔍 XAUUSDm | Price: 4710.43 | RSI: 38.7 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:49:00,037 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:50:00,557 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:50:00,557 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 10:50:00,558 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:50:00,558 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 10:50:00,558 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 10:50:00,559 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 10:50:00,559 | INFO  |   Balance: 1,777.97
+2026-05-08 10:50:00,560 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 10:50:00,560 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:50:00,563 | INFO  |   LAST 10 TRADES:
+2026-05-08 10:50:00,563 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 10:50:00,564 | INFO  |   ······························································
+2026-05-08 10:50:00,565 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 10:50:00,565 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 10:50:00,566 | INFO  | 🔍 XAUUSDm | Price: 4712.40 | RSI: 42.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:50:00,567 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:51:00,022 | INFO  | 🔍 XAUUSDm | Price: 4710.70 | RSI: 39.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:51:00,023 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:52:00,478 | INFO  | 🔍 XAUUSDm | Price: 4708.97 | RSI: 38.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:52:00,478 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:53:00,922 | INFO  | 🔍 XAUUSDm | Price: 4709.67 | RSI: 38.8 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:53:00,923 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:54:00,319 | INFO  | 🔍 XAUUSDm | Price: 4711.88 | RSI: 41.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:54:00,319 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:55:00,039 | INFO  | 🔍 XAUUSDm | Price: 4711.04 | RSI: 40.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:55:00,040 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:56:00,671 | INFO  | 🔍 XAUUSDm | Price: 4708.48 | RSI: 37.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:56:00,672 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:57:00,753 | INFO  | 🔍 XAUUSDm | Price: 4708.57 | RSI: 37.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:57:00,755 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:58:00,351 | INFO  | 🔍 XAUUSDm | Price: 4707.05 | RSI: 35.9 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:58:00,351 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:59:00,829 | INFO  | 🔍 XAUUSDm | Price: 4709.02 | RSI: 38.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:59:00,830 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 11:00:00,478 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:00:00,478 | INFO  | 📊  SCURO TRADE SUMMARY
+2026-05-08 11:00:00,480 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:00:00,481 | INFO  |   Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 11:00:00,481 | INFO  |   Results: ✅ 0W  ❌ 1L  〰 0BE  |  WR: 0.0%  PF: 0.0
+2026-05-08 11:00:00,482 | INFO  |   P&L    : -3222.03 | Loss streak: 1
+2026-05-08 11:00:00,482 | INFO  |   Balance: 1,777.97
+2026-05-08 11:00:00,482 | INFO  |   Config : lot=0.02 rr=2.5 rsi=45/55 cool=15m max_pos=2
+2026-05-08 11:00:00,483 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:00:00,486 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:00:00,486 | INFO  |   Opened               Dir      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:00:00,486 | INFO  |   ······························································
+2026-05-08 11:00:00,487 | INFO  |   2026-05-07 16:34:01  BUY    4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:00:00,488 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:00:00,489 | INFO  | 🔍 XAUUSDm | Price: 4708.18 | RSI: 37.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 11:00:00,489 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 11:01:00,048 | INFO  | 🔍 XAUUSDm | Price: 4708.40 | RSI: 37.6 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 11:01:00,051 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 11:02:00,671 | INFO  | 🔍 XAUUSDm | Price: 4709.18 | RSI: 39.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 11:02:00,673 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 11:03:00,207 | INFO  | 🔍 XAUUSDm | Price: 4709.28 | RSI: 39.3 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 11:03:00,209 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 11:04:00,970 | INFO  | 🔍 XAUUSDm | Price: 4708.10 | RSI: 37.0 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 11:04:00,973 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 11:04:59,132 | INFO  | ================================================================
+2026-05-08 11:04:59,132 | INFO  | 🔥 SCURO ACCUMULATOR V3: DIP-HUNTER EDITION
+2026-05-08 11:04:59,132 | INFO  |    Symbol: XAUUSDm | Lot: 0.02 | Risk: Aggressive
+2026-05-08 11:04:59,132 | INFO  |    History file: C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1\trade_history.csv
+2026-05-08 11:04:59,133 | INFO  |    Dip-buy logic: ENABLED ✅
+2026-05-08 11:04:59,133 | INFO  | ================================================================
+2026-05-08 11:04:59,133 | INFO  | 📥 Syncing full MT5 trade history...
+2026-05-08 11:04:59,153 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,154 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:04:59,154 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,154 | INFO  |   Total Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 11:04:59,154 | INFO  |   Results      : ✅ Wins: 0  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:04:59,155 | INFO  |   Win Rate     : 0.0%
+2026-05-08 11:04:59,155 | INFO  |   Total P&L    : -3222.03 KES
+2026-05-08 11:04:59,155 | INFO  |   Best Trade   : -3222.03 KES
+2026-05-08 11:04:59,156 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:04:59,156 | INFO  |   💰 Balance    : 1,777.97 KES
+2026-05-08 11:04:59,156 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,156 | INFO  |   📈 TREND signals : 1 trades | WR: 0.0% | P&L: -3222.03
+2026-05-08 11:04:59,156 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:04:59,157 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,159 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:04:59,160 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:04:59,160 | INFO  |   ······································································
+2026-05-08 11:04:59,161 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:04:59,162 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,184 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,184 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:04:59,185 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,186 | INFO  |   Total Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 11:04:59,187 | INFO  |   Results      : ✅ Wins: 0  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:04:59,188 | INFO  |   Win Rate     : 0.0%
+2026-05-08 11:04:59,189 | INFO  |   Total P&L    : -3222.03 KES
+2026-05-08 11:04:59,190 | INFO  |   Best Trade   : -3222.03 KES
+2026-05-08 11:04:59,190 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:04:59,190 | INFO  |   💰 Balance    : 1,777.97 KES
+2026-05-08 11:04:59,190 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,191 | INFO  |   📈 TREND signals : 1 trades | WR: 0.0% | P&L: -3222.03
+2026-05-08 11:04:59,193 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:04:59,193 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,194 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:04:59,194 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:04:59,194 | INFO  |   ······································································
+2026-05-08 11:04:59,195 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:04:59,195 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:04:59,196 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-08 11:04:59,196 | INFO  |    ✦ reward_ratio: 2.0 → 2.5
+2026-05-08 11:04:59,196 | INFO  |    ✦ rsi_buy_threshold: 48 → 45
+2026-05-08 11:04:59,196 | INFO  |    ✦ rsi_sell_threshold: 52 → 55
+2026-05-08 11:04:59,197 | INFO  |    ✦ sl_atr_mult: 1.8 → 2.2
+2026-05-08 11:04:59,197 | INFO  |    ✦ trail_atr_mult: 1.2 → 1.4
+2026-05-08 11:04:59,197 | INFO  |    💡 Reason: switched EMA pair from 5/13 to 5/8 â€” faster crossover signals
+2026-05-08 11:04:59,247 | INFO  | 🔍 Scan: XAUUSDm | Price: 4709.90 | RSI: 40.3 | H1: UP (EMA@4708.06 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:04:59,247 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:05:00,261 | INFO  | 🔍 Scan: XAUUSDm | Price: 4709.80 | RSI: 40.2 | H1: UP (EMA@4708.06 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:05:00,262 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:06:00,121 | INFO  | 🔍 Scan: XAUUSDm | Price: 4707.97 | RSI: 37.8 | H1: DOWN (EMA@4708.02 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:06:00,122 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:07:00,172 | INFO  | 🔍 Scan: XAUUSDm | Price: 4707.27 | RSI: 37.0 | H1: DOWN (EMA@4708.01 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:07:00,174 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:08:00,603 | INFO  | 🔍 Scan: XAUUSDm | Price: 4708.85 | RSI: 38.8 | H1: UP (EMA@4708.04 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:08:00,606 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:09:00,515 | INFO  | 🔍 Scan: XAUUSDm | Price: 4707.70 | RSI: 37.5 | H1: DOWN (EMA@4708.02 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:09:00,515 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:10:00,346 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:10:00,347 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:10:00,347 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:10:00,348 | INFO  |   Total Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 11:10:00,348 | INFO  |   Results      : ✅ Wins: 0  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:10:00,348 | INFO  |   Win Rate     : 0.0%
+2026-05-08 11:10:00,348 | INFO  |   Total P&L    : -3222.03 KES
+2026-05-08 11:10:00,349 | INFO  |   Best Trade   : -3222.03 KES
+2026-05-08 11:10:00,349 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:10:00,349 | INFO  |   💰 Balance    : 1,777.97 KES
+2026-05-08 11:10:00,349 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:10:00,349 | INFO  |   📈 TREND signals : 1 trades | WR: 0.0% | P&L: -3222.03
+2026-05-08 11:10:00,350 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:10:00,350 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:10:00,352 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:10:00,353 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:10:00,353 | INFO  |   ······································································
+2026-05-08 11:10:00,354 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:10:00,354 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:10:00,357 | INFO  | 🔍 Scan: XAUUSDm | Price: 4710.46 | RSI: 41.4 | H1: UP (EMA@4708.07 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:10:00,357 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:11:00,985 | INFO  | 🔍 Scan: XAUUSDm | Price: 4710.35 | RSI: 41.2 | H1: UP (EMA@4708.07 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:11:00,986 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:12:00,589 | INFO  | 🔍 Scan: XAUUSDm | Price: 4709.00 | RSI: 39.4 | H1: UP (EMA@4708.04 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:12:00,591 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:13:00,156 | INFO  | 🔍 Scan: XAUUSDm | Price: 4712.60 | RSI: 45.2 | H1: UP (EMA@4708.12 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:13:00,156 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:14:00,827 | INFO  | 🔍 Scan: XAUUSDm | Price: 4712.29 | RSI: 44.7 | H1: UP (EMA@4708.11 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:14:00,827 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:15:00,465 | INFO  | 🔍 Scan: XAUUSDm | Price: 4711.48 | RSI: 43.3 | H1: UP (EMA@4708.09 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:15:00,466 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:16:00,076 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.57 | RSI: 47.2 | H1: UP (EMA@4708.14 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:16:00,618 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:16:04,145 | INFO  | ✅ Both agents OK | 🪙 Tokens: 700/100,000 (1% used) | AI calls today: 2
+2026-05-08 11:16:04,158 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:17:00,700 | INFO  | 🔍 Scan: XAUUSDm | Price: 4712.66 | RSI: 45.6 | H1: UP (EMA@4708.12 if known) | H4: UP | 🪙 Tokens: 700/100,000 (1% used) | AI calls today: 2
+2026-05-08 11:17:00,700 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 11:18:00,308 | INFO  | 🔍 Scan: XAUUSDm | Price: 4712.93 | RSI: 46.1 | H1: UP (EMA@4708.12 if known) | H4: UP | 🪙 Tokens: 700/100,000 (1% used) | AI calls today: 2
+2026-05-08 11:18:00,718 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:18:04,214 | INFO  | ✅ Both agents OK | 🪙 Tokens: 1,400/100,000 (1% used) | AI calls today: 4
+2026-05-08 11:18:04,216 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:19:00,917 | INFO  | 🔍 Scan: XAUUSDm | Price: 4714.56 | RSI: 48.8 | H1: UP (EMA@4708.16 if known) | H4: UP | 🪙 Tokens: 1,400/100,000 (1% used) | AI calls today: 4
+2026-05-08 11:19:01,334 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:19:04,841 | INFO  | ✅ Both agents OK | 🪙 Tokens: 2,100/100,000 (2% used) | AI calls today: 6
+2026-05-08 11:19:04,843 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:20:00,590 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:20:00,590 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:20:00,590 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:20:00,590 | INFO  |   Total Trades : 1  (Open: 0  Closed: 1)
+2026-05-08 11:20:00,591 | INFO  |   Results      : ✅ Wins: 0  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:20:00,591 | INFO  |   Win Rate     : 0.0%
+2026-05-08 11:20:00,591 | INFO  |   Total P&L    : -3222.03 KES
+2026-05-08 11:20:00,591 | INFO  |   Best Trade   : -3222.03 KES
+2026-05-08 11:20:00,592 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:20:00,592 | INFO  |   💰 Balance    : 6,777.97 KES
+2026-05-08 11:20:00,592 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:20:00,592 | INFO  |   📈 TREND signals : 1 trades | WR: 0.0% | P&L: -3222.03
+2026-05-08 11:20:00,593 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:20:00,593 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:20:00,595 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:20:00,595 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:20:00,595 | INFO  |   ······································································
+2026-05-08 11:20:00,596 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:20:00,597 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:20:00,599 | INFO  | 🔍 Scan: XAUUSDm | Price: 4714.57 | RSI: 48.7 | H1: UP (EMA@4708.16 if known) | H4: UP | 🪙 Tokens: 2,100/100,000 (2% used) | AI calls today: 6
+2026-05-08 11:20:01,016 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:20:04,466 | INFO  | ✅ Both agents OK | 🪙 Tokens: 2,800/100,000 (3% used) | AI calls today: 8
+2026-05-08 11:20:04,547 | INFO  | ✅ TRADE PLACED: BUY [TREND] @ 4715.07 | AI: L:CONFIRM S:CONFIRM
+2026-05-08 11:20:04,624 | INFO  | 📋 Trade #2722452443 logged to trade_history.csv [TREND]
+2026-05-08 11:21:00,279 | INFO  | 🔍 Scan: XAUUSDm | Price: 4715.15 | RSI: 49.7 | H1: UP (EMA@4708.17 if known) | H4: UP | 🪙 Tokens: 2,800/100,000 (3% used) | AI calls today: 8
+2026-05-08 11:21:00,672 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:21:04,152 | INFO  | ✅ Both agents OK | 🪙 Tokens: 3,500/100,000 (4% used) | AI calls today: 10
+2026-05-08 11:21:04,225 | INFO  | ✅ TRADE PLACED: BUY [TREND] @ 4715.41 | AI: L:CONFIRM S:CONFIRM
+2026-05-08 11:21:04,233 | INFO  | 📋 Trade #2722456070 logged to trade_history.csv [TREND]
+2026-05-08 11:21:48,809 | INFO  | 💰 TARGET REACHED: Closed Ticket 2722452443 at 1108.33 profit.
+2026-05-08 11:21:48,876 | INFO  | 💰 TARGET REACHED: Closed Ticket 2722456070 at 1023.75 profit.
+2026-05-08 11:21:48,893 | INFO  | 📊 Trade #2722452443 closed → WIN | P&L: +1080.55
+2026-05-08 11:21:48,895 | INFO  | 📊 Trade #2722456070 closed → WIN | P&L: +995.98
+2026-05-08 11:22:00,029 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.34 | RSI: 57.0 | H1: UP (EMA@4708.27 if known) | H4: UP | 🪙 Tokens: 3,500/100,000 (4% used) | AI calls today: 10
+2026-05-08 11:22:00,417 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:22:03,906 | INFO  | ✅ Both agents OK | 🪙 Tokens: 4,200/100,000 (4% used) | AI calls today: 12
+2026-05-08 11:22:03,973 | INFO  | ✅ TRADE PLACED: BUY [TREND] @ 4720.46 | AI: L:CONFIRM S:CONFIRM
+2026-05-08 11:22:03,983 | INFO  | 📋 Trade #2722466200 logged to trade_history.csv [TREND]
+2026-05-08 11:23:00,642 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.07 | RSI: 55.5 | H1: UP (EMA@4708.25 if known) | H4: UP | 🪙 Tokens: 4,200/100,000 (4% used) | AI calls today: 12
+2026-05-08 11:23:01,066 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:23:04,550 | INFO  | ✅ Both agents OK | 🪙 Tokens: 4,900/100,000 (5% used) | AI calls today: 14
+2026-05-08 11:23:04,617 | INFO  | ✅ TRADE PLACED: BUY [TREND] @ 4719.57 | AI: L:CONFIRM S:CONFIRM
+2026-05-08 11:23:04,625 | INFO  | 📋 Trade #2722472643 logged to trade_history.csv [TREND]
+2026-05-08 11:24:00,419 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.30 | RSI: 57.0 | H1: UP (EMA@4708.27 if known) | H4: UP | 🪙 Tokens: 4,900/100,000 (5% used) | AI calls today: 14
+2026-05-08 11:24:00,805 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:24:04,391 | INFO  | ✅ Both agents OK | 🪙 Tokens: 5,600/100,000 (6% used) | AI calls today: 16
+2026-05-08 11:24:04,458 | INFO  | ✅ TRADE PLACED: BUY [TREND] @ 4721.41 | AI: L:CONFIRM S:CONFIRM
+2026-05-08 11:24:04,471 | INFO  | 📋 Trade #2722476502 logged to trade_history.csv [TREND]
+2026-05-08 11:25:00,099 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.77 | RSI: 56.4 | H1: UP (EMA@4708.26 if known) | H4: UP | 🪙 Tokens: 5,600/100,000 (6% used) | AI calls today: 16
+2026-05-08 11:25:00,491 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:25:03,981 | INFO  | ✅ Both agents OK | 🪙 Tokens: 6,300/100,000 (6% used) | AI calls today: 18
+2026-05-08 11:25:03,982 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:26:00,664 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.96 | RSI: 57.9 | H1: UP (EMA@4708.28 if known) | H4: UP | 🪙 Tokens: 6,300/100,000 (6% used) | AI calls today: 18
+2026-05-08 11:26:01,078 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:26:04,522 | INFO  | ✅ Both agents OK | 🪙 Tokens: 7,000/100,000 (7% used) | AI calls today: 20
+2026-05-08 11:26:04,524 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:27:00,118 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.46 | RSI: 55.8 | H1: UP (EMA@4708.25 if known) | H4: UP | 🪙 Tokens: 7,000/100,000 (7% used) | AI calls today: 20
+2026-05-08 11:27:00,501 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:27:03,986 | INFO  | ✅ Both agents OK | 🪙 Tokens: 7,700/100,000 (8% used) | AI calls today: 22
+2026-05-08 11:27:03,987 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:28:00,656 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.11 | RSI: 55.2 | H1: UP (EMA@4708.25 if known) | H4: UP | 🪙 Tokens: 7,700/100,000 (8% used) | AI calls today: 22
+2026-05-08 11:28:01,099 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:28:04,548 | INFO  | ✅ Both agents OK | 🪙 Tokens: 8,400/100,000 (8% used) | AI calls today: 24
+2026-05-08 11:28:04,549 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:29:00,183 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.66 | RSI: 52.9 | H1: UP (EMA@4708.22 if known) | H4: UP | 🪙 Tokens: 8,400/100,000 (8% used) | AI calls today: 24
+2026-05-08 11:29:00,574 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:29:04,065 | INFO  | ✅ Both agents OK | 🪙 Tokens: 9,100/100,000 (9% used) | AI calls today: 26
+2026-05-08 11:29:04,066 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:30:00,674 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:30:00,674 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:30:00,675 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:30:00,675 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 11:30:00,675 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:30:00,676 | INFO  |   Win Rate     : 66.7%
+2026-05-08 11:30:00,676 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 11:30:00,676 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 11:30:00,677 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:30:00,677 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 11:30:00,677 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:30:00,677 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 11:30:00,678 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:30:00,678 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:30:00,679 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:30:00,680 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:30:00,680 | INFO  |   ······································································
+2026-05-08 11:30:00,681 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:30:00,681 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 11:30:00,682 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 11:30:00,683 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 11:30:00,683 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 11:30:00,683 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 11:30:00,684 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:30:00,686 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.90 | RSI: 52.0 | H1: UP (EMA@4708.20 if known) | H4: UP | 🪙 Tokens: 9,100/100,000 (9% used) | AI calls today: 26
+2026-05-08 11:30:01,086 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:30:04,564 | INFO  | ✅ Both agents OK | 🪙 Tokens: 9,800/100,000 (10% used) | AI calls today: 28
+2026-05-08 11:30:04,566 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:31:00,151 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.11 | RSI: 53.7 | H1: UP (EMA@4708.23 if known) | H4: UP | 🪙 Tokens: 9,800/100,000 (10% used) | AI calls today: 28
+2026-05-08 11:31:00,553 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:31:04,063 | INFO  | ✅ Both agents OK | 🪙 Tokens: 10,500/100,000 (10% used) | AI calls today: 30
+2026-05-08 11:31:04,064 | INFO  | ⏭️  Rejected by AI: L:CONFIRM S:REJECT
+2026-05-08 11:31:41,429 | INFO  | ================================================================
+2026-05-08 11:31:41,429 | INFO  | 🔥 SCURO ACCUMULATOR V3: DIP-HUNTER EDITION
+2026-05-08 11:31:41,429 | INFO  |    Symbol: XAUUSDm | Lot: 0.02 | Risk: Aggressive
+2026-05-08 11:31:41,430 | INFO  |    History file: C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1\trade_history.csv
+2026-05-08 11:31:41,430 | INFO  |    Dip-buy logic: ENABLED ✅
+2026-05-08 11:31:41,430 | INFO  | ================================================================
+2026-05-08 11:31:41,431 | INFO  | 📥 Syncing full MT5 trade history...
+2026-05-08 11:31:41,444 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,445 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:31:41,445 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,445 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 11:31:41,445 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:31:41,446 | INFO  |   Win Rate     : 66.7%
+2026-05-08 11:31:41,446 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 11:31:41,446 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 11:31:41,446 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:31:41,447 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 11:31:41,447 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,447 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 11:31:41,447 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:31:41,448 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,449 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:31:41,449 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:31:41,449 | INFO  |   ······································································
+2026-05-08 11:31:41,450 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:31:41,450 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 11:31:41,451 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 11:31:41,451 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 11:31:41,451 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 11:31:41,452 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 11:31:41,452 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,475 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,475 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:31:41,476 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,476 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 11:31:41,476 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:31:41,476 | INFO  |   Win Rate     : 66.7%
+2026-05-08 11:31:41,476 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 11:31:41,476 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 11:31:41,477 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:31:41,477 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 11:31:41,477 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,477 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 11:31:41,478 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:31:41,478 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,479 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:31:41,479 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:31:41,479 | INFO  |   ······································································
+2026-05-08 11:31:41,480 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:31:41,481 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 11:31:41,481 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 11:31:41,482 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 11:31:41,483 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 11:31:41,483 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 11:31:41,484 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:31:41,484 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-08 11:31:41,485 | INFO  |    ✦ reward_ratio: 2.0 → 2.5
+2026-05-08 11:31:41,485 | INFO  |    ✦ rsi_buy_threshold: 48 → 45
+2026-05-08 11:31:41,485 | INFO  |    ✦ rsi_sell_threshold: 52 → 55
+2026-05-08 11:31:41,485 | INFO  |    ✦ sl_atr_mult: 1.8 → 2.2
+2026-05-08 11:31:41,486 | INFO  |    ✦ trail_atr_mult: 1.2 → 1.4
+2026-05-08 11:31:41,486 | INFO  |    💡 Reason: switched EMA pair from 5/13 to 5/8 â€” faster crossover signals
+2026-05-08 11:31:41,490 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.45 | RSI: 55.4 | H1: UP (EMA@4708.25 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:31:41,895 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:31:45,338 | INFO  | ✅ Both agents OK | 🪙 Tokens: 700/100,000 (1% used) | AI calls today: 2
+2026-05-08 11:31:45,340 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:32:00,499 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.77 | RSI: 54.5 | H1: UP (EMA@4708.24 if known) | H4: UP | 🪙 Tokens: 700/100,000 (1% used) | AI calls today: 2
+2026-05-08 11:32:00,888 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:32:04,359 | INFO  | ✅ Both agents OK | 🪙 Tokens: 1,400/100,000 (1% used) | AI calls today: 4
+2026-05-08 11:32:04,360 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:33:00,064 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.52 | RSI: 54.2 | H1: UP (EMA@4708.23 if known) | H4: UP | 🪙 Tokens: 1,400/100,000 (1% used) | AI calls today: 4
+2026-05-08 11:33:00,462 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:33:03,933 | INFO  | ✅ Both agents OK | 🪙 Tokens: 2,100/100,000 (2% used) | AI calls today: 6
+2026-05-08 11:33:03,934 | INFO  | ⏭️  Rejected by AI: L:CONFIRM S:REJECT
+2026-05-08 11:34:00,555 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.37 | RSI: 55.3 | H1: UP (EMA@4708.25 if known) | H4: UP | 🪙 Tokens: 2,100/100,000 (2% used) | AI calls today: 6
+2026-05-08 11:34:00,967 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:34:04,418 | INFO  | ✅ Both agents OK | 🪙 Tokens: 2,800/100,000 (3% used) | AI calls today: 8
+2026-05-08 11:34:04,420 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:35:00,213 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.12 | RSI: 55.0 | H1: UP (EMA@4708.25 if known) | H4: UP | 🪙 Tokens: 2,800/100,000 (3% used) | AI calls today: 8
+2026-05-08 11:35:00,627 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:35:04,077 | INFO  | ✅ Both agents OK | 🪙 Tokens: 3,500/100,000 (4% used) | AI calls today: 10
+2026-05-08 11:35:04,079 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:36:00,706 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.23 | RSI: 56.3 | H1: UP (EMA@4708.27 if known) | H4: UP | 🪙 Tokens: 3,500/100,000 (4% used) | AI calls today: 10
+2026-05-08 11:36:01,091 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:36:04,663 | INFO  | ✅ Both agents OK | 🪙 Tokens: 4,200/100,000 (4% used) | AI calls today: 12
+2026-05-08 11:36:04,664 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:37:00,308 | INFO  | 🔍 Scan: XAUUSDm | Price: 4722.64 | RSI: 59.2 | H1: UP (EMA@4708.32 if known) | H4: UP | 🪙 Tokens: 4,200/100,000 (4% used) | AI calls today: 12
+2026-05-08 11:37:00,702 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:37:04,202 | INFO  | ✅ Both agents OK | 🪙 Tokens: 4,900/100,000 (5% used) | AI calls today: 14
+2026-05-08 11:37:04,203 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:38:00,776 | INFO  | 🔍 Scan: XAUUSDm | Price: 4722.80 | RSI: 59.4 | H1: UP (EMA@4708.32 if known) | H4: UP | 🪙 Tokens: 4,900/100,000 (5% used) | AI calls today: 14
+2026-05-08 11:38:01,185 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:38:04,661 | INFO  | ✅ Both agents OK | 🪙 Tokens: 5,600/100,000 (6% used) | AI calls today: 16
+2026-05-08 11:38:04,663 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:39:00,338 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.20 | RSI: 57.5 | H1: UP (EMA@4708.29 if known) | H4: UP | 🪙 Tokens: 5,600/100,000 (6% used) | AI calls today: 16
+2026-05-08 11:39:00,751 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:39:04,233 | INFO  | ✅ Both agents OK | 🪙 Tokens: 6,300/100,000 (6% used) | AI calls today: 18
+2026-05-08 11:39:04,235 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:40:00,834 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:00,835 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:40:00,835 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:00,835 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 11:40:00,835 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:40:00,835 | INFO  |   Win Rate     : 66.7%
+2026-05-08 11:40:00,836 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 11:40:00,836 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 11:40:00,836 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:40:00,836 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 11:40:00,837 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:00,837 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 11:40:00,838 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:40:00,838 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:00,840 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:40:00,840 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:40:00,840 | INFO  |   ······································································
+2026-05-08 11:40:00,841 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:40:00,841 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 11:40:00,842 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 11:40:00,842 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 11:40:00,843 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 11:40:00,843 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 11:40:00,843 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:00,846 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.07 | RSI: 57.5 | H1: UP (EMA@4708.29 if known) | H4: UP | 🪙 Tokens: 6,300/100,000 (6% used) | AI calls today: 18
+2026-05-08 11:40:01,257 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:40:04,730 | INFO  | ✅ Both agents OK | 🪙 Tokens: 7,000/100,000 (7% used) | AI calls today: 20
+2026-05-08 11:40:04,731 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:40:31,121 | INFO  | ================================================================
+2026-05-08 11:40:31,121 | INFO  | 🔥 SCURO ACCUMULATOR V3: DIP-HUNTER EDITION
+2026-05-08 11:40:31,121 | INFO  |    Symbol: XAUUSDm | Lot: 0.02 | Risk: Aggressive
+2026-05-08 11:40:31,122 | INFO  |    History file: C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1\trade_history.csv
+2026-05-08 11:40:31,122 | INFO  |    Dip-buy logic: ENABLED ✅
+2026-05-08 11:40:31,122 | INFO  | ================================================================
+2026-05-08 11:40:31,122 | INFO  | 📥 Syncing full MT5 trade history...
+2026-05-08 11:40:31,136 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,136 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:40:31,137 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,137 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 11:40:31,137 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:40:31,137 | INFO  |   Win Rate     : 66.7%
+2026-05-08 11:40:31,138 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 11:40:31,138 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 11:40:31,138 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:40:31,138 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 11:40:31,138 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,138 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 11:40:31,139 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:40:31,139 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,139 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:40:31,139 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:40:31,140 | INFO  |   ······································································
+2026-05-08 11:40:31,140 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:40:31,140 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 11:40:31,141 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 11:40:31,141 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 11:40:31,141 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 11:40:31,141 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 11:40:31,141 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,161 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,161 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:40:31,161 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,161 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 11:40:31,162 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:40:31,162 | INFO  |   Win Rate     : 66.7%
+2026-05-08 11:40:31,162 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 11:40:31,163 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 11:40:31,163 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:40:31,163 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 11:40:31,163 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,164 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 11:40:31,164 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:40:31,164 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,165 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:40:31,165 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:40:31,166 | INFO  |   ······································································
+2026-05-08 11:40:31,166 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:40:31,166 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 11:40:31,167 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 11:40:31,167 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 11:40:31,168 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 11:40:31,168 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 11:40:31,168 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:40:31,169 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-08 11:40:31,169 | INFO  |    ✦ reward_ratio: 2.0 → 2.5
+2026-05-08 11:40:31,169 | INFO  |    ✦ rsi_buy_threshold: 48 → 45
+2026-05-08 11:40:31,169 | INFO  |    ✦ rsi_sell_threshold: 52 → 55
+2026-05-08 11:40:31,169 | INFO  |    ✦ sl_atr_mult: 1.8 → 2.2
+2026-05-08 11:40:31,169 | INFO  |    ✦ trail_atr_mult: 1.2 → 1.4
+2026-05-08 11:40:31,170 | INFO  |    💡 Reason: switched EMA pair from 5/13 to 5/8 â€” faster crossover signals
+2026-05-08 11:40:31,172 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.04 | RSI: 55.7 | H1: UP (EMA@4708.26 if known) | H4: UP | 🪙 Tokens: 0/100,000 (0% used) | AI calls today: 0
+2026-05-08 11:40:31,575 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:40:35,066 | INFO  | ✅ Both agents OK | 🪙 Tokens: 700/100,000 (1% used) | AI calls today: 2
+2026-05-08 11:40:35,068 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:41:00,345 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.55 | RSI: 56.6 | H1: UP (EMA@4708.27 if known) | H4: UP | 🪙 Tokens: 700/100,000 (1% used) | AI calls today: 2
+2026-05-08 11:41:00,729 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:41:04,176 | INFO  | ✅ Both agents OK | 🪙 Tokens: 1,400/100,000 (1% used) | AI calls today: 4
+2026-05-08 11:41:04,180 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:42:00,871 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.08 | RSI: 54.1 | H1: UP (EMA@4708.25 if known) | H4: UP | 🪙 Tokens: 1,400/100,000 (1% used) | AI calls today: 4
+2026-05-08 11:42:01,284 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:42:04,726 | INFO  | ✅ Both agents OK | 🪙 Tokens: 2,100/100,000 (2% used) | AI calls today: 6
+2026-05-08 11:42:04,727 | INFO  | ⏭️  Rejected by AI: L:CONFIRM S:REJECT
+2026-05-08 11:43:00,295 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.88 | RSI: 52.3 | H1: UP (EMA@4708.22 if known) | H4: UP | 🪙 Tokens: 2,100/100,000 (2% used) | AI calls today: 6
+2026-05-08 11:43:00,690 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:43:04,226 | INFO  | ✅ Both agents OK | 🪙 Tokens: 2,800/100,000 (3% used) | AI calls today: 8
+2026-05-08 11:43:04,227 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:44:00,819 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.84 | RSI: 52.2 | H1: UP (EMA@4708.22 if known) | H4: UP | 🪙 Tokens: 2,800/100,000 (3% used) | AI calls today: 8
+2026-05-08 11:44:01,235 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:44:04,713 | INFO  | ✅ Both agents OK | 🪙 Tokens: 3,500/100,000 (4% used) | AI calls today: 10
+2026-05-08 11:44:04,715 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:45:00,330 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.96 | RSI: 50.9 | H1: UP (EMA@4708.20 if known) | H4: UP | 🪙 Tokens: 3,500/100,000 (4% used) | AI calls today: 10
+2026-05-08 11:45:00,715 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:45:04,198 | INFO  | ✅ Both agents OK | 🪙 Tokens: 4,200/100,000 (4% used) | AI calls today: 12
+2026-05-08 11:45:04,198 | INFO  | ⏭️  Rejected by AI: L:CONFIRM S:REJECT.
+2026-05-08 11:46:00,840 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.34 | RSI: 51.5 | H1: UP (EMA@4708.21 if known) | H4: UP | 🪙 Tokens: 4,200/100,000 (4% used) | AI calls today: 12
+2026-05-08 11:46:01,261 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:46:04,739 | INFO  | ✅ Both agents OK | 🪙 Tokens: 4,900/100,000 (5% used) | AI calls today: 14
+2026-05-08 11:46:04,741 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:47:00,305 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.50 | RSI: 51.7 | H1: UP (EMA@4708.21 if known) | H4: UP | 🪙 Tokens: 4,900/100,000 (5% used) | AI calls today: 14
+2026-05-08 11:47:00,696 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:47:04,209 | INFO  | ✅ Both agents OK | 🪙 Tokens: 5,600/100,000 (6% used) | AI calls today: 16
+2026-05-08 11:47:04,211 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:48:00,811 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.60 | RSI: 51.8 | H1: UP (EMA@4708.22 if known) | H4: UP | 🪙 Tokens: 5,600/100,000 (6% used) | AI calls today: 16
+2026-05-08 11:48:01,214 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:48:04,665 | INFO  | ✅ Both agents OK | 🪙 Tokens: 6,300/100,000 (6% used) | AI calls today: 18
+2026-05-08 11:48:04,667 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:49:00,233 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.93 | RSI: 53.6 | H1: UP (EMA@4708.24 if known) | H4: UP | 🪙 Tokens: 6,300/100,000 (6% used) | AI calls today: 18
+2026-05-08 11:49:00,633 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:49:04,108 | INFO  | ✅ Both agents OK | 🪙 Tokens: 7,000/100,000 (7% used) | AI calls today: 20
+2026-05-08 11:49:04,109 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:50:00,708 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:50:00,709 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 11:50:00,709 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:50:00,709 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 11:50:00,709 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 11:50:00,709 | INFO  |   Win Rate     : 66.7%
+2026-05-08 11:50:00,710 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 11:50:00,710 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 11:50:00,710 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 11:50:00,710 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 11:50:00,710 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:50:00,710 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 11:50:00,711 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 11:50:00,711 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:50:00,711 | INFO  |   LAST 10 TRADES:
+2026-05-08 11:50:00,712 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 11:50:00,712 | INFO  |   ······································································
+2026-05-08 11:50:00,713 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 11:50:00,713 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 11:50:00,715 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 11:50:00,716 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 11:50:00,716 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 11:50:00,717 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 11:50:00,717 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 11:50:00,719 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.88 | RSI: 53.6 | H1: UP (EMA@4708.24 if known) | H4: UP | 🪙 Tokens: 7,000/100,000 (7% used) | AI calls today: 20
+2026-05-08 11:50:01,137 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:50:04,610 | INFO  | ✅ Both agents OK | 🪙 Tokens: 7,700/100,000 (8% used) | AI calls today: 22
+2026-05-08 11:50:04,612 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:51:00,161 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-08 11:51:00,161 | INFO  |    ✦ accumulation_lot: 0.02 → 0.01
+2026-05-08 11:51:00,161 | INFO  |    💡 Reason: Tightening RSI thresholds and increasing cooldown to reduce overtrading, while also reducing position size and max open positions to preserve capital due to profit factor below 1.0 and drawdown concerns.
+2026-05-08 11:51:00,165 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.82 | RSI: 51.9 | H1: UP (EMA@4708.22 if known) | H4: UP | 🪙 Tokens: 7,700/100,000 (8% used) | AI calls today: 22
+2026-05-08 11:51:00,552 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:51:04,031 | INFO  | ✅ Both agents OK | 🪙 Tokens: 8,400/100,000 (8% used) | AI calls today: 24
+2026-05-08 11:51:04,032 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:52:00,603 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.93 | RSI: 52.1 | H1: UP (EMA@4708.22 if known) | H4: UP | 🪙 Tokens: 8,400/100,000 (8% used) | AI calls today: 24
+2026-05-08 11:52:00,993 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:52:04,473 | INFO  | ✅ Both agents OK | 🪙 Tokens: 9,100/100,000 (9% used) | AI calls today: 26
+2026-05-08 11:52:04,473 | INFO  | ⏭️  Rejected by AI: L:CONFIRM S:REJECT
+2026-05-08 11:53:00,073 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.85 | RSI: 52.0 | H1: UP (EMA@4708.22 if known) | H4: UP | 🪙 Tokens: 9,100/100,000 (9% used) | AI calls today: 26
+2026-05-08 11:53:00,469 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:53:03,940 | INFO  | ✅ Both agents OK | 🪙 Tokens: 9,800/100,000 (10% used) | AI calls today: 28
+2026-05-08 11:53:03,941 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:54:00,520 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.23 | RSI: 51.1 | H1: UP (EMA@4708.21 if known) | H4: UP | 🪙 Tokens: 9,800/100,000 (10% used) | AI calls today: 28
+2026-05-08 11:54:00,928 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:54:04,400 | INFO  | ✅ Both agents OK | 🪙 Tokens: 10,500/100,000 (10% used) | AI calls today: 30
+2026-05-08 11:54:04,402 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:55:01,000 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.39 | RSI: 49.7 | H1: UP (EMA@4708.19 if known) | H4: UP | 🪙 Tokens: 10,500/100,000 (10% used) | AI calls today: 30
+2026-05-08 11:55:01,409 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:55:04,883 | INFO  | ✅ Both agents OK | 🪙 Tokens: 11,200/100,000 (11% used) | AI calls today: 32
+2026-05-08 11:55:04,885 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:56:00,492 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.56 | RSI: 50.0 | H1: UP (EMA@4708.20 if known) | H4: UP | 🪙 Tokens: 11,200/100,000 (11% used) | AI calls today: 32
+2026-05-08 11:56:00,882 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:56:04,348 | INFO  | ✅ Both agents OK | 🪙 Tokens: 11,900/100,000 (12% used) | AI calls today: 34
+2026-05-08 11:56:04,349 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:57:00,901 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.71 | RSI: 50.2 | H1: UP (EMA@4708.20 if known) | H4: UP | 🪙 Tokens: 11,900/100,000 (12% used) | AI calls today: 34
+2026-05-08 11:57:01,288 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:57:04,753 | INFO  | ✅ Both agents OK | 🪙 Tokens: 12,600/100,000 (13% used) | AI calls today: 36
+2026-05-08 11:57:04,755 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:58:00,330 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.41 | RSI: 49.7 | H1: UP (EMA@4708.19 if known) | H4: UP | 🪙 Tokens: 12,600/100,000 (13% used) | AI calls today: 36
+2026-05-08 11:58:00,713 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:58:04,203 | INFO  | ✅ Both agents OK | 🪙 Tokens: 13,300/100,000 (13% used) | AI calls today: 38
+2026-05-08 11:58:04,205 | ERROR | ❌ Execution Error: No money
+2026-05-08 11:59:00,779 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.80 | RSI: 50.4 | H1: UP (EMA@4708.20 if known) | H4: UP | 🪙 Tokens: 13,300/100,000 (13% used) | AI calls today: 38
+2026-05-08 11:59:01,184 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 11:59:04,633 | INFO  | ✅ Both agents OK | 🪙 Tokens: 14,000/100,000 (14% used) | AI calls today: 40
+2026-05-08 11:59:04,635 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:00:00,233 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:00:00,234 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 12:00:00,234 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:00:00,235 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 12:00:00,235 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 12:00:00,236 | INFO  |   Win Rate     : 66.7%
+2026-05-08 12:00:00,236 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 12:00:00,237 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 12:00:00,237 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 12:00:00,238 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 12:00:00,238 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:00:00,238 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 12:00:00,238 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 12:00:00,239 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:00:00,239 | INFO  |   LAST 10 TRADES:
+2026-05-08 12:00:00,240 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 12:00:00,240 | INFO  |   ······································································
+2026-05-08 12:00:00,240 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 12:00:00,241 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 12:00:00,241 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 12:00:00,241 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 12:00:00,242 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 12:00:00,242 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 12:00:00,242 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:00:00,245 | INFO  | 🔍 Scan: XAUUSDm | Price: 4715.70 | RSI: 48.7 | H1: UP (EMA@4709.24 if known) | H4: UP | 🪙 Tokens: 14,000/100,000 (14% used) | AI calls today: 40
+2026-05-08 12:00:00,638 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:00:04,110 | INFO  | ✅ Both agents OK | 🪙 Tokens: 14,700/100,000 (15% used) | AI calls today: 42
+2026-05-08 12:00:04,111 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:01:00,736 | INFO  | 🔍 Scan: XAUUSDm | Price: 4714.10 | RSI: 46.3 | H1: UP (EMA@4709.21 if known) | H4: UP | 🪙 Tokens: 14,700/100,000 (15% used) | AI calls today: 42
+2026-05-08 12:01:00,737 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:02:00,443 | INFO  | 🔍 Scan: XAUUSDm | Price: 4715.85 | RSI: 49.0 | H1: UP (EMA@4709.24 if known) | H4: UP | 🪙 Tokens: 14,700/100,000 (15% used) | AI calls today: 42
+2026-05-08 12:02:00,853 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:02:04,335 | INFO  | ✅ Both agents OK | 🪙 Tokens: 15,400/100,000 (15% used) | AI calls today: 44
+2026-05-08 12:02:04,336 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:03:00,934 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.47 | RSI: 51.5 | H1: UP (EMA@4709.27 if known) | H4: UP | 🪙 Tokens: 15,400/100,000 (15% used) | AI calls today: 44
+2026-05-08 12:03:01,332 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:03:04,790 | INFO  | ✅ Both agents OK | 🪙 Tokens: 16,100/100,000 (16% used) | AI calls today: 46
+2026-05-08 12:03:04,791 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:04:00,457 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.62 | RSI: 53.2 | H1: UP (EMA@4709.30 if known) | H4: UP | 🪙 Tokens: 16,100/100,000 (16% used) | AI calls today: 46
+2026-05-08 12:04:00,869 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:04:04,333 | INFO  | ✅ Both agents OK | 🪙 Tokens: 16,800/100,000 (17% used) | AI calls today: 48
+2026-05-08 12:04:04,335 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:05:00,070 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.10 | RSI: 53.8 | H1: UP (EMA@4709.31 if known) | H4: UP | 🪙 Tokens: 16,800/100,000 (17% used) | AI calls today: 48
+2026-05-08 12:05:00,459 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:05:04,089 | INFO  | ✅ Both agents OK | 🪙 Tokens: 17,500/100,000 (18% used) | AI calls today: 50
+2026-05-08 12:05:04,091 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:06:00,780 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.36 | RSI: 51.1 | H1: UP (EMA@4709.27 if known) | H4: UP | 🪙 Tokens: 17,500/100,000 (18% used) | AI calls today: 50
+2026-05-08 12:06:01,170 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:06:04,653 | INFO  | ✅ Both agents OK | 🪙 Tokens: 18,200/100,000 (18% used) | AI calls today: 52
+2026-05-08 12:06:04,655 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:07:00,253 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.37 | RSI: 52.7 | H1: UP (EMA@4709.29 if known) | H4: UP | 🪙 Tokens: 18,200/100,000 (18% used) | AI calls today: 52
+2026-05-08 12:07:00,664 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:07:04,150 | INFO  | ✅ Both agents OK | 🪙 Tokens: 18,900/100,000 (19% used) | AI calls today: 54
+2026-05-08 12:07:04,151 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:08:00,815 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.77 | RSI: 53.3 | H1: UP (EMA@4709.30 if known) | H4: UP | 🪙 Tokens: 18,900/100,000 (19% used) | AI calls today: 54
+2026-05-08 12:08:01,226 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:08:04,715 | INFO  | ✅ Both agents OK | 🪙 Tokens: 19,600/100,000 (20% used) | AI calls today: 56
+2026-05-08 12:08:04,716 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:09:00,331 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.62 | RSI: 51.5 | H1: UP (EMA@4709.28 if known) | H4: UP | 🪙 Tokens: 19,600/100,000 (20% used) | AI calls today: 56
+2026-05-08 12:09:00,760 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:09:04,208 | INFO  | ✅ Both agents OK | 🪙 Tokens: 20,300/100,000 (20% used) | AI calls today: 58
+2026-05-08 12:09:04,211 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:10:00,920 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:10:00,920 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 12:10:00,920 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:10:00,921 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 12:10:00,921 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 12:10:00,921 | INFO  |   Win Rate     : 66.7%
+2026-05-08 12:10:00,921 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 12:10:00,921 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 12:10:00,922 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 12:10:00,922 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 12:10:00,922 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:10:00,922 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 12:10:00,923 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 12:10:00,923 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:10:00,926 | INFO  |   LAST 10 TRADES:
+2026-05-08 12:10:00,926 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 12:10:00,926 | INFO  |   ······································································
+2026-05-08 12:10:00,927 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 12:10:00,928 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 12:10:00,928 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 12:10:00,928 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 12:10:00,929 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 12:10:00,929 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 12:10:00,929 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:10:00,932 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.02 | RSI: 49.2 | H1: UP (EMA@4709.24 if known) | H4: UP | 🪙 Tokens: 20,300/100,000 (20% used) | AI calls today: 58
+2026-05-08 12:10:00,933 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:11:00,611 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.25 | RSI: 49.6 | H1: UP (EMA@4709.25 if known) | H4: UP | 🪙 Tokens: 20,300/100,000 (20% used) | AI calls today: 58
+2026-05-08 12:11:00,993 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:11:04,497 | INFO  | ✅ Both agents OK | 🪙 Tokens: 21,000/100,000 (21% used) | AI calls today: 60
+2026-05-08 12:11:04,499 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:12:00,136 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.32 | RSI: 49.7 | H1: UP (EMA@4709.25 if known) | H4: UP | 🪙 Tokens: 21,000/100,000 (21% used) | AI calls today: 60
+2026-05-08 12:12:00,540 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:12:04,868 | INFO  | ✅ Both agents OK | 🪙 Tokens: 21,700/100,000 (22% used) | AI calls today: 62
+2026-05-08 12:12:04,870 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:13:00,531 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.28 | RSI: 49.7 | H1: UP (EMA@4709.25 if known) | H4: UP | 🪙 Tokens: 21,700/100,000 (22% used) | AI calls today: 62
+2026-05-08 12:13:00,961 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:13:04,471 | INFO  | ✅ Both agents OK | 🪙 Tokens: 22,400/100,000 (22% used) | AI calls today: 64
+2026-05-08 12:13:04,472 | INFO  | ⏭️  Rejected by AI: L:CONFIRM S:REJECT
+2026-05-08 12:14:00,100 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.44 | RSI: 51.4 | H1: UP (EMA@4709.27 if known) | H4: UP | 🪙 Tokens: 22,400/100,000 (22% used) | AI calls today: 64
+2026-05-08 12:14:00,519 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:14:03,961 | INFO  | ✅ Both agents OK | 🪙 Tokens: 23,100/100,000 (23% used) | AI calls today: 66
+2026-05-08 12:14:03,963 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:15:00,609 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.13 | RSI: 53.6 | H1: UP (EMA@4709.31 if known) | H4: UP | 🪙 Tokens: 23,100/100,000 (23% used) | AI calls today: 66
+2026-05-08 12:15:01,007 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:15:04,494 | INFO  | ✅ Both agents OK | 🪙 Tokens: 23,800/100,000 (24% used) | AI calls today: 68
+2026-05-08 12:15:04,496 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:16:00,103 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.73 | RSI: 53.1 | H1: UP (EMA@4709.30 if known) | H4: UP | 🪙 Tokens: 23,800/100,000 (24% used) | AI calls today: 68
+2026-05-08 12:16:00,499 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:16:03,944 | INFO  | ✅ Both agents OK | 🪙 Tokens: 24,500/100,000 (24% used) | AI calls today: 70
+2026-05-08 12:16:03,945 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:17:00,606 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.68 | RSI: 54.4 | H1: UP (EMA@4709.32 if known) | H4: UP | 🪙 Tokens: 24,500/100,000 (24% used) | AI calls today: 70
+2026-05-08 12:17:01,022 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:17:04,461 | INFO  | ✅ Both agents OK | 🪙 Tokens: 25,200/100,000 (25% used) | AI calls today: 72
+2026-05-08 12:17:04,462 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:18:00,070 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.65 | RSI: 54.4 | H1: UP (EMA@4709.32 if known) | H4: UP | 🪙 Tokens: 25,200/100,000 (25% used) | AI calls today: 72
+2026-05-08 12:18:00,495 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:18:03,956 | INFO  | ✅ Both agents OK | 🪙 Tokens: 25,900/100,000 (26% used) | AI calls today: 74
+2026-05-08 12:18:03,957 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:19:00,601 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.62 | RSI: 56.9 | H1: UP (EMA@4709.36 if known) | H4: UP | 🪙 Tokens: 25,900/100,000 (26% used) | AI calls today: 74
+2026-05-08 12:19:00,988 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:19:04,480 | INFO  | ✅ Both agents OK | 🪙 Tokens: 26,600/100,000 (27% used) | AI calls today: 76
+2026-05-08 12:19:04,481 | INFO  | ⏭️  Rejected by AI: L:CONFIRM S:REJECT
+2026-05-08 12:20:00,089 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:20:00,089 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 12:20:00,089 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:20:00,090 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 12:20:00,090 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 12:20:00,090 | INFO  |   Win Rate     : 66.7%
+2026-05-08 12:20:00,091 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 12:20:00,091 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 12:20:00,091 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 12:20:00,091 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 12:20:00,092 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:20:00,092 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 12:20:00,092 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 12:20:00,092 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:20:00,093 | INFO  |   LAST 10 TRADES:
+2026-05-08 12:20:00,094 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 12:20:00,094 | INFO  |   ······································································
+2026-05-08 12:20:00,096 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 12:20:00,097 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 12:20:00,098 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 12:20:00,098 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 12:20:00,099 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 12:20:00,099 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 12:20:00,100 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:20:00,102 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.81 | RSI: 54.6 | H1: UP (EMA@4709.32 if known) | H4: UP | 🪙 Tokens: 26,600/100,000 (27% used) | AI calls today: 76
+2026-05-08 12:20:00,485 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:20:03,952 | INFO  | ✅ Both agents OK | 🪙 Tokens: 27,300/100,000 (27% used) | AI calls today: 78
+2026-05-08 12:20:03,954 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:21:00,694 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-08 12:21:00,696 | INFO  |    ✦ reward_ratio: 2.5 → 3.0
+2026-05-08 12:21:00,696 | INFO  |    💡 Reason: Tightening filters and reducing position size to address profit factor below 1.0 and potential overtrading
+2026-05-08 12:21:00,700 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.03 | RSI: 56.2 | H1: UP (EMA@4709.35 if known) | H4: UP | 🪙 Tokens: 27,300/100,000 (27% used) | AI calls today: 78
+2026-05-08 12:21:01,103 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:21:04,544 | INFO  | ✅ Both agents OK | 🪙 Tokens: 28,000/100,000 (28% used) | AI calls today: 80
+2026-05-08 12:21:04,546 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:22:00,174 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.68 | RSI: 57.1 | H1: UP (EMA@4709.36 if known) | H4: UP | 🪙 Tokens: 28,000/100,000 (28% used) | AI calls today: 80
+2026-05-08 12:22:00,558 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:22:04,060 | INFO  | ✅ Both agents OK | 🪙 Tokens: 28,700/100,000 (29% used) | AI calls today: 82
+2026-05-08 12:22:04,062 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:23:00,748 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.80 | RSI: 55.9 | H1: UP (EMA@4709.34 if known) | H4: UP | 🪙 Tokens: 28,700/100,000 (29% used) | AI calls today: 82
+2026-05-08 12:23:01,165 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:23:04,613 | INFO  | ✅ Both agents OK | 🪙 Tokens: 29,400/100,000 (29% used) | AI calls today: 84
+2026-05-08 12:23:04,615 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:24:00,249 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.70 | RSI: 57.1 | H1: UP (EMA@4709.36 if known) | H4: UP | 🪙 Tokens: 29,400/100,000 (29% used) | AI calls today: 84
+2026-05-08 12:24:00,638 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:24:04,126 | INFO  | ✅ Both agents OK | 🪙 Tokens: 30,100/100,000 (30% used) | AI calls today: 86
+2026-05-08 12:24:04,128 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:25:00,767 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.65 | RSI: 55.8 | H1: UP (EMA@4709.34 if known) | H4: UP | 🪙 Tokens: 30,100/100,000 (30% used) | AI calls today: 86
+2026-05-08 12:25:01,164 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:25:04,706 | INFO  | ✅ Both agents OK | 🪙 Tokens: 30,800/100,000 (31% used) | AI calls today: 88
+2026-05-08 12:25:04,708 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:26:00,296 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.73 | RSI: 55.9 | H1: UP (EMA@4709.34 if known) | H4: UP | 🪙 Tokens: 30,800/100,000 (31% used) | AI calls today: 88
+2026-05-08 12:26:00,703 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:26:04,179 | INFO  | ✅ Both agents OK | 🪙 Tokens: 31,500/100,000 (32% used) | AI calls today: 90
+2026-05-08 12:26:04,181 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:27:00,859 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.20 | RSI: 56.6 | H1: UP (EMA@4709.35 if known) | H4: UP | 🪙 Tokens: 31,500/100,000 (32% used) | AI calls today: 90
+2026-05-08 12:27:01,256 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:27:04,730 | INFO  | ✅ Both agents OK | 🪙 Tokens: 32,200/100,000 (32% used) | AI calls today: 92
+2026-05-08 12:27:04,732 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:28:00,340 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.08 | RSI: 56.4 | H1: UP (EMA@4709.35 if known) | H4: UP | 🪙 Tokens: 32,200/100,000 (32% used) | AI calls today: 92
+2026-05-08 12:28:00,768 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:28:04,271 | INFO  | ✅ Both agents OK | 🪙 Tokens: 32,900/100,000 (33% used) | AI calls today: 94
+2026-05-08 12:28:04,273 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:29:00,925 | INFO  | 🔍 Scan: XAUUSDm | Price: 4719.60 | RSI: 53.9 | H1: UP (EMA@4709.32 if known) | H4: UP | 🪙 Tokens: 32,900/100,000 (33% used) | AI calls today: 94
+2026-05-08 12:29:01,348 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:29:04,838 | INFO  | ✅ Both agents OK | 🪙 Tokens: 33,600/100,000 (34% used) | AI calls today: 96
+2026-05-08 12:29:04,839 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:30:00,558 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:30:00,559 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 12:30:00,559 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:30:00,559 | INFO  |   Total Trades : 6  (Open: 3  Closed: 3)
+2026-05-08 12:30:00,559 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 1  〰 BE: 0
+2026-05-08 12:30:00,560 | INFO  |   Win Rate     : 66.7%
+2026-05-08 12:30:00,560 | INFO  |   Total P&L    : -1145.50 KES
+2026-05-08 12:30:00,561 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 12:30:00,561 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 12:30:00,561 | INFO  |   💰 Balance    : 8,854.50 KES
+2026-05-08 12:30:00,562 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:30:00,562 | INFO  |   📈 TREND signals : 3 trades | WR: 66.7% | P&L: -1145.50
+2026-05-08 12:30:00,563 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 12:30:00,563 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:30:00,564 | INFO  |   LAST 10 TRADES:
+2026-05-08 12:30:00,568 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 12:30:00,568 | INFO  |   ······································································
+2026-05-08 12:30:00,571 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 12:30:00,571 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 12:30:00,572 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 12:30:00,572 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09      nan    +nan  OPEN
+2026-05-08 12:30:00,572 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 12:30:00,573 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73      nan    +nan  OPEN
+2026-05-08 12:30:00,573 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:30:00,576 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.75 | RSI: 50.7 | H1: UP (EMA@4709.28 if known) | H4: UP | 🪙 Tokens: 33,600/100,000 (34% used) | AI calls today: 96
+2026-05-08 12:30:00,971 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:30:04,495 | INFO  | ✅ Both agents OK | 🪙 Tokens: 34,300/100,000 (34% used) | AI calls today: 98
+2026-05-08 12:30:04,496 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:31:00,225 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.88 | RSI: 50.9 | H1: UP (EMA@4709.28 if known) | H4: UP | 🪙 Tokens: 34,300/100,000 (34% used) | AI calls today: 98
+2026-05-08 12:31:00,613 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 12:31:04,069 | INFO  | ✅ Both agents OK | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:31:04,070 | ERROR | ❌ Execution Error: No money
+2026-05-08 12:32:00,768 | INFO  | 🔍 Scan: XAUUSDm | Price: 4714.99 | RSI: 46.5 | H1: UP (EMA@4709.22 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:32:00,769 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:33:00,414 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.94 | RSI: 45.0 | H1: UP (EMA@4709.20 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:33:00,415 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:33:54,085 | INFO  | 📊 Trade #2722476502 closed → LOSS | P&L: -2593.78
+2026-05-08 12:33:56,190 | INFO  | 📊 Trade #2722466200 closed → LOSS | P&L: -2625.05
+2026-05-08 12:34:00,257 | INFO  | 🔍 Scan: XAUUSDm | Price: 4710.26 | RSI: 40.7 | H1: UP (EMA@4709.13 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:34:00,258 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:35:00,062 | INFO  | 🔍 Scan: XAUUSDm | Price: 4714.48 | RSI: 45.8 | H1: UP (EMA@4709.21 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:35:00,063 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:36:00,830 | INFO  | 🔍 Scan: XAUUSDm | Price: 4711.98 | RSI: 42.4 | H1: UP (EMA@4709.16 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:36:00,831 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:37:00,603 | INFO  | 🔍 Scan: XAUUSDm | Price: 4712.79 | RSI: 43.5 | H1: UP (EMA@4709.18 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:37:00,604 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:38:00,312 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.00 | RSI: 43.8 | H1: UP (EMA@4709.18 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:38:00,313 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:39:00,093 | INFO  | 🔍 Scan: XAUUSDm | Price: 4711.90 | RSI: 42.3 | H1: UP (EMA@4709.16 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:39:00,094 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:40:00,816 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:40:00,816 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 12:40:00,817 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:40:00,818 | INFO  |   Total Trades : 6  (Open: 1  Closed: 5)
+2026-05-08 12:40:00,818 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 3  〰 BE: 0
+2026-05-08 12:40:00,818 | INFO  |   Win Rate     : 40.0%
+2026-05-08 12:40:00,818 | INFO  |   Total P&L    : -6364.33 KES
+2026-05-08 12:40:00,818 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 12:40:00,818 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 12:40:00,819 | INFO  |   💰 Balance    : 3,635.67 KES
+2026-05-08 12:40:00,819 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:40:00,819 | INFO  |   📈 TREND signals : 5 trades | WR: 40.0% | P&L: -6364.33
+2026-05-08 12:40:00,819 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 12:40:00,820 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:40:00,824 | INFO  |   LAST 10 TRADES:
+2026-05-08 12:40:00,824 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 12:40:00,824 | INFO  |   ······································································
+2026-05-08 12:40:00,825 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 12:40:00,826 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 12:40:00,826 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 12:40:00,826 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09  4710.39 -2625.05  LOSS
+2026-05-08 12:40:00,826 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 12:40:00,827 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73  4711.46 -2593.78  LOSS
+2026-05-08 12:40:00,827 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:40:00,830 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.45 | RSI: 44.4 | H1: UP (EMA@4709.19 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:40:00,830 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:41:00,544 | INFO  | 🔍 Scan: XAUUSDm | Price: 4712.60 | RSI: 43.1 | H1: UP (EMA@4709.18 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:41:00,545 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:42:00,275 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.96 | RSI: 45.3 | H1: UP (EMA@4709.20 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:42:00,276 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:43:00,971 | INFO  | 🔍 Scan: XAUUSDm | Price: 4712.89 | RSI: 43.5 | H1: UP (EMA@4709.18 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:43:00,972 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:44:00,719 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.18 | RSI: 44.0 | H1: UP (EMA@4709.19 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:44:00,720 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:45:00,424 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.40 | RSI: 44.3 | H1: UP (EMA@4709.19 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:45:00,425 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:46:00,257 | INFO  | 🔍 Scan: XAUUSDm | Price: 4711.62 | RSI: 41.6 | H1: UP (EMA@4709.16 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:46:00,258 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:47:00,971 | INFO  | 🔍 Scan: XAUUSDm | Price: 4710.95 | RSI: 40.6 | H1: UP (EMA@4709.14 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:47:00,972 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:48:00,739 | INFO  | 🔍 Scan: XAUUSDm | Price: 4710.95 | RSI: 40.7 | H1: UP (EMA@4709.14 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:48:00,739 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:49:00,434 | INFO  | 🔍 Scan: XAUUSDm | Price: 4709.77 | RSI: 39.1 | H1: UP (EMA@4709.12 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:49:00,435 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:50:00,168 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:50:00,168 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 12:50:00,169 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:50:00,169 | INFO  |   Total Trades : 6  (Open: 1  Closed: 5)
+2026-05-08 12:50:00,169 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 3  〰 BE: 0
+2026-05-08 12:50:00,170 | INFO  |   Win Rate     : 40.0%
+2026-05-08 12:50:00,170 | INFO  |   Total P&L    : -6364.33 KES
+2026-05-08 12:50:00,170 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 12:50:00,170 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 12:50:00,171 | INFO  |   💰 Balance    : 3,635.67 KES
+2026-05-08 12:50:00,172 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:50:00,172 | INFO  |   📈 TREND signals : 5 trades | WR: 40.0% | P&L: -6364.33
+2026-05-08 12:50:00,173 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 12:50:00,173 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:50:00,175 | INFO  |   LAST 10 TRADES:
+2026-05-08 12:50:00,177 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 12:50:00,178 | INFO  |   ······································································
+2026-05-08 12:50:00,179 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 12:50:00,180 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 12:50:00,181 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 12:50:00,181 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09  4710.39 -2625.05  LOSS
+2026-05-08 12:50:00,181 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88      nan    +nan  OPEN
+2026-05-08 12:50:00,182 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73  4711.46 -2593.78  LOSS
+2026-05-08 12:50:00,182 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 12:50:00,185 | INFO  | 🔍 Scan: XAUUSDm | Price: 4710.40 | RSI: 39.9 | H1: UP (EMA@4709.13 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:50:00,185 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:51:00,908 | INFO  | 🔄 ADVISOR UPDATE APPLIED:
+2026-05-08 12:51:00,909 | INFO  |    ✦ sl_atr_mult: 2.2 → 2.5
+2026-05-08 12:51:00,909 | INFO  |    💡 Reason: Tightening filters, reducing position size, and increasing stop loss to address low profit factor, high drawdown, and potential overtrading
+2026-05-08 12:51:00,912 | INFO  | 🔍 Scan: XAUUSDm | Price: 4709.64 | RSI: 39.0 | H1: UP (EMA@4709.12 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:51:00,913 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:52:00,646 | INFO  | 🔍 Scan: XAUUSDm | Price: 4710.04 | RSI: 39.5 | H1: UP (EMA@4709.13 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:52:00,646 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:52:19,884 | INFO  | 📊 Trade #2722472643 closed → LOSS | P&L: -3028.93
+2026-05-08 12:53:00,391 | INFO  | 🔍 Scan: XAUUSDm | Price: 4708.62 | RSI: 37.7 | H1: DOWN (EMA@4709.10 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:53:00,392 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:54:00,165 | INFO  | 🔍 Scan: XAUUSDm | Price: 4708.02 | RSI: 37.0 | H1: DOWN (EMA@4709.08 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:54:00,166 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:55:00,898 | INFO  | 🔍 Scan: XAUUSDm | Price: 4709.40 | RSI: 38.8 | H1: UP (EMA@4709.11 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:55:00,898 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:56:00,661 | INFO  | 🔍 Scan: XAUUSDm | Price: 4708.62 | RSI: 37.7 | H1: DOWN (EMA@4709.10 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:56:00,662 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:57:00,361 | INFO  | 🔍 Scan: XAUUSDm | Price: 4709.65 | RSI: 39.1 | H1: UP (EMA@4709.12 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:57:00,362 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:58:00,104 | INFO  | 🔍 Scan: XAUUSDm | Price: 4710.49 | RSI: 40.9 | H1: UP (EMA@4709.13 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:58:00,104 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 12:59:00,812 | INFO  | 🔍 Scan: XAUUSDm | Price: 4710.83 | RSI: 41.6 | H1: UP (EMA@4709.14 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 12:59:00,812 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:00:00,586 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:00:00,586 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 13:00:00,587 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:00:00,587 | INFO  |   Total Trades : 6  (Open: 0  Closed: 6)
+2026-05-08 13:00:00,587 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 4  〰 BE: 0
+2026-05-08 13:00:00,587 | INFO  |   Win Rate     : 33.3%
+2026-05-08 13:00:00,588 | INFO  |   Total P&L    : -9393.26 KES
+2026-05-08 13:00:00,588 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 13:00:00,588 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 13:00:00,589 | INFO  |   💰 Balance    : 606.74 KES
+2026-05-08 13:00:00,589 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:00:00,589 | INFO  |   📈 TREND signals : 6 trades | WR: 33.3% | P&L: -9393.26
+2026-05-08 13:00:00,589 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 13:00:00,590 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:00:00,590 | INFO  |   LAST 10 TRADES:
+2026-05-08 13:00:00,591 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 13:00:00,591 | INFO  |   ······································································
+2026-05-08 13:00:00,591 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 13:00:00,592 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 13:00:00,592 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 13:00:00,592 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09  4710.39 -2625.05  LOSS
+2026-05-08 13:00:00,593 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88  4707.94 -3028.93  LOSS
+2026-05-08 13:00:00,593 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73  4711.46 -2593.78  LOSS
+2026-05-08 13:00:00,593 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:00:00,597 | INFO  | 🔍 Scan: XAUUSDm | Price: 4711.82 | RSI: 43.4 | H1: UP (EMA@4710.01 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:00:00,598 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:01:00,290 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.10 | RSI: 46.0 | H1: UP (EMA@4710.04 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:01:00,291 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:02:00,034 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.23 | RSI: 46.2 | H1: UP (EMA@4710.04 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:02:00,035 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:03:00,751 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.07 | RSI: 45.9 | H1: UP (EMA@4710.04 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:03:00,751 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:04:00,472 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.93 | RSI: 47.5 | H1: UP (EMA@4710.06 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:04:00,472 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:05:00,218 | INFO  | 🔍 Scan: XAUUSDm | Price: 4712.84 | RSI: 45.5 | H1: UP (EMA@4710.03 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:05:00,219 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:06:00,996 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.39 | RSI: 46.6 | H1: UP (EMA@4710.05 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:06:00,996 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:07:00,685 | INFO  | 🔍 Scan: XAUUSDm | Price: 4712.19 | RSI: 44.4 | H1: UP (EMA@4710.02 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:07:00,686 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:08:00,444 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.65 | RSI: 47.1 | H1: UP (EMA@4710.05 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:08:00,445 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:09:00,142 | INFO  | 🔍 Scan: XAUUSDm | Price: 4714.19 | RSI: 48.1 | H1: UP (EMA@4710.06 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:09:00,142 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:10:00,878 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:10:00,879 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 13:10:00,880 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:10:00,880 | INFO  |   Total Trades : 6  (Open: 0  Closed: 6)
+2026-05-08 13:10:00,880 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 4  〰 BE: 0
+2026-05-08 13:10:00,881 | INFO  |   Win Rate     : 33.3%
+2026-05-08 13:10:00,881 | INFO  |   Total P&L    : -9393.26 KES
+2026-05-08 13:10:00,881 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 13:10:00,881 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 13:10:00,882 | INFO  |   💰 Balance    : 606.74 KES
+2026-05-08 13:10:00,882 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:10:00,882 | INFO  |   📈 TREND signals : 6 trades | WR: 33.3% | P&L: -9393.26
+2026-05-08 13:10:00,882 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 13:10:00,883 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:10:00,887 | INFO  |   LAST 10 TRADES:
+2026-05-08 13:10:00,887 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 13:10:00,887 | INFO  |   ······································································
+2026-05-08 13:10:00,889 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 13:10:00,889 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 13:10:00,890 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 13:10:00,890 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09  4710.39 -2625.05  LOSS
+2026-05-08 13:10:00,890 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88  4707.94 -3028.93  LOSS
+2026-05-08 13:10:00,891 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73  4711.46 -2593.78  LOSS
+2026-05-08 13:10:00,891 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:10:00,893 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.14 | RSI: 46.3 | H1: UP (EMA@4710.04 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:10:00,893 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:11:00,559 | INFO  | 🔍 Scan: XAUUSDm | Price: 4713.26 | RSI: 46.5 | H1: UP (EMA@4710.04 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:11:00,559 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:12:00,347 | INFO  | 🔍 Scan: XAUUSDm | Price: 4714.37 | RSI: 48.8 | H1: UP (EMA@4710.07 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:12:00,348 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:13:00,072 | INFO  | 🔍 Scan: XAUUSDm | Price: 4714.86 | RSI: 49.8 | H1: UP (EMA@4710.07 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:13:00,073 | INFO  | ⛔ SELL signal suppressed — H4 is UP (need DOWN)
+2026-05-08 13:14:00,906 | INFO  | 🔍 Scan: XAUUSDm | Price: 4716.98 | RSI: 53.5 | H1: UP (EMA@4710.12 if known) | H4: UP | 🪙 Tokens: 35,000/100,000 (35% used) | AI calls today: 100
+2026-05-08 13:14:01,392 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:14:04,890 | INFO  | ✅ Both agents OK | 🪙 Tokens: 35,700/100,000 (36% used) | AI calls today: 102
+2026-05-08 13:14:04,902 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:15:00,540 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.97 | RSI: 56.4 | H1: UP (EMA@4710.16 if known) | H4: UP | 🪙 Tokens: 35,700/100,000 (36% used) | AI calls today: 102
+2026-05-08 13:15:00,947 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:15:04,401 | INFO  | ✅ Both agents OK | 🪙 Tokens: 36,400/100,000 (36% used) | AI calls today: 104
+2026-05-08 13:15:04,401 | INFO  | ⏭️  Rejected by AI: L:CONFIRM S:REJECT.
+2026-05-08 13:16:00,101 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.37 | RSI: 55.3 | H1: UP (EMA@4710.15 if known) | H4: UP | 🪙 Tokens: 36,400/100,000 (36% used) | AI calls today: 104
+2026-05-08 13:16:00,506 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:16:04,020 | INFO  | ✅ Both agents OK | 🪙 Tokens: 37,100/100,000 (37% used) | AI calls today: 106
+2026-05-08 13:16:04,022 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:17:00,671 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.96 | RSI: 54.5 | H1: UP (EMA@4710.14 if known) | H4: UP | 🪙 Tokens: 37,100/100,000 (37% used) | AI calls today: 106
+2026-05-08 13:17:01,081 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:17:04,558 | INFO  | ✅ Both agents OK | 🪙 Tokens: 37,800/100,000 (38% used) | AI calls today: 108
+2026-05-08 13:17:04,562 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:18:00,281 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.38 | RSI: 55.3 | H1: UP (EMA@4710.15 if known) | H4: UP | 🪙 Tokens: 37,800/100,000 (38% used) | AI calls today: 108
+2026-05-08 13:18:00,674 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:18:04,147 | INFO  | ✅ Both agents OK | 🪙 Tokens: 38,500/100,000 (38% used) | AI calls today: 110
+2026-05-08 13:18:04,149 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:19:00,835 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.97 | RSI: 54.6 | H1: UP (EMA@4710.14 if known) | H4: UP | 🪙 Tokens: 38,500/100,000 (38% used) | AI calls today: 110
+2026-05-08 13:19:01,225 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:19:04,694 | INFO  | ✅ Both agents OK | 🪙 Tokens: 39,200/100,000 (39% used) | AI calls today: 112
+2026-05-08 13:19:04,696 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:20:00,401 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:20:00,402 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 13:20:00,402 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:20:00,402 | INFO  |   Total Trades : 6  (Open: 0  Closed: 6)
+2026-05-08 13:20:00,402 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 4  〰 BE: 0
+2026-05-08 13:20:00,403 | INFO  |   Win Rate     : 33.3%
+2026-05-08 13:20:00,403 | INFO  |   Total P&L    : -9393.26 KES
+2026-05-08 13:20:00,403 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 13:20:00,403 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 13:20:00,404 | INFO  |   💰 Balance    : 606.74 KES
+2026-05-08 13:20:00,406 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:20:00,407 | INFO  |   📈 TREND signals : 6 trades | WR: 33.3% | P&L: -9393.26
+2026-05-08 13:20:00,407 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 13:20:00,408 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:20:00,409 | INFO  |   LAST 10 TRADES:
+2026-05-08 13:20:00,409 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 13:20:00,409 | INFO  |   ······································································
+2026-05-08 13:20:00,410 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 13:20:00,411 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 13:20:00,411 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 13:20:00,411 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09  4710.39 -2625.05  LOSS
+2026-05-08 13:20:00,412 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88  4707.94 -3028.93  LOSS
+2026-05-08 13:20:00,412 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73  4711.46 -2593.78  LOSS
+2026-05-08 13:20:00,412 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:20:00,414 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.70 | RSI: 54.1 | H1: UP (EMA@4710.14 if known) | H4: UP | 🪙 Tokens: 39,200/100,000 (39% used) | AI calls today: 112
+2026-05-08 13:20:00,803 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:20:04,284 | INFO  | ✅ Both agents OK | 🪙 Tokens: 39,900/100,000 (40% used) | AI calls today: 114
+2026-05-08 13:20:04,286 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:21:00,962 | INFO  | 🔍 Scan: XAUUSDm | Price: 4717.84 | RSI: 54.2 | H1: UP (EMA@4710.13 if known) | H4: UP | 🪙 Tokens: 39,900/100,000 (40% used) | AI calls today: 114
+2026-05-08 13:21:01,345 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:21:04,787 | INFO  | ✅ Both agents OK | 🪙 Tokens: 40,600/100,000 (41% used) | AI calls today: 116
+2026-05-08 13:21:04,790 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:22:00,481 | INFO  | 🔍 Scan: XAUUSDm | Price: 4718.89 | RSI: 55.9 | H1: UP (EMA@4710.16 if known) | H4: UP | 🪙 Tokens: 40,600/100,000 (41% used) | AI calls today: 116
+2026-05-08 13:22:00,922 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:22:04,362 | INFO  | ✅ Both agents OK | 🪙 Tokens: 41,300/100,000 (41% used) | AI calls today: 118
+2026-05-08 13:22:04,363 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:23:00,027 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.72 | RSI: 58.6 | H1: UP (EMA@4710.19 if known) | H4: UP | 🪙 Tokens: 41,300/100,000 (41% used) | AI calls today: 118
+2026-05-08 13:23:00,413 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:23:03,863 | INFO  | ✅ Both agents OK | 🪙 Tokens: 42,000/100,000 (42% used) | AI calls today: 120
+2026-05-08 13:23:03,865 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:24:00,640 | INFO  | 🔍 Scan: XAUUSDm | Price: 4722.18 | RSI: 60.6 | H1: UP (EMA@4710.22 if known) | H4: UP | 🪙 Tokens: 42,000/100,000 (42% used) | AI calls today: 120
+2026-05-08 13:24:01,046 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:24:04,548 | INFO  | ✅ Both agents OK | 🪙 Tokens: 42,700/100,000 (43% used) | AI calls today: 122
+2026-05-08 13:24:04,550 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:25:00,189 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.28 | RSI: 59.4 | H1: UP (EMA@4710.20 if known) | H4: UP | 🪙 Tokens: 42,700/100,000 (43% used) | AI calls today: 122
+2026-05-08 13:25:00,603 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:25:04,109 | INFO  | ✅ Both agents OK | 🪙 Tokens: 43,400/100,000 (43% used) | AI calls today: 124
+2026-05-08 13:25:04,111 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:26:00,826 | INFO  | 🔍 Scan: XAUUSDm | Price: 4721.48 | RSI: 59.7 | H1: UP (EMA@4710.21 if known) | H4: UP | 🪙 Tokens: 43,400/100,000 (43% used) | AI calls today: 124
+2026-05-08 13:26:01,214 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:26:04,695 | INFO  | ✅ Both agents OK | 🪙 Tokens: 44,100/100,000 (44% used) | AI calls today: 126
+2026-05-08 13:26:04,698 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:27:00,355 | INFO  | 🔍 Scan: XAUUSDm | Price: 4722.62 | RSI: 61.2 | H1: UP (EMA@4710.23 if known) | H4: UP | 🪙 Tokens: 44,100/100,000 (44% used) | AI calls today: 126
+2026-05-08 13:27:00,771 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:27:04,230 | INFO  | ✅ Both agents OK | 🪙 Tokens: 44,800/100,000 (45% used) | AI calls today: 128
+2026-05-08 13:27:04,232 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:28:00,963 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.95 | RSI: 58.7 | H1: UP (EMA@4710.20 if known) | H4: UP | 🪙 Tokens: 44,800/100,000 (45% used) | AI calls today: 128
+2026-05-08 13:28:01,367 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:28:04,880 | INFO  | ✅ Both agents OK | 🪙 Tokens: 45,500/100,000 (46% used) | AI calls today: 130
+2026-05-08 13:28:04,955 | INFO  | ✅ TRADE PLACED: BUY [TREND] @ 4721.00 | AI: L:CONFIRM S:CONFIRM
+2026-05-08 13:28:05,006 | INFO  | 📋 Trade #2722902934 logged to trade_history.csv [TREND]
+2026-05-08 13:29:00,692 | INFO  | 🔍 Scan: XAUUSDm | Price: 4722.15 | RSI: 60.6 | H1: UP (EMA@4710.22 if known) | H4: UP | 🪙 Tokens: 45,500/100,000 (46% used) | AI calls today: 130
+2026-05-08 13:29:01,081 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:29:04,601 | INFO  | ✅ Both agents OK | 🪙 Tokens: 46,200/100,000 (46% used) | AI calls today: 132
+2026-05-08 13:29:04,669 | INFO  | ✅ TRADE PLACED: BUY [TREND] @ 4722.05 | AI: L:CONFIRM S:CONFIRM
+2026-05-08 13:29:04,677 | INFO  | 📋 Trade #2722905156 logged to trade_history.csv [TREND]
+2026-05-08 13:30:00,485 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:30:00,485 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 13:30:00,486 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:30:00,486 | INFO  |   Total Trades : 8  (Open: 2  Closed: 6)
+2026-05-08 13:30:00,486 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 4  〰 BE: 0
+2026-05-08 13:30:00,486 | INFO  |   Win Rate     : 33.3%
+2026-05-08 13:30:00,486 | INFO  |   Total P&L    : -9393.26 KES
+2026-05-08 13:30:00,486 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 13:30:00,487 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 13:30:00,487 | INFO  |   💰 Balance    : 5,006.74 KES
+2026-05-08 13:30:00,487 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:30:00,487 | INFO  |   📈 TREND signals : 6 trades | WR: 33.3% | P&L: -9393.26
+2026-05-08 13:30:00,487 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 13:30:00,488 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:30:00,489 | INFO  |   LAST 10 TRADES:
+2026-05-08 13:30:00,489 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 13:30:00,489 | INFO  |   ······································································
+2026-05-08 13:30:00,489 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 13:30:00,490 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 13:30:00,490 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 13:30:00,490 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09  4710.39 -2625.05  LOSS
+2026-05-08 13:30:00,491 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88  4707.94 -3028.93  LOSS
+2026-05-08 13:30:00,492 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73  4711.46 -2593.78  LOSS
+2026-05-08 13:30:00,492 | INFO  |   2026-05-08 13:28:04  BUY   TREND   4721.00  4709.58  4755.27      nan    +nan  OPEN
+2026-05-08 13:30:00,493 | INFO  |   2026-05-08 13:29:04  BUY   TREND   4722.05  4710.61  4756.37      nan    +nan  OPEN
+2026-05-08 13:30:00,493 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:30:00,496 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.38 | RSI: 57.7 | H1: UP (EMA@4710.19 if known) | H4: UP | 🪙 Tokens: 46,200/100,000 (46% used) | AI calls today: 132
+2026-05-08 13:30:00,889 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:30:04,382 | INFO  | ✅ Both agents OK | 🪙 Tokens: 46,900/100,000 (47% used) | AI calls today: 134
+2026-05-08 13:30:04,453 | INFO  | ✅ TRADE PLACED: BUY [TREND] @ 4721.20 | AI: L:CONFIRM S:CONFIRM
+2026-05-08 13:30:04,463 | INFO  | 📋 Trade #2722908121 logged to trade_history.csv [TREND]
+2026-05-08 13:31:00,172 | INFO  | 🔍 Scan: XAUUSDm | Price: 4722.19 | RSI: 60.3 | H1: UP (EMA@4710.22 if known) | H4: UP | 🪙 Tokens: 46,900/100,000 (47% used) | AI calls today: 134
+2026-05-08 13:31:00,583 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:31:04,082 | INFO  | ✅ Both agents OK | 🪙 Tokens: 47,600/100,000 (48% used) | AI calls today: 136
+2026-05-08 13:31:04,084 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:32:00,730 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.96 | RSI: 58.6 | H1: UP (EMA@4710.20 if known) | H4: UP | 🪙 Tokens: 47,600/100,000 (48% used) | AI calls today: 136
+2026-05-08 13:32:01,142 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:32:04,579 | INFO  | ✅ Both agents OK | 🪙 Tokens: 48,300/100,000 (48% used) | AI calls today: 138
+2026-05-08 13:32:04,581 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:33:00,360 | INFO  | 🔍 Scan: XAUUSDm | Price: 4720.61 | RSI: 58.0 | H1: UP (EMA@4710.19 if known) | H4: UP | 🪙 Tokens: 48,300/100,000 (48% used) | AI calls today: 138
+2026-05-08 13:33:00,753 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:33:04,199 | INFO  | ✅ Both agents OK | 🪙 Tokens: 49,000/100,000 (49% used) | AI calls today: 140
+2026-05-08 13:33:04,200 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:34:00,148 | INFO  | 🔍 Scan: XAUUSDm | Price: 4722.36 | RSI: 60.5 | H1: UP (EMA@4710.23 if known) | H4: UP | 🪙 Tokens: 49,000/100,000 (49% used) | AI calls today: 140
+2026-05-08 13:34:00,549 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:34:04,048 | INFO  | ✅ Both agents OK | 🪙 Tokens: 49,700/100,000 (50% used) | AI calls today: 142
+2026-05-08 13:34:04,051 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:35:00,889 | INFO  | 🔍 Scan: XAUUSDm | Price: 4722.25 | RSI: 60.4 | H1: UP (EMA@4710.22 if known) | H4: UP | 🪙 Tokens: 49,700/100,000 (50% used) | AI calls today: 142
+2026-05-08 13:35:01,292 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:35:04,793 | INFO  | ✅ Both agents OK | 🪙 Tokens: 50,400/100,000 (50% used) | AI calls today: 144
+2026-05-08 13:35:04,796 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:36:00,488 | INFO  | 🔍 Scan: XAUUSDm | Price: 4722.59 | RSI: 60.9 | H1: UP (EMA@4710.23 if known) | H4: UP | 🪙 Tokens: 50,400/100,000 (50% used) | AI calls today: 144
+2026-05-08 13:36:00,897 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:36:04,351 | INFO  | ✅ Both agents OK | 🪙 Tokens: 51,100/100,000 (51% used) | AI calls today: 146
+2026-05-08 13:36:04,353 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:37:00,193 | INFO  | 🔍 Scan: XAUUSDm | Price: 4724.75 | RSI: 63.7 | H1: UP (EMA@4710.27 if known) | H4: UP | 🪙 Tokens: 51,100/100,000 (51% used) | AI calls today: 146
+2026-05-08 13:37:00,608 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:37:04,089 | INFO  | ✅ Both agents OK | 🪙 Tokens: 51,800/100,000 (52% used) | AI calls today: 148
+2026-05-08 13:37:04,174 | INFO  | ✅ TRADE PLACED: BUY [TREND] @ 4725.21 | AI: L:CONFIRM S:CONFIRM
+2026-05-08 13:37:04,210 | INFO  | 📋 Trade #2722934201 logged to trade_history.csv [TREND]
+2026-05-08 13:38:00,049 | INFO  | 🔍 Scan: XAUUSDm | Price: 4725.12 | RSI: 64.2 | H1: UP (EMA@4710.28 if known) | H4: UP | 🪙 Tokens: 51,800/100,000 (52% used) | AI calls today: 148
+2026-05-08 13:38:00,455 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:38:03,934 | INFO  | ✅ Both agents OK | 🪙 Tokens: 52,500/100,000 (52% used) | AI calls today: 150
+2026-05-08 13:38:03,935 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:39:00,817 | INFO  | 🔍 Scan: XAUUSDm | Price: 4727.11 | RSI: 66.4 | H1: UP (EMA@4710.32 if known) | H4: UP | 🪙 Tokens: 52,500/100,000 (52% used) | AI calls today: 150
+2026-05-08 13:39:01,207 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:39:04,716 | INFO  | ✅ Both agents OK | 🪙 Tokens: 53,200/100,000 (53% used) | AI calls today: 152
+2026-05-08 13:39:04,718 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:40:00,505 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:40:00,506 | INFO  | 📊  SCURO TRADE HISTORY SUMMARY
+2026-05-08 13:40:00,506 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:40:00,506 | INFO  |   Total Trades : 10  (Open: 4  Closed: 6)
+2026-05-08 13:40:00,506 | INFO  |   Results      : ✅ Wins: 2  ❌ Losses: 4  〰 BE: 0
+2026-05-08 13:40:00,506 | INFO  |   Win Rate     : 33.3%
+2026-05-08 13:40:00,507 | INFO  |   Total P&L    : -9393.26 KES
+2026-05-08 13:40:00,507 | INFO  |   Best Trade   : +1080.55 KES
+2026-05-08 13:40:00,507 | INFO  |   Worst Trade  : -3222.03 KES
+2026-05-08 13:40:00,507 | INFO  |   💰 Balance    : 5,006.74 KES
+2026-05-08 13:40:00,507 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:40:00,507 | INFO  |   📈 TREND signals : 6 trades | WR: 33.3% | P&L: -9393.26
+2026-05-08 13:40:00,507 | INFO  |   📉 DIP signals   : 0 trades | WR: 0.0% | P&L: +0.00
+2026-05-08 13:40:00,508 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:40:00,509 | INFO  |   LAST 10 TRADES:
+2026-05-08 13:40:00,510 | INFO  |   Opened               Dir   Type      Entry       SL       TP    Close     P&L  Result
+2026-05-08 13:40:00,510 | INFO  |   ······································································
+2026-05-08 13:40:00,512 | INFO  |   2026-05-07 16:34:01  BUY   TREND   4758.22  4745.75  4789.39  4745.75 -3222.03  LOSS
+2026-05-08 13:40:00,513 | INFO  |   2026-05-08 11:20:04  BUY   TREND   4715.07  4703.74  4743.41  4719.36 +1080.55  WIN
+2026-05-08 13:40:00,513 | INFO  |   2026-05-08 11:21:04  BUY   TREND   4715.41  4703.89  4744.19  4719.36 +995.98  WIN
+2026-05-08 13:40:00,514 | INFO  |   2026-05-08 11:22:03  BUY   TREND   4720.46  4708.21  4751.09  4710.39 -2625.05  LOSS
+2026-05-08 13:40:00,514 | INFO  |   2026-05-08 11:23:04  BUY   TREND   4719.57  4707.04  4750.88  4707.94 -3028.93  LOSS
+2026-05-08 13:40:00,515 | INFO  |   2026-05-08 11:24:04  BUY   TREND   4721.41  4708.89  4752.73  4711.46 -2593.78  LOSS
+2026-05-08 13:40:00,515 | INFO  |   2026-05-08 13:28:04  BUY   TREND   4721.00  4709.58  4755.27      nan    +nan  OPEN
+2026-05-08 13:40:00,516 | INFO  |   2026-05-08 13:29:04  BUY   TREND   4722.05  4710.61  4756.37      nan    +nan  OPEN
+2026-05-08 13:40:00,516 | INFO  |   2026-05-08 13:30:04  BUY   TREND   4721.20  4710.53  4753.22      nan    +nan  OPEN
+2026-05-08 13:40:00,517 | INFO  |   2026-05-08 13:37:04  BUY   TREND   4725.21  4714.29  4757.99      nan    +nan  OPEN
+2026-05-08 13:40:00,517 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:40:00,519 | INFO  | 🔍 Scan: XAUUSDm | Price: 4726.74 | RSI: 65.8 | H1: UP (EMA@4710.32 if known) | H4: UP | 🪙 Tokens: 53,200/100,000 (53% used) | AI calls today: 152
+2026-05-08 13:40:00,908 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:40:04,418 | INFO  | ✅ Both agents OK | 🪙 Tokens: 53,900/100,000 (54% used) | AI calls today: 154
+2026-05-08 13:40:04,420 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:41:00,373 | INFO  | 🔍 Scan: XAUUSDm | Price: 4726.35 | RSI: 64.9 | H1: UP (EMA@4710.30 if known) | H4: UP | 🪙 Tokens: 53,900/100,000 (54% used) | AI calls today: 154
+2026-05-08 13:41:00,786 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:41:04,229 | INFO  | ✅ Both agents OK | 🪙 Tokens: 54,600/100,000 (55% used) | AI calls today: 156
+2026-05-08 13:41:04,231 | ERROR | ❌ Execution Error: No money
+2026-05-08 13:42:00,470 | INFO  | 🔍 Scan: XAUUSDm | Price: 4725.82 | RSI: 63.8 | H1: UP (EMA@4710.29 if known) | H4: UP | 🪙 Tokens: 54,600/100,000 (55% used) | AI calls today: 156
+2026-05-08 13:42:00,894 | INFO  | 📡 BUY signal [TREND] found. AI analysis...
+2026-05-08 13:42:04,381 | INFO  | ✅ Both agents OK | 🪙 Tokens: 55,300/100,000 (55% used) | AI calls today: 158
+2026-05-08 13:42:04,383 | ERROR | ❌ Execution Error: No money

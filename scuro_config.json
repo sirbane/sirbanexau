@@ -1,17 +1,17 @@
 {
-  "accumulation_lot": 0.02,
-  "reward_ratio": 2.5,
+  "accumulation_lot": 0.01,
+  "reward_ratio": 3.0,
   "rsi_buy_threshold": 45,
   "rsi_sell_threshold": 55,
-  "sl_atr_mult": 2.2,
+  "sl_atr_mult": 2.5,
   "trail_atr_mult": 1.4,
   "ema_fast": 5,
   "ema_slow": 8,
-  "max_open_positions": 2,
-  "cooldown_mins": 15,
+  "max_open_positions": 1,
+  "cooldown_mins": 30,
   "circuit_breaker_daily_loss_enabled": false,
   "circuit_breaker_consecutive_losses_enabled": false,
-  "last_updated": "2026-05-08 00:00:00",
-  "update_reason": "switched EMA pair from 5/13 to 5/8 — faster crossover signals",
-  "cycle": 80
+  "last_updated": "2026-05-08 13:20:30",
+  "update_reason": "Tightening filters and reducing position size to address low profit factor and potential overtrading",
+  "cycle": 84
 }
