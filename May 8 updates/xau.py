@@ -240,18 +240,15 @@ def print_summary_table():
 
     # ── NEW: Break down by signal type ───────────────────────
     if "signal_type" in closed.columns:
-        dip_trades    = closed[closed["signal_type"] == "DIP"]
-        trend_trades  = closed[closed["signal_type"] == "TREND"]
-        bo_trades     = closed[closed["signal_type"] == "BREAKOUT"]
-        dip_pnl       = pd.to_numeric(dip_trades["profit"], errors="coerce").sum()
-        trend_pnl     = pd.to_numeric(trend_trades["profit"], errors="coerce").sum()
-        bo_pnl        = pd.to_numeric(bo_trades["profit"], errors="coerce").sum()
-        dip_wr        = (len(dip_trades[dip_trades["outcome"] == "WIN"]) / len(dip_trades) * 100) if len(dip_trades) > 0 else 0
-        trend_wr      = (len(trend_trades[trend_trades["outcome"] == "WIN"]) / len(trend_trades) * 100) if len(trend_trades) > 0 else 0
-        bo_wr         = (len(bo_trades[bo_trades["outcome"] == "WIN"]) / len(bo_trades) * 100) if len(bo_trades) > 0 else 0
+        dip_trades  = closed[closed["signal_type"] == "DIP"]
+        trend_trades = closed[closed["signal_type"] == "TREND"]
+        dip_pnl     = pd.to_numeric(dip_trades["profit"], errors="coerce").sum()
+        trend_pnl   = pd.to_numeric(trend_trades["profit"], errors="coerce").sum()
+        dip_wr      = (len(dip_trades[dip_trades["outcome"] == "WIN"]) / len(dip_trades) * 100) if len(dip_trades) > 0 else 0
+        trend_wr    = (len(trend_trades[trend_trades["outcome"] == "WIN"]) / len(trend_trades) * 100) if len(trend_trades) > 0 else 0
     else:
-        dip_pnl = trend_pnl = bo_pnl = dip_wr = trend_wr = bo_wr = 0
-        dip_trades = trend_trades = bo_trades = pd.DataFrame()
+        dip_pnl = trend_pnl = dip_wr = trend_wr = 0
+        dip_trades = trend_trades = pd.DataFrame()
 
     account_info = mt5.account_info()
     balance = account_info.balance if account_info else "N/A"
@@ -269,9 +266,8 @@ def print_summary_table():
     logger.info(f"  💰 Balance    : {balance:,.2f} KES" if balance != "N/A" else f"  💰 Balance    : {balance}")
     logger.info(sep)
     # Signal type breakdown
-    logger.info(f"  📈 TREND signals    : {len(trend_trades)} trades | WR: {trend_wr:.1f}% | P&L: {trend_pnl:+.2f}")
-    logger.info(f"  📉 DIP signals      : {len(dip_trades)} trades | WR: {dip_wr:.1f}% | P&L: {dip_pnl:+.2f}")
-    logger.info(f"  🚀 BREAKOUT signals : {len(bo_trades)} trades | WR: {bo_wr:.1f}% | P&L: {bo_pnl:+.2f}")
+    logger.info(f"  📈 TREND signals : {len(trend_trades)} trades | WR: {trend_wr:.1f}% | P&L: {trend_pnl:+.2f}")
+    logger.info(f"  📉 DIP signals   : {len(dip_trades)} trades | WR: {dip_wr:.1f}% | P&L: {dip_pnl:+.2f}")
     logger.info(sep)
 
     recent = df.tail(10)
@@ -449,13 +445,6 @@ def _rule_based_confirm(signal: str, rsi: float, h1_trend: str, h4_trend: str,
     if signal_type == "DIP":
         # For dip buys: both higher timeframes must be UP, RSI recovering
         return h1_trend == "UP" and h4_trend == "UP" and rsi > _ADAPTIVE.get("dip_rsi_recovery", 38)
-    if signal_type == "BREAKOUT":
-        # For breakouts: H4 must agree, RSI not extreme
-        if signal == "BUY":
-            return h4_trend == "UP" and rsi < 78
-        elif signal == "SELL":
-            return h4_trend == "DOWN" and rsi > 22
-        return False
     if signal == "BUY":
         return h1_trend == "UP" and h4_trend == "UP" and rsi > 45
     elif signal == "SELL":
@@ -484,10 +473,6 @@ def get_dual_ai_consensus(signal, rsi, atr, h1_trend, h4_trend, news,
             "This is a DIP-BUY: trend is UP on H1+H4 but price pulled back. "
             "Confirm if the dip looks done and momentum is recovering."
             if signal_type == "DIP"
-            else "This is an H1 STRUCTURAL BREAKOUT: price just closed above the 10-bar swing high "
-                 "(BUY) or below the swing low (SELL) on the hourly chart. H4 confirms direction. "
-                 "This is a high-conviction trend entry. Confirm unless there is a strong news risk."
-            if signal_type == "BREAKOUT"
             else "Standard trend-following signal."
         )
         l_prompt = (
@@ -605,177 +590,6 @@ def check_dip_buy_signal(curr, prev, df, h1_trend: str, h4_trend: str,
     return True
 
 
-# ─── H1 BREAKOUT DETECTION ───────────────────────────────────
-# WHAT IT DOES:
-#   Watches the H1 chart for a candle that closes ABOVE the most
-#   recent 10-bar swing high (bullish breakout) or BELOW the
-#   10-bar swing low (bearish breakdown), while H4 confirms
-#   direction. This is the "entry at the start of the big move"
-#   that the original bot was missing entirely.
-#
-# WHY IT WORKS FOR MOVES LIKE THE ONE IN THE CHART:
-#   That ~220 pip rally started with a single H1 candle breaking
-#   above the prior swing high. No M5 EMA crossover would catch
-#   that early — you need to watch H1 structure.
-#
-# SAFETY:
-#   - H4 must agree (no breakout trades against the H4 trend)
-#   - RSI on H1 must not be overbought/oversold at entry
-#   - Cooldown is BYPASSED for breakout entries during confirmed trends
-#     (re-entries on pullbacks are valid, not overtrading)
-
-_last_h1_breakout_direction: str = "NONE"   # tracks last fired breakout to avoid repeats
-_last_h1_bar_time: int = 0                   # timestamp of last H1 bar we checked
-
-def get_h1_swing_levels(lookback: int = 10):
-    """Returns (swing_high, swing_low) over the last `lookback` closed H1 bars."""
-    rates = mt5.copy_rates_from_pos(SYMBOL, mt5.TIMEFRAME_H1, 1, lookback)  # skip current unclosed bar
-    if rates is None or len(rates) < lookback:
-        return None, None
-    df = pd.DataFrame(rates)
-    return df['high'].max(), df['low'].min()
-
-def check_h1_breakout_signal(h1_trend: str, h4_trend: str) -> tuple:
-    """
-    Returns (signal, signal_type) where signal is 'BUY', 'SELL', or 'NONE'.
-    Uses H1 candle closes vs swing high/low to detect structural breakouts.
-    """
-    global _last_h1_breakout_direction, _last_h1_bar_time
-
-    rates = mt5.copy_rates_from_pos(SYMBOL, mt5.TIMEFRAME_H1, 0, 2)
-    if rates is None or len(rates) < 2:
-        return "NONE", "BREAKOUT"
-
-    df_h1 = pd.DataFrame(rates)
-    df_h1['RSI'] = ta.rsi(
-        pd.concat([
-            pd.Series(mt5.copy_rates_from_pos(SYMBOL, mt5.TIMEFRAME_H1, 0, 20)['close']),
-        ]),
-        14
-    ) if False else None  # placeholder — we'll use the full H1 RSI below
-
-    # Get full H1 data for RSI
-    rates_full = mt5.copy_rates_from_pos(SYMBOL, mt5.TIMEFRAME_H1, 0, 50)
-    if rates_full is None:
-        return "NONE", "BREAKOUT"
-    df_full = pd.DataFrame(rates_full)
-    df_full['RSI'] = ta.rsi(df_full['close'], 14)
-
-    current_bar  = df_full.iloc[-1]   # most recent (possibly unclosed) H1 bar
-    current_time = int(current_bar['time'])
-
-    # Don't fire twice on the same H1 bar
-    if current_time == _last_h1_bar_time:
-        return "NONE", "BREAKOUT"
-
-    swing_high, swing_low = get_h1_swing_levels(lookback=10)
-    if swing_high is None:
-        return "NONE", "BREAKOUT"
-
-    current_close = current_bar['close']
-    current_rsi   = df_full['RSI'].iloc[-1]
-
-    # ── BULLISH BREAKOUT ──────────────────────────────────────
-    if (h4_trend == "UP"
-            and current_close > swing_high
-            and current_rsi < 75          # not already overbought
-            and _last_h1_breakout_direction != "BUY"):
-        _last_h1_bar_time           = current_time
-        _last_h1_breakout_direction = "BUY"
-        logger.info(
-            f"🚀 H1 BREAKOUT (BUY): Close {current_close:.2f} > Swing High {swing_high:.2f} "
-            f"| RSI: {current_rsi:.1f} | H4: {h4_trend}"
-        )
-        return "BUY", "BREAKOUT"
-
-    # ── BEARISH BREAKDOWN ─────────────────────────────────────
-    if (h4_trend == "DOWN"
-            and current_close < swing_low
-            and current_rsi > 25          # not already oversold
-            and _last_h1_breakout_direction != "SELL"):
-        _last_h1_bar_time           = current_time
-        _last_h1_breakout_direction = "SELL"
-        logger.info(
-            f"💥 H1 BREAKDOWN (SELL): Close {current_close:.2f} < Swing Low {swing_low:.2f} "
-            f"| RSI: {current_rsi:.1f} | H4: {h4_trend}"
-        )
-        return "SELL", "BREAKOUT"
-
-    # Reset direction lock when price retreats back inside the range
-    if swing_low <= current_close <= swing_high:
-        _last_h1_breakout_direction = "NONE"
-
-    return "NONE", "BREAKOUT"
-
-
-# ─── H1 TRAILING STOP (for BREAKOUT trades) ──────────────────
-# Standard trail_stops() uses KES-based milestones (fine for M5 scalps).
-# BREAKOUT trades need to breathe — we trail at 2× H1 ATR so the
-# trade isn't stopped out on normal hourly candle wicks.
-# This runs alongside the existing trail_stops() which still protects
-# TREND and DIP trades normally.
-
-def trail_stops_h1_atr():
-    """
-    For BREAKOUT-tagged positions: trail SL using 2× H1 ATR.
-    Reads the open position comment to identify BREAKOUT trades.
-    For all other positions, leaves them for the standard trail_stops().
-    """
-    positions = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
-    if not positions:
-        return
-
-    # Get H1 ATR
-    rates_h1 = mt5.copy_rates_from_pos(SYMBOL, mt5.TIMEFRAME_H1, 0, 20)
-    if rates_h1 is None:
-        return
-    df_h1 = pd.DataFrame(rates_h1)
-    h1_atr = ta.atr(df_h1['high'], df_h1['low'], df_h1['close'], 14).iloc[-1]
-    trail_dist = h1_atr * 2.0
-
-    symbol_info = mt5.symbol_info(SYMBOL)
-    if symbol_info is None:
-        return
-
-    for pos in positions:
-        if "BREAKOUT" not in str(pos.comment):
-            continue  # let standard trail handle non-breakout trades
-
-        tick = mt5.symbol_info_tick(SYMBOL)
-
-        if pos.type == mt5.POSITION_TYPE_BUY:
-            new_sl = round(tick.bid - trail_dist, symbol_info.digits)
-            # Only move SL up, never down
-            if new_sl > pos.sl + (5 * symbol_info.point):
-                res = mt5.order_send({
-                    "action":   mt5.TRADE_ACTION_SLTP,
-                    "position": pos.ticket,
-                    "sl":       new_sl,
-                    "tp":       pos.tp,
-                })
-                if res.retcode == mt5.TRADE_RETCODE_DONE:
-                    logger.info(
-                        f"📐 H1 TRAIL (BUY #{pos.ticket}): SL → {new_sl:.2f} "
-                        f"(H1 ATR trail dist: {trail_dist:.2f})"
-                    )
-
-        elif pos.type == mt5.POSITION_TYPE_SELL:
-            new_sl = round(tick.ask + trail_dist, symbol_info.digits)
-            # Only move SL down, never up
-            if pos.sl == 0 or new_sl < pos.sl - (5 * symbol_info.point):
-                res = mt5.order_send({
-                    "action":   mt5.TRADE_ACTION_SLTP,
-                    "position": pos.ticket,
-                    "sl":       new_sl,
-                    "tp":       pos.tp,
-                })
-                if res.retcode == mt5.TRADE_RETCODE_DONE:
-                    logger.info(
-                        f"📐 H1 TRAIL (SELL #{pos.ticket}): SL → {new_sl:.2f} "
-                        f"(H1 ATR trail dist: {trail_dist:.2f})"
-                    )
-
-
 # ─── TRADE MANAGEMENT ────────────────────────────────────────
 
 def lock_profitable_trades():
@@ -862,11 +676,10 @@ def run_bot():
         return
 
     logger.info("=" * 64)
-    logger.info("🔥 SCURO ACCUMULATOR V3: DIP-HUNTER + H1 BREAKOUT EDITION")
+    logger.info("🔥 SCURO ACCUMULATOR V3: DIP-HUNTER EDITION")
     logger.info(f"   Symbol: {SYMBOL} | Lot: {_ADAPTIVE['accumulation_lot']} | Risk: Aggressive")
     logger.info(f"   History file: {os.path.abspath(HISTORY_CSV)}")
-    logger.info(f"   Dip-buy logic:      {'ENABLED ✅' if _ADAPTIVE.get('dip_enabled') else 'DISABLED ❌'}")
-    logger.info(f"   H1 Breakout logic:  ENABLED ✅  (swing lookback: 10 bars, SL: 1.5× H1 ATR, TP: 4× RR)")
+    logger.info(f"   Dip-buy logic: {'ENABLED ✅' if _ADAPTIVE.get('dip_enabled') else 'DISABLED ❌'}")
     logger.info("=" * 64)
 
     logger.info("📥 Syncing full MT5 trade history...")
@@ -892,8 +705,7 @@ def run_bot():
         curr, prev = df.iloc[-1], df.iloc[-2]
 
         close_on_profit_target(2500)  # Increased from 1000 to match 2,500+ KES loss potential
-        trail_stops()          # KES milestone trail for TREND/DIP trades
-        trail_stops_h1_atr()   # H1 ATR trail for BREAKOUT trades — gives them room to breathe
+        trail_stops()
         sync_mt5_history()
 
         summary_slot = (now.hour * 60 + now.minute) // SUMMARY_INTERVAL
@@ -931,26 +743,9 @@ def run_bot():
             elif curr['EMA_5'] < curr['EMA_8'] and curr['RSI'] < _ADAPTIVE['rsi_sell_threshold']:
                 logger.info(f"⛔ SELL signal suppressed — H4 is {h4_trend} (need DOWN)")
 
-            # ── H1 Breakout signals (checked every minute, cooldown BYPASSED) ──
-            # These fire when H1 closes above swing high (UP trend) or below swing
-            # low (DOWN trend). They're structural entries, not indicator crosses,
-            # so the cooldown gate does NOT apply — getting in at the breakout candle
-            # is the whole point and waiting 45 minutes defeats the purpose.
-            if signal == "NONE":
-                bo_signal, bo_type = check_h1_breakout_signal(h1_trend, h4_trend)
-                if bo_signal != "NONE":
-                    signal      = bo_signal
-                    signal_type = "BREAKOUT"
-
             # ── Cooldown gate: Don't fire new trades too frequently ──
-            # NOTE: BREAKOUT signals skip the cooldown — structural breakouts
-            # are time-sensitive. TREND and DIP signals still respect it.
             mins_since_last_trade = (time.time() - _last_trade_time) / 60
-            cooldown_active = (
-                signal_type != "BREAKOUT"   # ← breakouts are exempt
-                and (_last_trade_time > 0)
-                and (mins_since_last_trade < _ADAPTIVE.get('cooldown_mins', 30))
-            )
+            cooldown_active = (_last_trade_time > 0) and (mins_since_last_trade < _ADAPTIVE.get('cooldown_mins', 30))
             
             if cooldown_active:
                 logger.info(f"⏱️  Cooldown active: {_ADAPTIVE.get('cooldown_mins', 30) - mins_since_last_trade:.1f}m remaining")
@@ -993,35 +788,16 @@ def run_bot():
                         tick    = mt5.symbol_info_tick(SYMBOL)
                         price   = tick.ask if signal == "BUY" else tick.bid
 
-                        # ── SL distance: each signal type gets the right ATR ──────
-                        # BREAKOUT: use H1 ATR × 1.5 so the trade isn't stopped
-                        #           out on a normal hourly wick retest.
-                        # DIP:      tighter SL (we're counter-momentum on M5)
-                        # TREND:    standard M5 ATR multiplier from config
-                        if signal_type == "BREAKOUT":
-                            rates_h1_sl = mt5.copy_rates_from_pos(SYMBOL, mt5.TIMEFRAME_H1, 0, 20)
-                            if rates_h1_sl is not None:
-                                df_h1_sl = pd.DataFrame(rates_h1_sl)
-                                h1_atr_val = ta.atr(df_h1_sl['high'], df_h1_sl['low'], df_h1_sl['close'], 14).iloc[-1]
-                            else:
-                                h1_atr_val = curr['ATR'] * 4   # fallback if H1 data fails
-                            sl_dist = h1_atr_val * 1.5
-                            # BREAKOUT TP: wide — swing high/low moves last 50–200+ pips,
-                            # so we give a 4× reward ratio to let it run
-                            tp_ratio = 4.0
-                        elif signal_type == "DIP":
-                            sl_dist  = curr['ATR'] * _ADAPTIVE['sl_atr_mult'] * 0.8
-                            tp_ratio = _ADAPTIVE['reward_ratio']
-                        else:
-                            sl_dist  = curr['ATR'] * _ADAPTIVE['sl_atr_mult']
-                            tp_ratio = _ADAPTIVE['reward_ratio']
-
-                        sl = price - sl_dist if signal == "BUY" else price + sl_dist
-                        tp = price + (sl_dist * tp_ratio) if signal == "BUY" else price - (sl_dist * tp_ratio)
-
-                        # Tag comment with signal type so trail_stops_h1_atr()
-                        # can identify BREAKOUT positions and trail them on H1 ATR
-                        trade_comment = f"SCURO-{signal_type}"
+                        # ── DIP trades get a tighter SL (we're counter-momentum on M5)
+                        # Standard trades use the normal ATR multiplier.
+                        sl_mult = (
+                            _ADAPTIVE['sl_atr_mult'] * 0.8   # 20% tighter SL for dip entries
+                            if signal_type == "DIP"
+                            else _ADAPTIVE['sl_atr_mult']
+                        )
+                        sl_dist = curr['ATR'] * sl_mult
+                        sl      = price - sl_dist if signal == "BUY" else price + sl_dist
+                        tp      = price + (sl_dist * _ADAPTIVE['reward_ratio']) if signal == "BUY" else price - (sl_dist * _ADAPTIVE['reward_ratio'])
 
                         req = {
                             "action":       mt5.TRADE_ACTION_DEAL,
@@ -1031,7 +807,6 @@ def run_bot():
                             "price":        price,
                             "sl":           sl,
                             "tp":           tp,
-                            "comment":      trade_comment,
                             "magic":        MAGIC_NUMBER,
                             "type_time":    mt5.ORDER_TIME_GTC,
                             "type_filling": mt5.ORDER_FILLING_IOC,

@@ -303,3 +303,26 @@
 2026-05-08 13:20:30,192 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
 2026-05-08 13:20:30,193 | WARNING |    ⚠️  Rejected rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
 2026-05-08 13:20:30,195 | INFO  | ⏳ Next analysis in 30 minutes
+2026-05-08 13:50:30,206 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 13:50:30,212 | INFO  | 🔄 Starting analysis cycle...
+2026-05-08 13:50:30,270 | INFO  | 📊 MT5 Stats (Robot) → Trades: 6 | WR: 33.3% | PF: 0.18 | PnL: -9393.26 | Streak: 3xLOSS | Balance: 7,127.11
+2026-05-08 13:50:30,273 | INFO  | 📁 Current config (cycle #84):
+2026-05-08 13:50:30,273 | INFO  |      accumulation_lot: 0.01
+2026-05-08 13:50:30,273 | INFO  |      reward_ratio: 3.0
+2026-05-08 13:50:30,274 | INFO  |      rsi_buy_threshold: 45
+2026-05-08 13:50:30,274 | INFO  |      rsi_sell_threshold: 55
+2026-05-08 13:50:30,274 | INFO  |      sl_atr_mult: 2.5
+2026-05-08 13:50:30,274 | INFO  |      trail_atr_mult: 1.4
+2026-05-08 13:50:30,274 | INFO  |      ema_fast: 5
+2026-05-08 13:50:30,274 | INFO  |      ema_slow: 8
+2026-05-08 13:50:30,274 | INFO  |      max_open_positions: 1
+2026-05-08 13:50:30,275 | INFO  |      cooldown_mins: 30
+2026-05-08 13:50:30,275 | INFO  | 🤖 Querying meta-llama/llama-4-scout-17b-16e-instruct...
+2026-05-08 13:50:31,558 | INFO  | ✅ Config updated [MEDIUM] — Tightening RSI thresholds and increasing cooldown to reduce overtrading, while also reducing position size and adjusting SL to preserve capital
+2026-05-08 13:50:31,560 | INFO  |    📈 rsi_buy_threshold: 45 → 50
+2026-05-08 13:50:31,561 | INFO  |    📈 rsi_sell_threshold: 55 → 50
+2026-05-08 13:50:31,561 | INFO  |    📈 cooldown_mins: 30 → 45
+2026-05-08 13:50:31,562 | INFO  |    📈 sl_atr_mult: 2.5 → 3.0
+2026-05-08 13:50:31,562 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+2026-05-08 13:50:31,563 | WARNING |    ⚠️  Rejected rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+2026-05-08 13:50:31,565 | INFO  | ⏳ Next analysis in 30 minutes

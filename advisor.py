@@ -68,7 +68,7 @@ MAGIC_NUMBER = 777777
 # Advisor CANNOT push values outside these ranges — ever.
 PARAM_BOUNDS = {
     "accumulation_lot":   (0.01,  0.05),   # tightened — 0.10 was too aggressive
-    "reward_ratio":       (1.5,   4.0),
+    "reward_ratio":       (1.5,   4.0),    # TREND/DIP TP ratio (BREAKOUT uses 4.0 fixed)
     "rsi_buy_threshold":  (42,    52),      # wider floor so bot can be more selective
     "rsi_sell_threshold": (48,    58),
     "sl_atr_mult":        (1.0,   3.0),    # allow wider SL to avoid stops getting hunted
@@ -77,6 +77,9 @@ PARAM_BOUNDS = {
     "ema_slow":           (7,     21),
     "max_open_positions": (1,     3),       # NEW: advisor can tighten concurrent trades
     "cooldown_mins":      (5,     60),      # NEW: advisor can enforce longer cooldowns
+    "dip_rsi_recovery":   (30,    45),      # DIP-BUY: RSI threshold to confirm dip bottom
+    "breakout_swing_lookback": (5, 20),    # H1 BREAKOUT: how many bars define swing high/low
+    "breakout_sl_atr_mult": (1.0, 3.0),    # H1 BREAKOUT: SL width in H1 ATR multiples
 }
 
 # ─── DEFAULT CONFIG ──────────────────────────────────────────
@@ -91,6 +94,9 @@ DEFAULT_CONFIG = {
     "ema_slow":           13,      # widened from 8 — reduces noise-triggered signals
     "max_open_positions": 2,       # start conservative
     "cooldown_mins":      15,      # start with 15-min cooldown between trades
+    "dip_rsi_recovery":   38,      # DIP-BUY: RSI must recover above this to trigger
+    "breakout_swing_lookback": 10, # H1 BREAKOUT: 10-bar swing lookback (standard)
+    "breakout_sl_atr_mult": 1.5,   # H1 BREAKOUT: SL = 1.5× H1 ATR from entry
     "circuit_breaker_daily_loss_enabled": True,
     "circuit_breaker_consecutive_losses_enabled": True,
     "last_updated":       "",
@@ -240,20 +246,75 @@ def pull_mt5_stats() -> dict | None:
 
     return stats
 
+# ─── SIGNAL-TYPE STATS (from CSV) ─────────────────────────────
+
+def pull_signal_type_stats() -> dict:
+    """
+    Read trade_history.csv and calculate WR, PnL, and count by signal type.
+    Returns a dict like: {"TREND": {WR, PnL, count}, "DIP": {...}, "BREAKOUT": {...}}
+    """
+    stats_by_type = {}
+    
+    # Check if CSV exists
+    csv_path = "trade_history.csv"
+    if not os.path.exists(csv_path):
+        return stats_by_type
+    
+    try:
+        df = pd.read_csv(csv_path, dtype={"ticket": str})
+        
+        # If signal_type column doesn't exist, return empty
+        if "signal_type" not in df.columns:
+            return stats_by_type
+        
+        # Filter to closed trades only
+        closed = df[df["outcome"] != "OPEN"].copy()
+        if closed.empty:
+            return stats_by_type
+        
+        # Convert profit to numeric
+        closed["profit"] = pd.to_numeric(closed["profit"], errors="coerce")
+        closed = closed.dropna(subset=["profit"])
+        
+        # Group by signal_type
+        for signal_type in closed["signal_type"].unique():
+            trades = closed[closed["signal_type"] == signal_type]
+            wins = len(trades[trades["outcome"] == "WIN"])
+            total = len(trades)
+            wr = round(wins / total * 100, 1) if total > 0 else 0
+            pnl = round(trades["profit"].sum(), 2)
+            
+            stats_by_type[signal_type] = {
+                "count": total,
+                "wins": wins,
+                "win_rate_pct": wr,
+                "total_pnl": pnl,
+                "avg_trade_pnl": round(pnl / total, 2) if total > 0 else 0,
+            }
+    except Exception as e:
+        logger.warning(f"⚠️  Error reading signal_type stats from CSV: {e}")
+    
+    return stats_by_type
+
 # ─── LLAMA ADVISOR ───────────────────────────────────────────
 
 SYSTEM_PROMPT = """You are an expert algorithmic trading advisor for a XAUUSD scalping bot (XAUUSDm).
-You receive LIVE performance statistics pulled directly from the MT5 terminal history.
-Your job: recommend SPECIFIC parameter changes that will improve profitability and reduce drawdown.
+You receive LIVE performance statistics pulled directly from the MT5 terminal history, broken down by SIGNAL TYPE.
+Your job: recommend SPECIFIC parameter changes that will improve profitability and reduce drawdown across all strategies.
 
-Critical context about this bot's recent failures:
-- Profit Factor below 1.0 means the bot is losing money overall
-- Max drawdown above 30% is dangerous — prioritize capital preservation
-- Over 100 trades per day = overtrading — use cooldown_mins and RSI thresholds to filter
-- Consecutive losses > 5 = the strategy is in a losing regime — tighten filters aggressively
+THE THREE SIGNAL TYPES (each has different tuning):
+  TREND    — M5 EMA crossover + RSI in zone + H1/H4 trend alignment. Cooldown applies.
+  DIP      — H1 uptrend intact, price pulls below H1 EMA50, RSI recovers → buy the dip. Cooldown applies.
+  BREAKOUT — H1 closes above/below 10-bar swing high/low, H4 confirms. BYPASSES cooldown. TP = 4.0× RR (fixed).
+
+CRITICAL CONTEXT:
+- Profit Factor < 1.0 = losing money overall — tighten filters immediately
+- Max drawdown > 30% = dangerous — reduce position size and max_open_positions
+- Consecutive losses > 5 = losing regime — raise cooldown_mins to pause
+- If BREAKOUT WR > 60% but TREND WR < 40% = shift capital toward breakouts (raise dip_enabled/lower cooldown)
+- cooldown_mins ONLY affects TREND and DIP; BREAKOUT signals fire independently
 
 You MUST respond with ONLY a valid JSON object — no markdown, no explanation outside the JSON.
-The JSON must have exactly this structure:
 {
   "changes": {
     "param_name": new_value,
@@ -263,26 +324,41 @@ The JSON must have exactly this structure:
   "confidence": "HIGH | MEDIUM | LOW"
 }
 
-Only include parameters you actually want to change in "changes".
-If the strategy is performing well (PF > 1.3, WR > 55%, drawdown < 20%), return: {"changes": {}, ...}
+Only include parameters you actually want to change. If performing well, return: {"changes": {}, ...}
 
-Tunable parameters and their types:
-  accumulation_lot    (float, e.g. 0.02)   — position size; reduce if losing
-  reward_ratio        (float, e.g. 2.5)    — TP/SL ratio; increase to improve PF
-  rsi_buy_threshold   (int,   e.g. 45)     — raise to be more selective on buys
-  rsi_sell_threshold  (int,   e.g. 55)     — lower to be more selective on sells
-  sl_atr_mult         (float, e.g. 1.8)    — SL width in ATR multiples; increase if stops being hunted
-  trail_atr_mult      (float, e.g. 1.4)    — trailing stop distance
-  ema_fast            (int,   e.g. 5)      — fast EMA period
-  ema_slow            (int,   e.g. 13)     — slow EMA period; must be > ema_fast
-  max_open_positions  (int,   e.g. 2)      — max concurrent trades; reduce if overexposed
-  cooldown_mins       (int,   e.g. 15)     — minutes between trades; increase to reduce overtrading
+TUNABLE PARAMETERS:
+  ── SHARED (affect all signal types unless noted) ──
+  accumulation_lot       (float, 0.01-0.05)     — position size; reduce if account drawdown > 20%
+  rsi_buy_threshold      (int,   42-52)         — TREND/DIP only: raise to filter weak entries
+  rsi_sell_threshold     (int,   48-58)         — TREND only: lower to filter weak exits
+  sl_atr_mult            (float, 1.0-3.0)       — TREND/DIP SL width; increase if stops hunted
+  trail_atr_mult         (float, 0.8-2.5)       — TREND/DIP milestone trail; N/A for BREAKOUT
+  ema_fast               (int,   3-10)          — TREND/DIP only: M5 fast EMA period
+  ema_slow               (int,   7-21)          — TREND/DIP only: M5 slow EMA period
+  max_open_positions     (int,   1-3)           — max concurrent trades across ALL signal types
+  cooldown_mins          (int,   5-60)          — seconds between TREND/DIP signals; BREAKOUT ignores
+  reward_ratio           (float, 1.5-4.0)       — TREND/DIP TP ratio; BREAKOUT uses 4.0 fixed
+
+  ── DIP-BUY SPECIFIC ──
+  dip_rsi_recovery       (int,   30-45)         — RSI threshold to confirm dip bottom (raise = stricter)
+
+  ── H1 BREAKOUT SPECIFIC ──
+  breakout_swing_lookback (int, 5-20)           — how many H1 bars define the swing (lower = faster)
+  breakout_sl_atr_mult   (float, 1.0-3.0)       — SL = N × H1 ATR from entry (higher = wider SL)
+
+Note: reward_ratio caps at 4.0 because BREAKOUT trades hardcode 4.0× TP. Tuning reward_ratio does not affect BREAKOUT entries.
 """
 
 def ask_llama(stats: dict, config: dict) -> dict | None:
+    # Pull signal-type breakdown from trade history CSV
+    signal_type_stats = pull_signal_type_stats()
+    
     prompt = f"""
 LIVE MT5 PERFORMANCE STATISTICS (pulled from terminal history tab):
 {json.dumps(stats, indent=2)}
+
+SIGNAL-TYPE BREAKDOWN (from trade history):
+{json.dumps(signal_type_stats, indent=2)}
 
 CURRENT BOT PARAMETERS:
 {json.dumps({k: config[k] for k in PARAM_BOUNDS if k in config}, indent=2)}
@@ -295,6 +371,8 @@ Key concerns to address:
 - If robot_max_consecutive_losses > 5: pause by raising cooldown_mins to 45+
 - If robot_trades > 50 per day equivalent: reduce overtrading via cooldown_mins / RSI thresholds
 - If account_drawdown_pct > 30: reduce accumulation_lot and max_open_positions
+- If one signal type (TREND/DIP/BREAKOUT) has WR > 60% and another < 40%: tune toward the winning type
+  (e.g. if BREAKOUT WR=70% but TREND WR=35%, consider lowering cooldown_mins to let more trades fire)
 
 Recommend SPECIFIC parameter adjustments. Respond ONLY with the JSON object.
 """

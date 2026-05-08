@@ -57,3 +57,31 @@ REJECTED:
   accumulation_lot: 0.005 out of bounds [0.01, 0.05]
   rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
 ────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #85  |  2026-05-08 13:50:31  |  Confidence: MEDIUM
+Reasoning: Tightening RSI thresholds and increasing cooldown to reduce overtrading, while also reducing position size and adjusting SL to preserve capital
+Performance: WR=33.3%  PF=0.18  PnL=-9393.26  Streak=3xLOSS
+Balance=7127.11  Drawdown=14.01%
+APPLIED CHANGES:
+  rsi_buy_threshold: 45 → 50
+  rsi_sell_threshold: 55 → 50
+  cooldown_mins: 30 → 45
+  sl_atr_mult: 2.5 → 3.0
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #86  |  2026-05-08 14:09:25  |  Confidence: HIGH
+Reasoning: Tightening filters and reducing position size to address losing strategy and high consecutive losses
+Performance: WR=28.6%  PF=0.16  PnL=-10850.22  Streak=4xLOSS
+Balance=5670.15  Drawdown=0.05%
+APPLIED CHANGES:
+  rsi_buy_threshold: 45 → 48
+  cooldown_mins: 45 → 60
+  sl_atr_mult: 3.0 → 2.5
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+────────────────────────────────────────────────────────────
