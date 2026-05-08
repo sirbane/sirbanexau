@@ -85,3 +85,260 @@ APPLIED CHANGES:
 REJECTED:
   accumulation_lot: 0.005 out of bounds [0.01, 0.05]
 ────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #87  |  2026-05-08 14:39:26  |  Confidence: MEDIUM
+Reasoning: Tightening filters and reducing position size to address losing strategy and high consecutive losses
+Performance: WR=28.6%  PF=0.16  PnL=-10850.22  Streak=4xLOSS
+Balance=5670.15  Drawdown=4.49%
+APPLIED CHANGES:
+  cooldown_mins: 60 → 30
+  rsi_buy_threshold: 48 → 50
+  trail_atr_mult: 1.4 → 1.2
+  sl_atr_mult: 2.5 → 3.0
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #88  |  2026-05-08 15:09:28  |  Confidence: HIGH
+Reasoning: Tightening filters and reducing position size to address losing strategy and high consecutive losses
+Performance: WR=25.0%  PF=0.14  PnL=-12690.76  Streak=5xLOSS
+Balance=3829.61  Drawdown=0.0%
+APPLIED CHANGES:
+  cooldown_mins: 30 → 45
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 3.0 → 2.5
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #89  |  2026-05-08 15:39:29  |  Confidence: HIGH
+Reasoning: Tightening filters and reducing position size to address losing strategy and high consecutive losses
+Performance: WR=25.0%  PF=0.14  PnL=-12690.76  Streak=5xLOSS
+Balance=3829.61  Drawdown=-20.45%
+APPLIED CHANGES:
+  cooldown_mins: 45 → 60
+  rsi_buy_threshold: 50 → 52
+  trail_atr_mult: 1.2 → 1.5
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #90  |  2026-05-08 16:09:30  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and adjusting risk management to address losing strategy and high consecutive losses.
+Performance: WR=22.2%  PF=0.14  PnL=-12690.76  Streak=6xLOSS
+Balance=3829.61  Drawdown=15.48%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  trail_atr_mult: 1.5 → 2.0
+  sl_atr_mult: 2.5 → 3.0
+REJECTED:
+  cooldown_mins: 90 out of bounds [5, 60]
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #91  |  2026-05-08 16:39:31  |  Confidence: MEDIUM
+Reasoning: Tightening filters and reducing position size to address losing strategy and high consecutive losses, while also adjusting risk management to prevent overtrading.
+Performance: WR=30.0%  PF=0.31  PnL=-10150.47  Streak=1xWIN
+Balance=6369.9  Drawdown=5.43%
+APPLIED CHANGES:
+  cooldown_mins: 60 → 30
+  rsi_buy_threshold: 50 → 52
+  trail_atr_mult: 2.0 → 2.5
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #92  |  2026-05-08 17:09:32  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and pausing trading to address losing strategy, high consecutive losses, and excessive drawdown.
+Performance: WR=30.0%  PF=0.31  PnL=-10150.47  Streak=1xWIN
+Balance=6369.9  Drawdown=31.22%
+APPLIED CHANGES:
+  cooldown_mins: 30 → 45
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 3.0 → 2.5
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #93  |  2026-05-08 17:39:33  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and pausing trading to address losing strategy, high consecutive losses, and excessive drawdown.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=0.0%
+APPLIED CHANGES:
+  cooldown_mins: 45 → 60
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 2.5 → 3.0
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  trail_atr_mult: 3.0 out of bounds [0.8, 2.5]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #94  |  2026-05-08 18:09:34  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and pausing trading to address losing strategy and high consecutive losses.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=0.0%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  trail_atr_mult: 2.5 → 2.0
+  sl_atr_mult: 3.0 → 2.5
+REJECTED:
+  cooldown_mins: 90 out of bounds [5, 60]
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #95  |  2026-05-08 18:39:36  |  Confidence: HIGH
+Reasoning: Tightening filters and reducing position size to address losing strategy and high consecutive losses.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=0.0%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  trail_atr_mult: 2.0 → 2.5
+REJECTED:
+  cooldown_mins: 90 out of bounds [5, 60]
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #96  |  2026-05-08 19:09:37  |  Confidence: MEDIUM
+Reasoning: Tightening filters, reducing position size, and adjusting stop loss and trailing to mitigate losses and consecutive losses.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=0.0%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 2.5 → 3.0
+REJECTED:
+  cooldown_mins: 75 out of bounds [5, 60]
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  trail_atr_mult: 3.0 out of bounds [0.8, 2.5]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #97  |  2026-05-08 19:39:38  |  Confidence: MEDIUM
+Reasoning: Tightening filters and reducing position size to address consecutive losses and low profit factor.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=-5.57%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 3.0 → 2.5
+REJECTED:
+  cooldown_mins: 75 out of bounds [5, 60]
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #98  |  2026-05-08 20:09:39  |  Confidence: MEDIUM
+Reasoning: Tightening filters and reducing position size to address low profit factor and consecutive losses.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=0.11%
+APPLIED CHANGES:
+  cooldown_mins: 60 → 30
+  rsi_buy_threshold: 50 → 52
+  trail_atr_mult: 2.5 → 1.8
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #99  |  2026-05-08 20:39:40  |  Confidence: HIGH
+Reasoning: Tightening filters and reducing position size to address low profit factor, consecutive losses, and drawdown.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=-20.67%
+APPLIED CHANGES:
+  cooldown_mins: 30 → 45
+  rsi_buy_threshold: 50 → 52
+  trail_atr_mult: 1.8 → 2.0
+  sl_atr_mult: 2.5 → 3.0
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #100  |  2026-05-08 21:09:41  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and increasing cooldown to address low profit factor, consecutive losses, and high drawdown.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=-41.58%
+APPLIED CHANGES:
+  cooldown_mins: 45 → 60
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 3.0 → 2.5
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #101  |  2026-05-08 21:39:44  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and increasing cooldown to address low profit factor, consecutive losses, and high drawdown.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=-40.85%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 2.5 → 3.0
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  cooldown_mins: 90 out of bounds [5, 60]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #102  |  2026-05-08 22:09:45  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and increasing cooldown to address low profit factor, consecutive losses, and high drawdown.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=-36.06%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 3.0 → 2.5
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  cooldown_mins: 90 out of bounds [5, 60]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #103  |  2026-05-08 22:39:48  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and increasing cooldown to address low profit factor, consecutive losses, and high drawdown.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=-32.16%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 2.5 → 3.0
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  cooldown_mins: 90 out of bounds [5, 60]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────
+CYCLE #104  |  2026-05-08 23:09:50  |  Confidence: HIGH
+Reasoning: Tightening filters, reducing position size, and increasing cooldown to address low profit factor, consecutive losses, and high drawdown.
+Performance: WR=27.3%  PF=0.26  PnL=-13036.6  Streak=1xLOSS
+Balance=3483.77  Drawdown=-26.45%
+APPLIED CHANGES:
+  rsi_buy_threshold: 50 → 52
+  sl_atr_mult: 3.0 → 2.5
+REJECTED:
+  accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+  cooldown_mins: 90 out of bounds [5, 60]
+  rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+────────────────────────────────────────────────────────────

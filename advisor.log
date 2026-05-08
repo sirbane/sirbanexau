@@ -326,3 +326,213 @@
 2026-05-08 13:50:31,562 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
 2026-05-08 13:50:31,563 | WARNING |    ⚠️  Rejected rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
 2026-05-08 13:50:31,565 | INFO  | ⏳ Next analysis in 30 minutes
+2026-05-08 14:09:24,797 | INFO  | ================================================================
+2026-05-08 14:09:24,798 | INFO  | 🧠 SCURO ADAPTIVE ADVISOR — MT5-Native Edition
+2026-05-08 14:09:24,798 | INFO  |    Model    : meta-llama/llama-4-scout-17b-16e-instruct
+2026-05-08 14:09:24,798 | INFO  |    Interval : every 30 minutes
+2026-05-08 14:09:24,799 | INFO  |    Symbol   : XAUUSDm | Magic: 777777
+2026-05-08 14:09:24,799 | INFO  |    Lookback : 30 days of MT5 history
+2026-05-08 14:09:24,799 | INFO  |    Config   : C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1\scuro_config.json
+2026-05-08 14:09:24,799 | INFO  |    Changelog: C:\Users\obung\OneDrive\Documents\Trading Apps\sir_bane_v1\advisor_changelog.log
+2026-05-08 14:09:24,799 | INFO  | ================================================================
+2026-05-08 14:09:24,799 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 14:09:24,799 | INFO  | 🔄 Starting analysis cycle...
+2026-05-08 14:09:24,809 | INFO  | 📊 MT5 Stats (Robot) → Trades: 7 | WR: 28.6% | PF: 0.16 | PnL: -10850.22 | Streak: 4xLOSS | Balance: 5,670.15
+2026-05-08 14:09:24,810 | INFO  | 📁 Current config (cycle #85):
+2026-05-08 14:09:24,810 | INFO  |      accumulation_lot: 0.01
+2026-05-08 14:09:24,810 | INFO  |      reward_ratio: 3.0
+2026-05-08 14:09:24,810 | INFO  |      rsi_buy_threshold: 45
+2026-05-08 14:09:24,811 | INFO  |      rsi_sell_threshold: 55
+2026-05-08 14:09:24,811 | INFO  |      sl_atr_mult: 3.0
+2026-05-08 14:09:24,811 | INFO  |      trail_atr_mult: 1.4
+2026-05-08 14:09:24,811 | INFO  |      ema_fast: 5
+2026-05-08 14:09:24,811 | INFO  |      ema_slow: 8
+2026-05-08 14:09:24,811 | INFO  |      max_open_positions: 1
+2026-05-08 14:09:24,812 | INFO  |      cooldown_mins: 45
+2026-05-08 14:09:24,812 | INFO  |      dip_rsi_recovery: 38
+2026-05-08 14:09:24,812 | INFO  |      breakout_swing_lookback: 10
+2026-05-08 14:09:24,812 | INFO  |      breakout_sl_atr_mult: 1.5
+2026-05-08 14:09:24,812 | INFO  | 🤖 Querying meta-llama/llama-4-scout-17b-16e-instruct...
+2026-05-08 14:09:25,702 | INFO  | ✅ Config updated [HIGH] — Tightening filters and reducing position size to address losing strategy and high consecutive losses
+2026-05-08 14:09:25,702 | INFO  |    📈 rsi_buy_threshold: 45 → 48
+2026-05-08 14:09:25,703 | INFO  |    📈 cooldown_mins: 45 → 60
+2026-05-08 14:09:25,703 | INFO  |    📈 sl_atr_mult: 3.0 → 2.5
+2026-05-08 14:09:25,704 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+2026-05-08 14:09:25,710 | INFO  | ⏳ Next analysis in 30 minutes
+2026-05-08 14:39:25,726 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 14:39:25,740 | INFO  | 🔄 Starting analysis cycle...
+2026-05-08 14:39:25,836 | INFO  | 📊 MT5 Stats (Robot) → Trades: 7 | WR: 28.6% | PF: 0.16 | PnL: -10850.22 | Streak: 4xLOSS | Balance: 5,670.15
+2026-05-08 14:39:25,839 | INFO  | 📁 Current config (cycle #86):
+2026-05-08 14:39:25,840 | INFO  |      accumulation_lot: 0.01
+2026-05-08 14:39:25,840 | INFO  |      reward_ratio: 3.0
+2026-05-08 14:39:25,840 | INFO  |      rsi_buy_threshold: 48
+2026-05-08 14:39:25,840 | INFO  |      rsi_sell_threshold: 55
+2026-05-08 14:39:25,840 | INFO  |      sl_atr_mult: 2.5
+2026-05-08 14:39:25,840 | INFO  |      trail_atr_mult: 1.4
+2026-05-08 14:39:25,840 | INFO  |      ema_fast: 5
+2026-05-08 14:39:25,841 | INFO  |      ema_slow: 8
+2026-05-08 14:39:25,841 | INFO  |      max_open_positions: 1
+2026-05-08 14:39:25,841 | INFO  |      cooldown_mins: 60
+2026-05-08 14:39:25,841 | INFO  |      dip_rsi_recovery: 38
+2026-05-08 14:39:25,841 | INFO  |      breakout_swing_lookback: 10
+2026-05-08 14:39:25,841 | INFO  |      breakout_sl_atr_mult: 1.5
+2026-05-08 14:39:25,841 | INFO  | 🤖 Querying meta-llama/llama-4-scout-17b-16e-instruct...
+2026-05-08 14:39:26,989 | INFO  | ✅ Config updated [MEDIUM] — Tightening filters and reducing position size to address losing strategy and high consecutive losses
+2026-05-08 14:39:26,990 | INFO  |    📈 cooldown_mins: 60 → 30
+2026-05-08 14:39:26,990 | INFO  |    📈 rsi_buy_threshold: 48 → 50
+2026-05-08 14:39:26,991 | INFO  |    📈 trail_atr_mult: 1.4 → 1.2
+2026-05-08 14:39:26,991 | INFO  |    📈 sl_atr_mult: 2.5 → 3.0
+2026-05-08 14:39:26,991 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+2026-05-08 14:39:26,993 | INFO  | ⏳ Next analysis in 30 minutes
+2026-05-08 15:09:27,007 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 15:09:27,016 | INFO  | 🔄 Starting analysis cycle...
+2026-05-08 15:09:27,069 | INFO  | 📊 MT5 Stats (Robot) → Trades: 8 | WR: 25.0% | PF: 0.14 | PnL: -12690.76 | Streak: 5xLOSS | Balance: 3,829.61
+2026-05-08 15:09:27,071 | INFO  | 📁 Current config (cycle #87):
+2026-05-08 15:09:27,072 | INFO  |      accumulation_lot: 0.01
+2026-05-08 15:09:27,072 | INFO  |      reward_ratio: 3.0
+2026-05-08 15:09:27,072 | INFO  |      rsi_buy_threshold: 50
+2026-05-08 15:09:27,072 | INFO  |      rsi_sell_threshold: 55
+2026-05-08 15:09:27,072 | INFO  |      sl_atr_mult: 3.0
+2026-05-08 15:09:27,073 | INFO  |      trail_atr_mult: 1.2
+2026-05-08 15:09:27,073 | INFO  |      ema_fast: 5
+2026-05-08 15:09:27,073 | INFO  |      ema_slow: 8
+2026-05-08 15:09:27,073 | INFO  |      max_open_positions: 1
+2026-05-08 15:09:27,073 | INFO  |      cooldown_mins: 30
+2026-05-08 15:09:27,073 | INFO  |      dip_rsi_recovery: 38
+2026-05-08 15:09:27,073 | INFO  |      breakout_swing_lookback: 10
+2026-05-08 15:09:27,074 | INFO  |      breakout_sl_atr_mult: 1.5
+2026-05-08 15:09:27,074 | INFO  | 🤖 Querying meta-llama/llama-4-scout-17b-16e-instruct...
+2026-05-08 15:09:28,124 | INFO  | ✅ Config updated [HIGH] — Tightening filters and reducing position size to address losing strategy and high consecutive losses
+2026-05-08 15:09:28,125 | INFO  |    📈 cooldown_mins: 30 → 45
+2026-05-08 15:09:28,125 | INFO  |    📈 rsi_buy_threshold: 50 → 52
+2026-05-08 15:09:28,125 | INFO  |    📈 sl_atr_mult: 3.0 → 2.5
+2026-05-08 15:09:28,125 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+2026-05-08 15:09:28,126 | WARNING |    ⚠️  Rejected rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+2026-05-08 15:09:28,128 | INFO  | ⏳ Next analysis in 30 minutes
+2026-05-08 15:39:28,144 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 15:39:28,160 | INFO  | 🔄 Starting analysis cycle...
+2026-05-08 15:39:28,223 | INFO  | 📊 MT5 Stats (Robot) → Trades: 8 | WR: 25.0% | PF: 0.14 | PnL: -12690.76 | Streak: 5xLOSS | Balance: 3,829.61
+2026-05-08 15:39:28,225 | INFO  | 📁 Current config (cycle #88):
+2026-05-08 15:39:28,225 | INFO  |      accumulation_lot: 0.01
+2026-05-08 15:39:28,226 | INFO  |      reward_ratio: 3.0
+2026-05-08 15:39:28,226 | INFO  |      rsi_buy_threshold: 50
+2026-05-08 15:39:28,226 | INFO  |      rsi_sell_threshold: 55
+2026-05-08 15:39:28,226 | INFO  |      sl_atr_mult: 2.5
+2026-05-08 15:39:28,226 | INFO  |      trail_atr_mult: 1.2
+2026-05-08 15:39:28,226 | INFO  |      ema_fast: 5
+2026-05-08 15:39:28,227 | INFO  |      ema_slow: 8
+2026-05-08 15:39:28,227 | INFO  |      max_open_positions: 1
+2026-05-08 15:39:28,227 | INFO  |      cooldown_mins: 45
+2026-05-08 15:39:28,228 | INFO  |      dip_rsi_recovery: 38
+2026-05-08 15:39:28,228 | INFO  |      breakout_swing_lookback: 10
+2026-05-08 15:39:28,228 | INFO  |      breakout_sl_atr_mult: 1.5
+2026-05-08 15:39:28,229 | INFO  | 🤖 Querying meta-llama/llama-4-scout-17b-16e-instruct...
+2026-05-08 15:39:29,462 | INFO  | ✅ Config updated [HIGH] — Tightening filters and reducing position size to address losing strategy and high consecutive losses
+2026-05-08 15:39:29,463 | INFO  |    📈 cooldown_mins: 45 → 60
+2026-05-08 15:39:29,464 | INFO  |    📈 rsi_buy_threshold: 50 → 52
+2026-05-08 15:39:29,465 | INFO  |    📈 trail_atr_mult: 1.2 → 1.5
+2026-05-08 15:39:29,466 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+2026-05-08 15:39:29,466 | WARNING |    ⚠️  Rejected rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+2026-05-08 15:39:29,470 | INFO  | ⏳ Next analysis in 30 minutes
+2026-05-08 16:09:29,492 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 16:09:29,514 | INFO  | 🔄 Starting analysis cycle...
+2026-05-08 16:09:29,574 | INFO  | 📊 MT5 Stats (Robot) → Trades: 9 | WR: 22.2% | PF: 0.14 | PnL: -12690.76 | Streak: 6xLOSS | Balance: 3,829.61
+2026-05-08 16:09:29,580 | INFO  | 📁 Current config (cycle #89):
+2026-05-08 16:09:29,580 | INFO  |      accumulation_lot: 0.01
+2026-05-08 16:09:29,581 | INFO  |      reward_ratio: 3.0
+2026-05-08 16:09:29,582 | INFO  |      rsi_buy_threshold: 50
+2026-05-08 16:09:29,583 | INFO  |      rsi_sell_threshold: 55
+2026-05-08 16:09:29,584 | INFO  |      sl_atr_mult: 2.5
+2026-05-08 16:09:29,585 | INFO  |      trail_atr_mult: 1.5
+2026-05-08 16:09:29,585 | INFO  |      ema_fast: 5
+2026-05-08 16:09:29,586 | INFO  |      ema_slow: 8
+2026-05-08 16:09:29,586 | INFO  |      max_open_positions: 1
+2026-05-08 16:09:29,586 | INFO  |      cooldown_mins: 60
+2026-05-08 16:09:29,586 | INFO  |      dip_rsi_recovery: 38
+2026-05-08 16:09:29,587 | INFO  |      breakout_swing_lookback: 10
+2026-05-08 16:09:29,587 | INFO  |      breakout_sl_atr_mult: 1.5
+2026-05-08 16:09:29,587 | INFO  | 🤖 Querying meta-llama/llama-4-scout-17b-16e-instruct...
+2026-05-08 16:09:30,525 | INFO  | ✅ Config updated [HIGH] — Tightening filters, reducing position size, and adjusting risk management to address losing strategy and high consecutive losses.
+2026-05-08 16:09:30,526 | INFO  |    📈 rsi_buy_threshold: 50 → 52
+2026-05-08 16:09:30,526 | INFO  |    📈 trail_atr_mult: 1.5 → 2.0
+2026-05-08 16:09:30,527 | INFO  |    📈 sl_atr_mult: 2.5 → 3.0
+2026-05-08 16:09:30,527 | WARNING |    ⚠️  Rejected cooldown_mins: 90 out of bounds [5, 60]
+2026-05-08 16:09:30,528 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+2026-05-08 16:09:30,528 | WARNING |    ⚠️  Rejected rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+2026-05-08 16:09:30,537 | INFO  | ⏳ Next analysis in 30 minutes
+2026-05-08 16:39:30,550 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 16:39:30,564 | INFO  | 🔄 Starting analysis cycle...
+2026-05-08 16:39:30,624 | INFO  | 📊 MT5 Stats (Robot) → Trades: 10 | WR: 30.0% | PF: 0.31 | PnL: -10150.47 | Streak: 1xWIN | Balance: 6,369.90
+2026-05-08 16:39:30,633 | INFO  | 📁 Current config (cycle #90):
+2026-05-08 16:39:30,634 | INFO  |      accumulation_lot: 0.01
+2026-05-08 16:39:30,634 | INFO  |      reward_ratio: 3.0
+2026-05-08 16:39:30,634 | INFO  |      rsi_buy_threshold: 50
+2026-05-08 16:39:30,635 | INFO  |      rsi_sell_threshold: 55
+2026-05-08 16:39:30,635 | INFO  |      sl_atr_mult: 3.0
+2026-05-08 16:39:30,635 | INFO  |      trail_atr_mult: 2.0
+2026-05-08 16:39:30,636 | INFO  |      ema_fast: 5
+2026-05-08 16:39:30,636 | INFO  |      ema_slow: 8
+2026-05-08 16:39:30,637 | INFO  |      max_open_positions: 1
+2026-05-08 16:39:30,637 | INFO  |      cooldown_mins: 60
+2026-05-08 16:39:30,637 | INFO  |      dip_rsi_recovery: 38
+2026-05-08 16:39:30,637 | INFO  |      breakout_swing_lookback: 10
+2026-05-08 16:39:30,637 | INFO  |      breakout_sl_atr_mult: 1.5
+2026-05-08 16:39:30,638 | INFO  | 🤖 Querying meta-llama/llama-4-scout-17b-16e-instruct...
+2026-05-08 16:39:31,489 | INFO  | ✅ Config updated [MEDIUM] — Tightening filters and reducing position size to address losing strategy and high consecutive losses, while also adjusting risk management to prevent overtrading.
+2026-05-08 16:39:31,491 | INFO  |    📈 cooldown_mins: 60 → 30
+2026-05-08 16:39:31,492 | INFO  |    📈 rsi_buy_threshold: 50 → 52
+2026-05-08 16:39:31,493 | INFO  |    📈 trail_atr_mult: 2.0 → 2.5
+2026-05-08 16:39:31,494 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+2026-05-08 16:39:31,494 | WARNING |    ⚠️  Rejected rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+2026-05-08 16:39:31,501 | INFO  | ⏳ Next analysis in 30 minutes
+2026-05-08 17:09:31,524 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 17:09:31,533 | INFO  | 🔄 Starting analysis cycle...
+2026-05-08 17:09:31,603 | INFO  | 📊 MT5 Stats (Robot) → Trades: 10 | WR: 30.0% | PF: 0.31 | PnL: -10150.47 | Streak: 1xWIN | Balance: 6,369.90
+2026-05-08 17:09:31,606 | INFO  | 📁 Current config (cycle #91):
+2026-05-08 17:09:31,606 | INFO  |      accumulation_lot: 0.01
+2026-05-08 17:09:31,607 | INFO  |      reward_ratio: 3.0
+2026-05-08 17:09:31,607 | INFO  |      rsi_buy_threshold: 50
+2026-05-08 17:09:31,607 | INFO  |      rsi_sell_threshold: 55
+2026-05-08 17:09:31,607 | INFO  |      sl_atr_mult: 3.0
+2026-05-08 17:09:31,607 | INFO  |      trail_atr_mult: 2.5
+2026-05-08 17:09:31,608 | INFO  |      ema_fast: 5
+2026-05-08 17:09:31,608 | INFO  |      ema_slow: 8
+2026-05-08 17:09:31,608 | INFO  |      max_open_positions: 1
+2026-05-08 17:09:31,608 | INFO  |      cooldown_mins: 30
+2026-05-08 17:09:31,609 | INFO  |      dip_rsi_recovery: 38
+2026-05-08 17:09:31,609 | INFO  |      breakout_swing_lookback: 10
+2026-05-08 17:09:31,609 | INFO  |      breakout_sl_atr_mult: 1.5
+2026-05-08 17:09:31,609 | INFO  | 🤖 Querying meta-llama/llama-4-scout-17b-16e-instruct...
+2026-05-08 17:09:32,427 | INFO  | ✅ Config updated [HIGH] — Tightening filters, reducing position size, and pausing trading to address losing strategy, high consecutive losses, and excessive drawdown.
+2026-05-08 17:09:32,428 | INFO  |    📈 cooldown_mins: 30 → 45
+2026-05-08 17:09:32,428 | INFO  |    📈 rsi_buy_threshold: 50 → 52
+2026-05-08 17:09:32,429 | INFO  |    📈 sl_atr_mult: 3.0 → 2.5
+2026-05-08 17:09:32,429 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+2026-05-08 17:09:32,429 | WARNING |    ⚠️  Rejected rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+2026-05-08 17:09:32,432 | INFO  | ⏳ Next analysis in 30 minutes
+2026-05-08 17:39:32,474 | INFO  | ────────────────────────────────────────────────────────────────
+2026-05-08 17:39:32,498 | INFO  | 🔄 Starting analysis cycle...
+2026-05-08 17:39:32,594 | INFO  | 📊 MT5 Stats (Robot) → Trades: 11 | WR: 27.3% | PF: 0.26 | PnL: -13036.60 | Streak: 1xLOSS | Balance: 3,483.77
+2026-05-08 17:39:32,596 | INFO  | 📁 Current config (cycle #92):
+2026-05-08 17:39:32,597 | INFO  |      accumulation_lot: 0.01
+2026-05-08 17:39:32,597 | INFO  |      reward_ratio: 3.0
+2026-05-08 17:39:32,597 | INFO  |      rsi_buy_threshold: 50
+2026-05-08 17:39:32,597 | INFO  |      rsi_sell_threshold: 55
+2026-05-08 17:39:32,597 | INFO  |      sl_atr_mult: 2.5
+2026-05-08 17:39:32,597 | INFO  |      trail_atr_mult: 2.5
+2026-05-08 17:39:32,597 | INFO  |      ema_fast: 5
+2026-05-08 17:39:32,598 | INFO  |      ema_slow: 8
+2026-05-08 17:39:32,598 | INFO  |      max_open_positions: 1
+2026-05-08 17:39:32,598 | INFO  |      cooldown_mins: 45
+2026-05-08 17:39:32,598 | INFO  |      dip_rsi_recovery: 38
+2026-05-08 17:39:32,599 | INFO  |      breakout_swing_lookback: 10
+2026-05-08 17:39:32,600 | INFO  |      breakout_sl_atr_mult: 1.5
+2026-05-08 17:39:32,600 | INFO  | 🤖 Querying meta-llama/llama-4-scout-17b-16e-instruct...
+2026-05-08 17:39:33,738 | INFO  | ✅ Config updated [HIGH] — Tightening filters, reducing position size, and pausing trading to address losing strategy, high consecutive losses, and excessive drawdown.
+2026-05-08 17:39:33,739 | INFO  |    📈 cooldown_mins: 45 → 60
+2026-05-08 17:39:33,739 | INFO  |    📈 rsi_buy_threshold: 50 → 52
+2026-05-08 17:39:33,739 | INFO  |    📈 sl_atr_mult: 2.5 → 3.0
+2026-05-08 17:39:33,739 | WARNING |    ⚠️  Rejected accumulation_lot: 0.005 out of bounds [0.01, 0.05]
+2026-05-08 17:39:33,740 | WARNING |    ⚠️  Rejected trail_atr_mult: 3.0 out of bounds [0.8, 2.5]
+2026-05-08 17:39:33,740 | WARNING |    ⚠️  Rejected rsi_gap: rsi thresholds too close (need >= 5 gap) — reverting
+2026-05-08 17:39:33,743 | INFO  | ⏳ Next analysis in 30 minutes

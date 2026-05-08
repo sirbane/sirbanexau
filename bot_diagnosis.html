@@ -1,0 +1,100 @@
+
+<style>
+  .sec { margin-bottom: 20px; }
+  .sec-head { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 8px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { background: var(--color-background-secondary); border-radius: 8px; padding: 12px 14px; }
+  .card-label { font-size: 11px; color: var(--color-text-secondary); margin: 0 0 4px; }
+  .card-val { font-size: 22px; font-weight: 500; margin: 0; }
+  .red { color: #E24B4A; }
+  .green { color: #639922; }
+  .amber { color: #BA7517; }
+  .prob-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; }
+  .bar-wrap { flex: 1; background: var(--color-background-secondary); border-radius: 4px; height: 20px; overflow: hidden; }
+  .bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 500; }
+  .bar-red { background: #FCEBEB; color: #791F1F; }
+  .bar-green { background: #EAF3DE; color: #27500A; }
+  .verdict { border-left: 3px solid #E24B4A; padding: 10px 14px; margin-bottom: 10px; border-radius: 0; }
+  .verdict.amber-v { border-color: #BA7517; }
+  .verdict.green-v { border-color: #639922; }
+  .v-title { font-size: 12px; font-weight: 500; color: #A32D2D; margin: 0 0 3px; }
+  .v-title.amber-t { color: #854F0B; }
+  .v-title.green-t { color: #3B6D11; }
+  .v-body { font-size: 13px; color: var(--color-text-primary); margin: 0; }
+  .math-box { background: var(--color-background-secondary); border-radius: 8px; padding: 14px 16px; font-size: 13px; line-height: 1.8; }
+  .eq { font-family: var(--font-mono); font-size: 12px; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 4px; padding: 10px 12px; margin: 8px 0; }
+</style>
+
+<div style="padding: 1rem 0;">
+
+<div class="sec">
+  <p class="sec-head">The numbers as they stand</p>
+  <div class="grid4">
+    <div class="card"><p class="card-label">Win rate</p><p class="card-val red">27.3%</p></div>
+    <div class="card"><p class="card-label">Avg win</p><p class="card-val green">+1,539</p></div>
+    <div class="card"><p class="card-label">Avg loss</p><p class="card-val red">−2,522</p></div>
+    <div class="card"><p class="card-label">Profit factor</p><p class="card-val red">0.26</p></div>
+  </div>
+</div>
+
+<div class="sec">
+  <p class="sec-head">The expected value calculation — why this cannot work</p>
+  <div class="math-box">
+    Every single trade has a negative expected value right now:
+    <div class="eq">EV = (0.273 × +1,539) + (0.727 × −2,522)<br>   = +420 − 1,833<br>   = −1,413 KES per trade</div>
+    To <strong style="font-weight:500">break even</strong> at 27.3% WR, the avg win would need to be <strong style="font-weight:500">3.66× the avg loss</strong> — roughly +9,230 KES per win. That's not going to happen on M5 scalps with a 0.01 lot.<br><br>
+    For the current avg win/loss ratio (0.61), you need a <strong style="font-weight:500">62% win rate</strong> just to break even.
+  </div>
+</div>
+
+<div class="sec">
+  <p class="sec-head">Win rate needed to break even at current avg win/loss</p>
+  <div class="prob-row"><span style="min-width:110px; font-size:12px; color:var(--color-text-secondary);">Current: 27%</span><div class="bar-wrap"><div class="bar bar-red" style="width:27%">27%</div></div></div>
+  <div class="prob-row"><span style="min-width:110px; font-size:12px; color:var(--color-text-secondary);">Break-even: 62%</span><div class="bar-wrap"><div class="bar bar-green" style="width:62%">62% needed</div></div></div>
+  <div class="prob-row"><span style="min-width:110px; font-size:12px; color:var(--color-text-secondary);">Typical algo: 45%</span><div class="bar-wrap"><div class="bar" style="width:45%; background:#E6F1FB; color:#0C447C;">45% typical</div></div></div>
+</div>
+
+<div class="sec">
+  <p class="sec-head">The three actual problems — ranked by severity</p>
+  <div class="verdict">
+    <p class="v-title">Problem 1 (critical) — The entry signal is nearly random</p>
+    <p class="v-body">EMA5/EMA8 cross on M5 is one of the noisiest signals in existence. In a ranging or pullback market — which is exactly what gold is doing right now — it crosses and re-crosses dozens of times per session. At 27% accuracy it is generating more noise than signal. This is the root cause of everything.</p>
+  </div>
+  <div class="verdict amber-v">
+    <p class="v-title amber-t">Problem 2 (serious) — No ranging market filter</p>
+    <p class="v-body">The bot has no way to know when the market is going sideways vs trending. All 11 trades are BUY — it's been buying into a M5 downtrend/pullback repeatedly. A simple ADX filter (don't trade when ADX &lt; 20) would have blocked most of these losses.</p>
+  </div>
+  <div class="verdict amber-v">
+    <p class="v-title amber-t">Problem 3 (serious) — AI is confirming bad signals</p>
+    <p class="v-body">The AI agents are saying CONFIRM to 7 out of 10 losing trades. Either the prompts aren't giving them enough context, or they're being asked to confirm signals that are inherently unconfirmable. The AI is a rubber stamp right now, not a filter.</p>
+  </div>
+</div>
+
+<div class="sec">
+  <p class="sec-head">All 11 trades — pattern is obvious</p>
+  <div style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: 6px;">Every single trade is a BUY. Market has been in a M5 downtrend. Bot has no ranging/trend filter.</div>
+  <table style="width:100%; border-collapse:collapse; font-size:12px;">
+    <thead><tr style="border-bottom: 0.5px solid var(--color-border-tertiary);">
+      <th style="text-align:left; padding:5px 6px; font-weight:500; color:var(--color-text-secondary);">Entry</th>
+      <th style="text-align:left; padding:5px 6px; font-weight:500; color:var(--color-text-secondary);">Close</th>
+      <th style="text-align:right; padding:5px 6px; font-weight:500; color:var(--color-text-secondary);">P&L</th>
+      <th style="text-align:left; padding:5px 6px; font-weight:500; color:var(--color-text-secondary);">Result</th>
+    </tr></thead>
+    <tbody>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4741.53</td><td style="padding:5px 6px">4719.32</td><td style="padding:5px 6px; text-align:right" class="red">−2,886</td><td style="padding:5px 6px" class="red">LOSS</td></tr>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4724.0</td><td style="padding:5px 6px">4743.0</td><td style="padding:5px 6px; text-align:right" class="green">+2,540</td><td style="padding:5px 6px" class="green">WIN</td></tr>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4720.57</td><td style="padding:5px 6px">4720.57</td><td style="padding:5px 6px; text-align:right">0</td><td style="padding:5px 6px">BE</td></tr>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4724.1</td><td style="padding:5px 6px">4709.94</td><td style="padding:5px 6px; text-align:right" class="red">−1,541</td><td style="padding:5px 6px" class="red">LOSS</td></tr>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4726.61</td><td style="padding:5px 6px">4715.4</td><td style="padding:5px 6px; text-align:right" class="red">−1,457</td><td style="padding:5px 6px" class="red">LOSS</td></tr>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4721.0</td><td style="padding:5px 6px">4726.54</td><td style="padding:5px 6px; text-align:right" class="green">+703</td><td style="padding:5px 6px" class="green">WIN</td></tr>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4722.05</td><td style="padding:5px 6px">4726.54</td><td style="padding:5px 6px; text-align:right" class="green">+570</td><td style="padding:5px 6px" class="green">WIN</td></tr>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4721.2</td><td style="padding:5px 6px">4726.54</td><td style="padding:5px 6px; text-align:right" class="green">+678</td><td style="padding:5px 6px" class="green">WIN — same close price as 2 above</td></tr>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4720.21</td><td style="padding:5px 6px">4726.54</td><td style="padding:5px 6px; text-align:right" class="amber">+169</td><td style="padding:5px 6px">Small win</td></tr>
+      <tr style="border-bottom:0.5px solid var(--color-border-tertiary)"><td style="padding:5px 6px">4719.57</td><td style="padding:5px 6px">4707.04</td><td style="padding:5px 6px; text-align:right" class="red">−3,029</td><td style="padding:5px 6px" class="red">LOSS — 0.02 lot</td></tr>
+      <tr><td style="padding:5px 6px">4720.46</td><td style="padding:5px 6px">4710.39</td><td style="padding:5px 6px; text-align:right" class="red">−2,625</td><td style="padding:5px 6px" class="red">LOSS — 0.02 lot</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div>

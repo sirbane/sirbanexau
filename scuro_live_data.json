@@ -1,6 +1,6 @@
 {
   "meta": {
-    "refreshed_at": "2026-05-08 14:09:58",
+    "refreshed_at": "2026-05-08 23:27:42",
     "symbol": "XAUUSDm",
     "magic": 777777,
     "lookback_days": 30
@@ -11,64 +11,64 @@
     "server": "ExnessKE-MT5Trial9",
     "broker": "Exness (KE) Limited",
     "currency": "KES",
-    "balance": 5670.15,
-    "equity": 5728.63,
-    "margin": 1536.14,
-    "free_margin": 4192.49,
-    "margin_pct": 372.92,
-    "drawdown_pct": -1.03,
+    "balance": 3483.77,
+    "equity": 3614.15,
+    "margin": 1529.3,
+    "free_margin": 2084.85,
+    "margin_pct": 236.33,
+    "drawdown_pct": -3.74,
     "leverage": 400,
     "type": "demo"
   },
   "live_tick": {
-    "bid": 4724.56,
-    "ask": 4724.87,
-    "spread": 0.31,
-    "time": "2026-05-08 14:09:58"
+    "bid": 4715.65,
+    "ask": 4716.05,
+    "spread": 0.4,
+    "time": "2026-05-08 23:27:41"
   },
   "live_indicators": {
-    "rsi": 57.4,
-    "atr": 4.8,
-    "ema_fast": 4723.25,
-    "ema_slow": 4722.42,
-    "ema_trend": "UP",
-    "close": 4724.56
+    "rsi": 37.1,
+    "atr": 2.66,
+    "ema_fast": 4717.67,
+    "ema_slow": 4718.99,
+    "ema_trend": "DOWN",
+    "close": 4715.65
   },
   "h1_trend": "UP",
   "stats": {
-    "robot_trades": 7,
-    "robot_wins": 2,
-    "robot_losses": 5,
-    "robot_win_rate_pct": 28.6,
-    "robot_net_pnl": -10850.22,
-    "robot_gross_profit": 2076.53,
-    "robot_gross_loss": 12926.75,
-    "robot_profit_factor": 0.161,
-    "robot_avg_win": 1038.26,
-    "robot_avg_loss": 2585.35,
-    "robot_best_trade": 1080.55,
+    "robot_trades": 11,
+    "robot_wins": 3,
+    "robot_losses": 7,
+    "robot_win_rate_pct": 27.3,
+    "robot_net_pnl": -13036.6,
+    "robot_gross_profit": 4616.82,
+    "robot_gross_loss": 17653.42,
+    "robot_profit_factor": 0.262,
+    "robot_avg_win": 1538.94,
+    "robot_avg_loss": 2521.92,
+    "robot_best_trade": 2540.29,
     "robot_worst_trade": -3222.03,
-    "robot_current_streak": 4,
+    "robot_current_streak": 1,
     "robot_current_streak_type": "LOSS",
-    "robot_max_consecutive_losses": 4,
+    "robot_max_consecutive_losses": 6,
     "robot_last_5_outcomes": [
       "LOSS",
+      "WIN",
       "LOSS",
       "LOSS",
-      "LOSS",
-      "WIN"
+      "LOSS"
     ],
-    "total_trades": 11,
-    "total_wins": 6,
-    "total_losses": 5,
-    "total_win_rate_pct": 54.5,
-    "total_net_pnl": -8729.85,
-    "total_gross_profit": 4196.9,
-    "total_gross_loss": 12926.75,
-    "total_profit_factor": 0.325,
-    "total_avg_win": 699.48,
-    "total_avg_loss": 2585.35,
-    "total_best_trade": 1080.55,
+    "total_trades": 15,
+    "total_wins": 7,
+    "total_losses": 7,
+    "total_win_rate_pct": 46.7,
+    "total_net_pnl": -10916.23,
+    "total_gross_profit": 6737.19,
+    "total_gross_loss": 17653.42,
+    "total_profit_factor": 0.382,
+    "total_avg_win": 962.46,
+    "total_avg_loss": 2521.92,
+    "total_best_trade": 2540.29,
     "total_worst_trade": -3222.03,
     "total_current_streak": 1,
     "total_current_streak_type": "LOSS",
@@ -76,38 +76,118 @@
     "total_last_5_outcomes": [
       "LOSS",
       "WIN",
-      "WIN",
-      "WIN",
-      "WIN"
+      "LOSS",
+      "LOSS",
+      "LOSS"
     ]
   },
   "today": {
-    "pnl": -7628.19,
-    "trades": 6,
-    "wins": 2,
-    "losses": 4
+    "pnl": -9814.57,
+    "trades": 10,
+    "wins": 3,
+    "losses": 6
   },
   "open_positions": [
     {
-      "ticket": "2723078840",
+      "ticket": "2724949035",
       "magic": 777777,
-      "open_time": "2026-05-08 14:09:22",
-      "open_ts": 1778238562,
+      "open_time": "2026-05-08 19:24:04",
+      "open_ts": 1778257444,
       "symbol": "XAUUSDm",
       "direction": "BUY",
       "volume": 0.01,
-      "entry_price": 4724.1,
-      "current_px": 4724.56,
-      "sl": 4709.94,
-      "tp": 4766.6,
-      "float_pnl": 58.48,
+      "entry_price": 4714.61,
+      "current_px": 4715.65,
+      "sl": 4714.61,
+      "tp": 4772.88,
+      "float_pnl": 130.38,
       "swap": 0.0,
-      "pips": 0.46,
-      "hold_mins": 0.6,
+      "pips": 1.04,
+      "hold_mins": 243.6,
       "comment": "SCURO-TREND"
     }
   ],
   "closed_trades": [
+    {
+      "ticket": "2724043244",
+      "magic": 777777,
+      "open_time": "2026-05-08 16:36:04",
+      "close_time": "2026-05-08 17:10:32",
+      "open_ts": 1778247364,
+      "close_ts": 1778249432,
+      "symbol": "XAUUSDm",
+      "direction": "BUY",
+      "volume": 0.01,
+      "entry_price": 4741.53,
+      "close_price": 4719.32,
+      "sl": 4719.37,
+      "tp": 4807.77,
+      "profit": -2886.13,
+      "swap": 0.0,
+      "commission": 0.0,
+      "outcome": "LOSS",
+      "comment": "[sl 4719.37300]"
+    },
+    {
+      "ticket": "2723814984",
+      "magic": 777777,
+      "open_time": "2026-05-08 16:05:04",
+      "close_time": "2026-05-08 16:33:40",
+      "open_ts": 1778245504,
+      "close_ts": 1778247220,
+      "symbol": "XAUUSDm",
+      "direction": "BUY",
+      "volume": 0.01,
+      "entry_price": 4724.0,
+      "close_price": 4743.9,
+      "sl": 4706.91,
+      "tp": 4774.93,
+      "profit": 2540.29,
+      "swap": 0.0,
+      "commission": 0.0,
+      "outcome": "WIN",
+      "comment": ""
+    },
+    {
+      "ticket": "2723503444",
+      "magic": 777777,
+      "open_time": "2026-05-08 15:34:05",
+      "close_time": "2026-05-08 15:45:34",
+      "open_ts": 1778243645,
+      "close_ts": 1778244334,
+      "symbol": "XAUUSDm",
+      "direction": "BUY",
+      "volume": 0.01,
+      "entry_price": 4720.57,
+      "close_price": 4720.57,
+      "sl": 4705.5,
+      "tp": 4765.52,
+      "profit": 0.0,
+      "swap": 0.0,
+      "commission": 0.0,
+      "outcome": "BE",
+      "comment": "[sl 4720.57400]"
+    },
+    {
+      "ticket": "2723078840",
+      "magic": 777777,
+      "open_time": "2026-05-08 14:09:22",
+      "close_time": "2026-05-08 15:07:14",
+      "open_ts": 1778238562,
+      "close_ts": 1778242034,
+      "symbol": "XAUUSDm",
+      "direction": "BUY",
+      "volume": 0.01,
+      "entry_price": 4724.1,
+      "close_price": 4709.94,
+      "sl": 4709.94,
+      "tp": 4766.6,
+      "profit": -1840.54,
+      "swap": 0.0,
+      "commission": 0.0,
+      "outcome": "LOSS",
+      "comment": "[sl 4709.93500]"
+    },
     {
       "ticket": "2722964474",
       "magic": 777777,
@@ -331,77 +411,97 @@
   ],
   "equity_curve": [
     {
+      "ts": 1778249432,
+      "time": "2026-05-08 17:10:32",
+      "balance": 11513.87
+    },
+    {
+      "ts": 1778247220,
+      "time": "2026-05-08 16:33:40",
+      "balance": 14054.16
+    },
+    {
+      "ts": 1778244334,
+      "time": "2026-05-08 15:45:34",
+      "balance": 14054.16
+    },
+    {
+      "ts": 1778242034,
+      "time": "2026-05-08 15:07:14",
+      "balance": 12213.62
+    },
+    {
       "ts": 1778237734,
       "time": "2026-05-08 13:55:34",
-      "balance": 12943.04
+      "balance": 10756.66
     },
     {
       "ts": 1778236958,
       "time": "2026-05-08 13:42:38",
-      "balance": 13646.44
+      "balance": 11460.06
     },
     {
       "ts": 1778236958,
       "time": "2026-05-08 13:42:38",
-      "balance": 14216.53
+      "balance": 12030.15
     },
     {
       "ts": 1778236958,
       "time": "2026-05-08 13:42:38",
-      "balance": 14894.54
+      "balance": 12708.16
     },
     {
       "ts": 1778236958,
       "time": "2026-05-08 13:42:38",
-      "balance": 15063.41
+      "balance": 12877.03
     },
     {
       "ts": 1778233938,
       "time": "2026-05-08 12:52:18",
-      "balance": 12034.48
+      "balance": 9848.1
     },
     {
       "ts": 1778232835,
       "time": "2026-05-08 12:33:55",
-      "balance": 9409.43
+      "balance": 7223.05
     },
     {
       "ts": 1778232833,
       "time": "2026-05-08 12:33:53",
-      "balance": 6815.65
+      "balance": 4629.27
     },
     {
       "ts": 1778228508,
       "time": "2026-05-08 11:21:48",
-      "balance": 7896.2
+      "balance": 5709.82
     },
     {
       "ts": 1778228508,
       "time": "2026-05-08 11:21:48",
-      "balance": 8892.18
+      "balance": 6705.8
     },
     {
       "ts": 1778161546,
       "time": "2026-05-07 16:45:46",
-      "balance": 5670.15
+      "balance": 3483.77
     }
   ],
   "advisor_config": {
     "accumulation_lot": 0.01,
     "reward_ratio": 3.0,
-    "rsi_buy_threshold": 48,
+    "rsi_buy_threshold": 50,
     "rsi_sell_threshold": 55,
     "sl_atr_mult": 2.5,
-    "trail_atr_mult": 1.4,
+    "trail_atr_mult": 2.0,
     "ema_fast": 5,
     "ema_slow": 8,
     "max_open_positions": 1,
     "cooldown_mins": 60,
     "circuit_breaker_daily_loss_enabled": false,
     "circuit_breaker_consecutive_losses_enabled": false,
-    "last_updated": "2026-05-08 14:09:25",
-    "update_reason": "Tightening filters and reducing position size to address losing strategy and high consecutive losses",
-    "cycle": 86,
+    "last_updated": "2026-05-08 23:09:50",
+    "update_reason": "Tightening filters, reducing position size, and increasing cooldown to address low profit factor, consecutive losses, and high drawdown.",
+    "cycle": 104,
     "dip_rsi_recovery": 38,
     "breakout_swing_lookback": 10,
     "breakout_sl_atr_mult": 1.5
