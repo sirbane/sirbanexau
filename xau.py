@@ -65,7 +65,7 @@ _ADAPTIVE = {
     "sl_atr_mult":        1.8,
     "trail_atr_mult":     1.4,
     "ema_fast":           5,
-    "ema_slow":           13,   # advisor floor enforced in load_adaptive_config()
+    "ema_slow":           8,    # advisor floor enforced in load_adaptive_config()
     "max_open_positions": 2,
     "cooldown_mins":      15,
     "circuit_breaker_daily_loss_enabled": True,
@@ -75,7 +75,7 @@ _ADAPTIVE = {
 # Hard floors the advisor is NOT allowed to breach (enforced on hot-reload)
 _CONFIG_HARD_FLOORS = {
     "sl_atr_mult":  1.4,   # below this stops get hunted on gold
-    "ema_slow_min_gap": 5, # ema_slow must be at least ema_fast + this
+    "ema_slow_min_gap": 2, # ema_slow must be at least ema_fast + this
 }
 _last_config_mtime  = 0.0
 _last_trade_time    = 0.0   # Unix timestamp of last trade placement
@@ -681,32 +681,28 @@ def technical_confirmation(signal: str, df: pd.DataFrame, h1_trend: str) -> tupl
     if signal == "SELL" and h1_trend != "DOWN":
         return False, f"TECH:H1={h1_trend} (need DOWN)"
 
-    # 2. RSI extreme exhaustion guard — only block truly extended moves.
-    #    RSI 27-30 on a SELL is momentum CONTINUING down, not a reversal signal.
-    #    We only skip if RSI signals the move is completely exhausted.
-    if signal == "BUY"  and rsi > 75:   # was 65 — too tight, missed valid buys
-        return False, f"TECH:RSI={rsi:.0f} overbought (>75)"
-    if signal == "SELL" and rsi < 20:   # was 30 — blocked valid sell continuations
-        return False, f"TECH:RSI={rsi:.0f} deeply oversold (<20)"
+    # 2. RSI not extended (avoid chasing)
+    if signal == "BUY"  and rsi > 65:
+        return False, f"TECH:RSI={rsi:.0f} overbought"
+    if signal == "SELL" and rsi < 30:
+        return False, f"TECH:RSI={rsi:.0f} oversold"
 
-    # 3. ATR momentum — body must show real intent, not just noise.
-    #    Was 30% — too strict on gold M5 where ATR ~6 meant needing 1.8pt bodies.
-    #    15% filters pure doji drift while allowing trend continuation candles.
-    if atr > 0 and body_size < atr * 0.15:
-        return False, f"TECH:body={body_size:.2f} < 15% ATR={atr:.2f} (drift)"
+    # 3. ATR momentum — candle body is a real move
+    if atr > 0 and body_size < atr * 0.30:
+        return False, f"TECH:body={body_size:.2f} < 30% ATR={atr:.2f} (drift)"
 
-    # 4. EMA separation — trend has conviction, not a flat cross.
+    # 4. EMA separation — trend has conviction, not a flat cross
     ema_sep_pct = abs(ema_fast - ema_slow) / close * 100
-    if ema_sep_pct < 0.03:   # was 0.05 — loosened to catch earlier in the cross
+    if ema_sep_pct < 0.05:
         return False, f"TECH:EMA gap={ema_sep_pct:.3f}% (flat, no conviction)"
 
-    # 5. Stale re-entry guard — EMA cross must be within last 5 candles.
-    #    Was 2 candles — far too strict. M5 trends legitimately run for many bars.
-    prev5_bull = [df.iloc[-(i+2)]['EMA_fast'] > df.iloc[-(i+2)]['EMA_slow'] for i in range(5)]
-    if signal == "BUY"  and all(prev5_bull):
-        return False, "TECH:stale BUY (EMA cross 5+ candles old)"
-    if signal == "SELL" and not any(prev5_bull):
-        return False, "TECH:stale SELL (EMA cross 5+ candles old)"
+    # 5. No stale re-entry — previous candle must not already have been in signal direction
+    prev_ema_bull  = prev['EMA_fast']  > prev['EMA_slow']
+    prev2_ema_bull = prev2['EMA_fast'] > prev2['EMA_slow']
+    if signal == "BUY"  and prev_ema_bull  and prev2_ema_bull:
+        return False, "TECH:stale BUY (EMA cross already 2+ candles old)"
+    if signal == "SELL" and not prev_ema_bull and not prev2_ema_bull:
+        return False, "TECH:stale SELL (EMA cross already 2+ candles old)"
 
     # 6. News blackout
     if is_high_impact_news_now():

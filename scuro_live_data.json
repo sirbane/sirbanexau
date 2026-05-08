@@ -1,6 +1,6 @@
 {
   "meta": {
-    "refreshed_at": "2026-05-08 10:40:40",
+    "refreshed_at": "2026-05-08 10:44:40",
     "symbol": "XAUUSDm",
     "magic": 777777,
     "lookback_days": 30
@@ -21,18 +21,18 @@
     "type": "demo"
   },
   "live_tick": {
-    "bid": 4707.54,
-    "ask": 4707.82,
-    "spread": 0.28,
-    "time": "2026-05-08 10:40:40"
+    "bid": 4707.75,
+    "ask": 4708.06,
+    "spread": 0.31,
+    "time": "2026-05-08 10:44:40"
   },
   "live_indicators": {
-    "rsi": 33.5,
-    "atr": 6.19,
-    "ema_fast": 4709.52,
-    "ema_slow": 4714.73,
+    "rsi": 33.7,
+    "atr": 6.29,
+    "ema_fast": 4709.59,
+    "ema_slow": 4711.8,
     "ema_trend": "DOWN",
-    "close": 4707.54
+    "close": 4707.75
   },
   "h1_trend": "UP",
   "stats": {
@@ -117,13 +117,13 @@
     "sl_atr_mult": 2.2,
     "trail_atr_mult": 1.4,
     "ema_fast": 5,
-    "ema_slow": 13,
+    "ema_slow": 8,
     "max_open_positions": 2,
     "cooldown_mins": 15,
     "circuit_breaker_daily_loss_enabled": false,
     "circuit_breaker_consecutive_losses_enabled": false,
-    "last_updated": "2026-05-07 12:00:00",
-    "update_reason": "manual reset \u00e2\u20ac\u201d restored safe EMA pair and SL distance",
+    "last_updated": "2026-05-08 00:00:00",
+    "update_reason": "switched EMA pair from 5/13 to 5/8 \u00e2\u20ac\u201d faster crossover signals",
     "cycle": 80
   }
 }

@@ -6,12 +6,12 @@
   "sl_atr_mult": 2.2,
   "trail_atr_mult": 1.4,
   "ema_fast": 5,
-  "ema_slow": 8,
+  "ema_slow": 13,
   "max_open_positions": 2,
   "cooldown_mins": 15,
   "circuit_breaker_daily_loss_enabled": false,
   "circuit_breaker_consecutive_losses_enabled": false,
-  "last_updated": "2026-05-08 00:00:00",
-  "update_reason": "switched EMA pair from 5/13 to 5/8 — faster crossover signals",
+  "last_updated": "2026-05-07 12:00:00",
+  "update_reason": "manual reset — restored safe EMA pair and SL distance",
   "cycle": 80
 }
