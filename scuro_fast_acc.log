@@ -4942,3 +4942,14 @@
 2026-05-08 10:40:18,724 | INFO  | ────────────────────────────────────────────────────────────────
 2026-05-08 10:40:18,726 | INFO  | 🔍 XAUUSDm | Price: 4709.06 | RSI: 35.3 | H1: UP | EMA: ↓ | Streak: 1L
 2026-05-08 10:40:18,726 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:41:00,022 | INFO  | 🔍 XAUUSDm | Price: 4707.90 | RSI: 34.1 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:41:00,023 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:42:00,595 | INFO  | 🔍 XAUUSDm | Price: 4707.34 | RSI: 33.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:42:00,596 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:43:00,145 | INFO  | 🔍 XAUUSDm | Price: 4709.16 | RSI: 35.5 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:43:00,148 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:44:00,624 | INFO  | 🔍 XAUUSDm | Price: 4709.01 | RSI: 35.2 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:44:00,625 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)
+2026-05-08 10:45:00,062 | WARNING |    🛡️  CONFIG GUARD blocked: ema_slow: 8 rejected (need >= ema_fast+5=10) — keeping 13
+2026-05-08 10:45:00,069 | INFO  | 🔍 XAUUSDm | Price: 4708.26 | RSI: 34.4 | H1: UP | EMA: ↓ | Streak: 1L
+2026-05-08 10:45:00,069 | INFO  |    ↳ No signal: EMA↓ but H1=UP (need DOWN)

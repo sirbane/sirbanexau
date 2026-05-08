@@ -1,29 +1,16 @@
-"""
-xau.py  ─  Scuro XAUUSD Scalper (Rebuilt)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Key changes from previous version:
-  • LLM confirmation gate REMOVED — replaced with pure technical_confirmation()
-    Zero API calls per trade. Zero rate limits. Zero latency. Never shoots blind.
-  • advisor.py handles all LLM work (once per 30 min) and tunes the filters.
-  • sync_mt5_history() moved OUT of the main tick loop → called once per minute only
-  • Hot-reload includes max_open_positions and cooldown_mins (advisor can control these)
-  • Daily loss circuit breaker: stops trading if daily P&L drops below DAILY_LOSS_LIMIT
-  • Consecutive loss circuit breaker: pauses after N consecutive losses
-  • News blackout: no trades within 15 min of high-impact events
-  • Stale signal filter: no re-entering an EMA cross that is 2+ candles old
-"""
-
 import MetaTrader5 as mt5
 import pandas as pd
 import pandas_ta as ta
 import time
 import os
+import csv
 import json
 import logging
 import requests
+import base64
 import xml.etree.ElementTree as ET
 from dotenv import load_dotenv
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 
 # ─── LOGGING SETUP ───────────────────────────────────────────
 logging.basicConfig(
@@ -40,48 +27,38 @@ load_dotenv()
 MT5_LOGIN    = os.getenv("MT5_LOGIN")
 MT5_PASSWORD = os.getenv("MT5_PASSWORD")
 MT5_SERVER   = os.getenv("MT5_SERVER")
-# NOTE: No GROQ_API_KEY needed in xau.py. The LLM gate has been removed.
-# Signal quality is enforced by tight technical filters + advisor-tuned parameters.
-# The only LLM in the system is advisor.py (runs every 30 min, tunes the filters).
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # ─── FIXED SETTINGS (never changed by advisor) ───────────────
 SYMBOL           = "XAUUSDm"
 TIMEFRAME        = mt5.TIMEFRAME_M5
 MAGIC_NUMBER     = 777777
+LOGIC_MODEL      = "llama-3.3-70b-versatile"
+SECONDARY_MODEL  = "llama-3.1-8b-instant"
 HISTORY_CSV      = "trade_history.csv"
 SUMMARY_INTERVAL = 10
 CONFIG_JSON      = "scuro_config.json"
 
-# Hard circuit breakers — advisor cannot override these
-DAILY_LOSS_LIMIT      = -500.0   # stop ALL trading if day's P&L drops below this (USD)
-MAX_CONSECUTIVE_LOSSES = 6       # pause trading after this many losses in a row
-
 # ─── ADAPTIVE CONFIG (hot-reloaded from advisor.py) ──────────
 _ADAPTIVE = {
     "accumulation_lot":   0.02,
-    "reward_ratio":       2.5,
-    "rsi_buy_threshold":  45,
-    "rsi_sell_threshold": 55,
+    "reward_ratio":       2.0,
+    "rsi_buy_threshold":  48,
+    "rsi_sell_threshold": 52,
     "sl_atr_mult":        1.8,
-    "trail_atr_mult":     1.4,
+    "trail_atr_mult":     1.2,
     "ema_fast":           5,
-    "ema_slow":           8,    # advisor floor enforced in load_adaptive_config()
-    "max_open_positions": 2,
-    "cooldown_mins":      15,
-    "circuit_breaker_daily_loss_enabled": True,
-    "circuit_breaker_consecutive_losses_enabled": True,
+    "ema_slow":           8,
+    # ── NEW: Dip-buy settings ─────────────────────────────────
+    # When H1 & H4 are both UP but price pulls below H1 EMA,
+    # we look for RSI to recover above this threshold as the
+    # "dip is done, time to buy" trigger.
+    "dip_rsi_recovery":   38,   # RSI must cross back above this
+    "dip_enabled":        True, # master switch for dip-buy logic
 }
-
-# Hard floors the advisor is NOT allowed to breach (enforced on hot-reload)
-_CONFIG_HARD_FLOORS = {
-    "sl_atr_mult":  1.4,   # below this stops get hunted on gold
-    "ema_slow_min_gap": 2, # ema_slow must be at least ema_fast + this
-}
-_last_config_mtime  = 0.0
-_last_trade_time    = 0.0   # Unix timestamp of last trade placement
+_last_config_mtime = 0.0
 
 def load_adaptive_config():
-    """Hot-reload scuro_config.json if it has changed on disk. Called once per minute."""
     global _ADAPTIVE, _last_config_mtime
     if not os.path.exists(CONFIG_JSON):
         return
@@ -92,146 +69,37 @@ def load_adaptive_config():
         with open(CONFIG_JSON) as f:
             cfg = json.load(f)
         _last_config_mtime = mtime
-        changed  = []
-        rejected = []
+        changed = []
         for key in _ADAPTIVE:
-            if key not in cfg or cfg[key] == _ADAPTIVE[key]:
-                continue
-            new_val = cfg[key]
-
-            # ── Hard floor: sl_atr_mult must stay >= 1.4 on gold ──
-            if key == "sl_atr_mult" and float(new_val) < _CONFIG_HARD_FLOORS["sl_atr_mult"]:
-                rejected.append(
-                    f"{key}: {new_val} rejected (floor={_CONFIG_HARD_FLOORS['sl_atr_mult']}) — keeping {_ADAPTIVE[key]}"
-                )
-                continue
-
-            # ── Hard rule: ema_slow must be at least ema_fast + 5 ──
-            if key == "ema_slow":
-                min_slow = int(_ADAPTIVE["ema_fast"]) + _CONFIG_HARD_FLOORS["ema_slow_min_gap"]
-                if int(new_val) < min_slow:
-                    rejected.append(
-                        f"ema_slow: {new_val} rejected (need >= ema_fast+5={min_slow}) — keeping {_ADAPTIVE['ema_slow']}"
-                    )
-                    continue
-            if key == "ema_fast":
-                max_fast = int(_ADAPTIVE["ema_slow"]) - _CONFIG_HARD_FLOORS["ema_slow_min_gap"]
-                if int(new_val) > max_fast:
-                    rejected.append(
-                        f"ema_fast: {new_val} rejected (need <= ema_slow-5={max_fast}) — keeping {_ADAPTIVE['ema_fast']}"
-                    )
-                    continue
-
-            changed.append(f"{key}: {_ADAPTIVE[key]} → {new_val}")
-            _ADAPTIVE[key] = new_val
-
+            if key in cfg and cfg[key] != _ADAPTIVE[key]:
+                changed.append(f"{key}: {_ADAPTIVE[key]} → {cfg[key]}")
+                _ADAPTIVE[key] = cfg[key]
         if changed:
             logger.info("🔄 ADVISOR UPDATE APPLIED:")
             for c in changed:
-                logger.info(f"   ★ {c}")
+                logger.info(f"   ✦ {c}")
             reason = cfg.get("update_reason", "")
             if reason:
                 logger.info(f"   💡 Reason: {reason}")
-        for r in rejected:
-            logger.warning(f"   🛡️  CONFIG GUARD blocked: {r}")
     except Exception as e:
         logger.warning(f"⚠️  Config reload error: {e}")
 
-# ─── CIRCUIT BREAKERS ────────────────────────────────────────
-
-def check_daily_loss_circuit_breaker() -> bool:
-    """
-    Returns True (HALT) if today's closed P&L from MT5 history is
-    below DAILY_LOSS_LIMIT. Checks robot trades only (MAGIC_NUMBER).
-    """
-    today_start = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-    tomorrow    = today_start + timedelta(days=1)
-    deals = mt5.history_deals_get(today_start, tomorrow)
-    if not deals:
-        return False
-
-    today_pnl = sum(
-        d.profit for d in deals
-        if d.symbol == SYMBOL
-        and d.magic == MAGIC_NUMBER
-        and d.entry == mt5.DEAL_ENTRY_OUT
-    )
-
-    if today_pnl <= DAILY_LOSS_LIMIT:
-        logger.warning(
-            f"🛑 CIRCUIT BREAKER: Daily P&L = {today_pnl:+.2f} "
-            f"(limit: {DAILY_LOSS_LIMIT:+.2f}) — trading halted for today"
-        )
-        return True
-    return False
-
-def check_consecutive_loss_circuit_breaker() -> bool:
-    """
-    Returns True (HALT) if the last N closed robot trades are all losses.
-    Looks at the most recent MAX_CONSECUTIVE_LOSSES deals.
-    """
-    date_from = datetime.now() - timedelta(days=7)
-    date_to   = datetime.now() + timedelta(days=1)
-    deals = mt5.history_deals_get(date_from, date_to)
-    if not deals:
-        return False
-
-    # Filter: closed robot trades only, newest first
-    closed = [
-        d for d in deals
-        if d.symbol == SYMBOL
-        and d.magic == MAGIC_NUMBER
-        and d.entry == mt5.DEAL_ENTRY_OUT
-    ]
-    closed.sort(key=lambda d: d.time, reverse=True)
-
-    recent = closed[:MAX_CONSECUTIVE_LOSSES]
-    if len(recent) < MAX_CONSECUTIVE_LOSSES:
-        return False
-
-    all_losses = all(d.profit < 0 for d in recent)
-    if all_losses:
-        logger.warning(
-            f"🛑 CIRCUIT BREAKER: Last {MAX_CONSECUTIVE_LOSSES} trades all losses — "
-            f"pausing for {_ADAPTIVE['cooldown_mins']} minutes"
-        )
-        return True
-    return False
-
-def count_consecutive_losses_current() -> int:
-    """Return the current active losing streak (for logging)."""
-    date_from = datetime.now() - timedelta(days=7)
-    date_to   = datetime.now() + timedelta(days=1)
-    deals = mt5.history_deals_get(date_from, date_to)
-    if not deals:
-        return 0
-    closed = sorted(
-        [d for d in deals if d.symbol == SYMBOL and d.magic == MAGIC_NUMBER and d.entry == mt5.DEAL_ENTRY_OUT],
-        key=lambda d: d.time, reverse=True
-    )
-    streak = 0
-    for d in closed:
-        if d.profit < 0:
-            streak += 1
-        else:
-            break
-    return streak
-
-# ─── TRADE HISTORY (CSV) ─────────────────────────────────────
-# The CSV is used for logging context (RSI, H1, AI reason) that MT5
-# doesn't store natively. advisor.py reads from MT5 directly now,
-# so the CSV is just a diagnostic log.
-
+# ─── TRADE HISTORY ───────────────────────────────────────────
 HISTORY_COLS = [
     "ticket", "open_time", "close_time", "symbol", "direction",
     "lot", "entry_price", "sl", "tp",
     "close_price", "profit", "outcome",
     "rsi", "h1_trend", "news", "ai_reason",
+    "signal_type",   # NEW: tracks "TREND" vs "DIP" so we can analyse which works better
 ]
 
 def _load_history() -> pd.DataFrame:
     if os.path.exists(HISTORY_CSV):
-        return pd.read_csv(HISTORY_CSV, dtype={"ticket": str})
+        df = pd.read_csv(HISTORY_CSV, dtype={"ticket": str})
+        # Back-fill signal_type for old rows that don't have it
+        if "signal_type" not in df.columns:
+            df["signal_type"] = "TREND"
+        return df
     return pd.DataFrame(columns=HISTORY_COLS)
 
 def _save_history(df: pd.DataFrame):
@@ -241,15 +109,13 @@ def _fmt_ts(unix_ts: int) -> str:
     return datetime.fromtimestamp(unix_ts).strftime("%Y-%m-%d %H:%M:%S")
 
 def sync_mt5_history():
-    """
-    Pull closed MT5 deals for SYMBOL and upsert into trade_history.csv.
-    Called ONCE PER MINUTE (not on every tick) to avoid performance issues.
-    """
+    from datetime import timedelta
     date_from = datetime(2000, 1, 1)
     date_to   = datetime.now() + timedelta(days=1)
 
     deals = mt5.history_deals_get(date_from, date_to)
     if deals is None:
+        logger.warning("⚠️  MT5 returned no deal history.")
         return
 
     entries: dict = {}
@@ -267,16 +133,16 @@ def sync_mt5_history():
     if not exits:
         return
 
-    df               = _load_history()
+    df              = _load_history()
     existing_tickets = set(df["ticket"].astype(str).tolist())
-    new_rows         = []
-    updated          = False
+    new_rows        = []
+    updated         = False
 
     for pid, out_deal in exits.items():
-        in_deal = entries.get(pid)
-        ticket  = pid
-        profit  = round(out_deal.profit, 2)
-        outcome = "WIN" if profit > 0 else ("LOSS" if profit < 0 else "BE")
+        in_deal  = entries.get(pid)
+        ticket   = pid
+        profit   = round(out_deal.profit, 2)
+        outcome  = "WIN" if profit > 0 else ("LOSS" if profit < 0 else "BE")
 
         if ticket in existing_tickets:
             mask = (df["ticket"].astype(str) == ticket) & (df["outcome"] == "OPEN")
@@ -288,10 +154,10 @@ def sync_mt5_history():
                 logger.info(f"📊 Trade #{ticket} closed → {outcome} | P&L: {profit:+.2f}")
                 updated = True
         else:
-            direction   = "BUY"  if (in_deal and in_deal.type == mt5.DEAL_TYPE_BUY) else "SELL"
+            direction   = "BUY"  if (in_deal and in_deal.type == mt5.DEAL_TYPE_BUY)  else "SELL"
             entry_price = round(in_deal.price, 2) if in_deal else round(out_deal.price, 2)
-            open_time   = _fmt_ts(in_deal.time) if in_deal else ""
-            lot         = in_deal.volume if in_deal else out_deal.volume
+            open_time   = _fmt_ts(in_deal.time)  if in_deal else ""
+            lot         = in_deal.volume          if in_deal else out_deal.volume
 
             sl, tp = "", ""
             orders = mt5.history_orders_get(position=int(pid))
@@ -317,18 +183,19 @@ def sync_mt5_history():
                 "h1_trend":    "N/A",
                 "news":        "N/A",
                 "ai_reason":   "historical",
+                "signal_type": "HISTORICAL",
             })
 
     if new_rows:
         df = pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True)
         df = df.sort_values("open_time", na_position="last").reset_index(drop=True)
-        logger.info(f"📥 Synced {len(new_rows)} new trade(s) into {HISTORY_CSV}")
+        logger.info(f"📥 Synced {len(new_rows)} new historical trade(s) into {HISTORY_CSV}")
         updated = True
 
     if updated:
         _save_history(df)
 
-def record_trade_open(ticket, signal, price, sl, tp, rsi, h1_trend, news, ai_reason):
+def record_trade_open(ticket, signal, price, sl, tp, rsi, h1_trend, news, ai_reason, signal_type="TREND"):
     df  = _load_history()
     row = {
         "ticket":      str(ticket),
@@ -347,10 +214,11 @@ def record_trade_open(ticket, signal, price, sl, tp, rsi, h1_trend, news, ai_rea
         "h1_trend":    h1_trend,
         "news":        news,
         "ai_reason":   ai_reason,
+        "signal_type": signal_type,
     }
     df = pd.concat([df, pd.DataFrame([row])], ignore_index=True)
     _save_history(df)
-    logger.info(f"📋 Trade #{ticket} logged to {HISTORY_CSV}")
+    logger.info(f"📋 Trade #{ticket} logged to {HISTORY_CSV} [{signal_type}]")
 
 def print_summary_table():
     df = _load_history()
@@ -358,374 +226,391 @@ def print_summary_table():
         logger.info("📋 No trade history yet.")
         return
 
-    closed     = df[df["outcome"] != "OPEN"]
-    wins       = len(closed[closed["outcome"] == "WIN"])
-    losses     = len(closed[closed["outcome"] == "LOSS"])
-    be         = len(closed[closed["outcome"] == "BE"])
-    open_n     = len(df[df["outcome"] == "OPEN"])
-    wr         = (wins / len(closed) * 100) if len(closed) > 0 else 0.0
-    pnl_series = pd.to_numeric(closed["profit"], errors="coerce").dropna()
-    total_pnl  = pnl_series.sum()
-    pf         = round(pnl_series[pnl_series > 0].sum() / abs(pnl_series[pnl_series < 0].sum()), 2) \
-                 if abs(pnl_series[pnl_series < 0].sum()) > 0 else 999
+    closed      = df[df["outcome"] != "OPEN"]
+    wins        = len(closed[closed["outcome"] == "WIN"])
+    losses      = len(closed[closed["outcome"] == "LOSS"])
+    be          = len(closed[closed["outcome"] == "BE"])
+    open_n      = len(df[df["outcome"] == "OPEN"])
+    wr          = (wins / len(closed) * 100) if len(closed) > 0 else 0.0
+    pnl_series  = pd.to_numeric(closed["profit"], errors="coerce").dropna()
+    total_pnl   = pnl_series.sum()
+    best_trade  = pnl_series.max() if not pnl_series.empty else 0
+    worst_trade = pnl_series.min() if not pnl_series.empty else 0
 
-    acct    = mt5.account_info()
-    balance = acct.balance if acct else "N/A"
-    streak  = count_consecutive_losses_current()
+    # ── NEW: Break down by signal type ───────────────────────
+    if "signal_type" in closed.columns:
+        dip_trades  = closed[closed["signal_type"] == "DIP"]
+        trend_trades = closed[closed["signal_type"] == "TREND"]
+        dip_pnl     = pd.to_numeric(dip_trades["profit"], errors="coerce").sum()
+        trend_pnl   = pd.to_numeric(trend_trades["profit"], errors="coerce").sum()
+        dip_wr      = (len(dip_trades[dip_trades["outcome"] == "WIN"]) / len(dip_trades) * 100) if len(dip_trades) > 0 else 0
+        trend_wr    = (len(trend_trades[trend_trades["outcome"] == "WIN"]) / len(trend_trades) * 100) if len(trend_trades) > 0 else 0
+    else:
+        dip_pnl = trend_pnl = dip_wr = trend_wr = 0
+        dip_trades = trend_trades = pd.DataFrame()
+
+    account_info = mt5.account_info()
+    balance = account_info.balance if account_info else "N/A"
 
     sep = "─" * 64
     logger.info(sep)
-    logger.info("📊  SCURO TRADE SUMMARY")
+    logger.info("📊  SCURO TRADE HISTORY SUMMARY")
     logger.info(sep)
-    logger.info(f"  Trades : {len(df)}  (Open: {open_n}  Closed: {len(closed)})")
-    logger.info(f"  Results: ✅ {wins}W  ❌ {losses}L  〰 {be}BE  |  WR: {wr:.1f}%  PF: {pf}")
-    logger.info(f"  P&L    : {total_pnl:+.2f} | Loss streak: {streak}")
-    logger.info(f"  Balance: {balance:,.2f}" if balance != "N/A" else f"  Balance: {balance}")
-    logger.info(f"  Config : lot={_ADAPTIVE['accumulation_lot']} rr={_ADAPTIVE['reward_ratio']} "
-                f"rsi={_ADAPTIVE['rsi_buy_threshold']}/{_ADAPTIVE['rsi_sell_threshold']} "
-                f"cool={_ADAPTIVE['cooldown_mins']}m max_pos={_ADAPTIVE['max_open_positions']}")
+    logger.info(f"  Total Trades : {len(df)}  (Open: {open_n}  Closed: {len(closed)})")
+    logger.info(f"  Results      : ✅ Wins: {wins}  ❌ Losses: {losses}  〰 BE: {be}")
+    logger.info(f"  Win Rate     : {wr:.1f}%")
+    logger.info(f"  Total P&L    : {total_pnl:+.2f} KES")
+    logger.info(f"  Best Trade   : {best_trade:+.2f} KES")
+    logger.info(f"  Worst Trade  : {worst_trade:+.2f} KES")
+    logger.info(f"  💰 Balance    : {balance:,.2f} KES" if balance != "N/A" else f"  💰 Balance    : {balance}")
+    logger.info(sep)
+    # Signal type breakdown
+    logger.info(f"  📈 TREND signals : {len(trend_trades)} trades | WR: {trend_wr:.1f}% | P&L: {trend_pnl:+.2f}")
+    logger.info(f"  📉 DIP signals   : {len(dip_trades)} trades | WR: {dip_wr:.1f}% | P&L: {dip_pnl:+.2f}")
     logger.info(sep)
 
     recent = df.tail(10)
     logger.info("  LAST 10 TRADES:")
-    logger.info(f"  {'Opened':<20} {'Dir':<5} {'Entry':>8} {'SL':>8} {'TP':>8} {'Close':>8} {'P&L':>7}  Result")
-    logger.info("  " + "·" * 62)
+    logger.info(f"  {'Opened':<20} {'Dir':<5} {'Type':<6} {'Entry':>8} {'SL':>8} "
+                f"{'TP':>8} {'Close':>8} {'P&L':>7}  Result")
+    logger.info("  " + "·" * 70)
     for _, r in recent.iterrows():
         try:
             pnl_str = f"{float(r['profit']):+.2f}"
         except (ValueError, TypeError):
             pnl_str = "  OPEN"
         close_str = str(r['close_price']) if r['close_price'] != "" else "  —"
+        stype = str(r.get('signal_type', 'TREND'))[:5]
         logger.info(
             f"  {str(r['open_time']):<20} {str(r['direction']):<5} "
-            f"{float(r['entry_price']):>8.2f} "
-            f"{str(r['sl']):>8} {str(r['tp']):>8} "
-            f"{close_str:>8} {pnl_str:>7}  {r['outcome']}"
+            f"{stype:<6} "
+            f"{float(r['entry_price']):>8.2f} {float(r['sl']):>8.2f} "
+            f"{float(r['tp']):>8.2f} {close_str:>8} {pnl_str:>7}  {r['outcome']}"
         )
     logger.info(sep)
 
+# ─── RATE LIMITER ────────────────────────────────────────────
+class GroqLimiter:
+    def __init__(self, rpm):
+        self.interval = 60.0 / rpm
+        self.last_call = 0.0
+    def wait(self):
+        elapsed = time.time() - self.last_call
+        if (gap := self.interval - elapsed) > 0: time.sleep(gap)
+        self.last_call = time.time()
+
+_limiter = GroqLimiter(20)
+
+# ─── TOKEN BUDGETER ──────────────────────────────────────────
+import re as _re
+from datetime import date as _date
+
+class TokenBudgeter:
+    DAILY_LIMIT      = 100_000
+    SAFETY_BUFFER    = 10_000
+    TOKENS_PER_CALL  = 350
+
+    def __init__(self):
+        self.tokens_used  = 0
+        self.calls_today  = 0
+        self.last_reset   = _date.today()
+        self._rate_limited_until = 0.0
+
+    def _maybe_reset(self):
+        today = _date.today()
+        if today != self.last_reset:
+            logger.info(f"🌅 New day — resetting token budget (used {self.tokens_used:,} yesterday)")
+            self.tokens_used = 0
+            self.calls_today = 0
+            self.last_reset  = today
+            self._rate_limited_until = 0.0
+
+    def budget_remaining(self) -> int:
+        self._maybe_reset()
+        return self.DAILY_LIMIT - self.tokens_used
+
+    def can_call_ai(self) -> bool:
+        self._maybe_reset()
+        if time.time() < self._rate_limited_until:
+            return False
+        return self.budget_remaining() > self.SAFETY_BUFFER
+
+    def record_call(self, tokens: int = None):
+        self._maybe_reset()
+        spent = tokens if tokens else self.TOKENS_PER_CALL
+        self.tokens_used += spent
+        self.calls_today += 1
+
+    def parse_and_sleep_rate_limit(self, error_message: str) -> float:
+        match = _re.search(
+            r'try again in\s+(?:(\d+)m\s*)?(\d+(?:\.\d+)?s)?',
+            error_message, _re.IGNORECASE
+        )
+        if not match:
+            wait = 60.0
+        else:
+            minutes = int(match.group(1)) if match.group(1) else 0
+            seconds = float(match.group(2).rstrip('s')) if match.group(2) else 0.0
+            wait = minutes * 60 + seconds
+
+        wait = max(wait, 10.0)
+        self._rate_limited_until = time.time() + wait
+        logger.warning(
+            f"⏳ Rate limit hit — sleeping {wait:.0f}s "
+            f"(budget remaining: {self.budget_remaining():,} tokens)"
+        )
+        time.sleep(wait)
+        return wait
+
+    def status_line(self) -> str:
+        self._maybe_reset()
+        pct = self.tokens_used / self.DAILY_LIMIT * 100
+        return (f"🪙 Tokens: {self.tokens_used:,}/{self.DAILY_LIMIT:,} "
+                f"({pct:.0f}% used) | AI calls today: {self.calls_today}")
+
+_budgeter = TokenBudgeter()
+
 # ─── CORE UTILITIES ──────────────────────────────────────────
 
-def get_h1_context() -> str:
-    """Returns H1 trend direction based on price vs EMA-50."""
+def get_h1_context():
+    """Returns H1 trend direction AND the current H1 EMA50 price level."""
     rates = mt5.copy_rates_from_pos(SYMBOL, mt5.TIMEFRAME_H1, 0, 50)
-    if rates is None:
-        return "UNKNOWN"
+    if rates is None: return "UNKNOWN", None
+    df    = pd.DataFrame(rates)
+    ema50 = ta.ema(df['close'], length=50).iloc[-1]
+    trend = "UP" if df['close'].iloc[-1] > ema50 else "DOWN"
+    return trend, ema50   # ← NOW returns the EMA price too
+
+def get_h4_context():
+    rates = mt5.copy_rates_from_pos(SYMBOL, mt5.TIMEFRAME_H4, 0, 50)
+    if rates is None: return "UNKNOWN"
     df    = pd.DataFrame(rates)
     ema50 = ta.ema(df['close'], length=50).iloc[-1]
     return "UP" if df['close'].iloc[-1] > ema50 else "DOWN"
 
-# ─── NEWS CACHE ──────────────────────────────────────────────
-# Economic calendars don't change every minute.
-# We fetch once every 30 min and cache the result so every source
-# only gets ~2 requests/hour instead of 60 — no more 429s.
-#
-# Source waterfall (tried in order, first success wins):
-#   1. Finnhub  — proper financial API, free tier, very reliable.
-#      Add FINNHUB_KEY=your_key to your .env (free at finnhub.io).
-#   2. nfs.faireconomy.media — ForexFactory mirror, allows bots.
-#   3. forexfactory.com — original, blocks most bots but worth a try.
-#
-# If every source fails, is_high_impact_news_now() falls back to a
-# TIME-BASED BLACKOUT — blocking trades during the fixed windows when
-# major USD data almost always drops (8:30, 10:00, 14:00 EST).
-# This means the bot is ALWAYS protected, even without internet.
+def generate_chart_text_summary(df: pd.DataFrame, last_n: int = 7) -> str:
+    recent = df.tail(last_n).reset_index(drop=True)
+    if len(recent) == 0:
+        return "No data"
+    lines = []
+    for _, row in recent.iterrows():
+        direction = "UP" if row['close'] > row['open'] else "DN"
+        lines.append(
+            f"C:{row['close']:.2f} RSI:{row.get('RSI',0):.0f} "
+            f"ATR:{row.get('ATR',0):.2f} {direction}"
+        )
+    curr = recent.iloc[-1]
+    trend = "BULL" if curr.get('EMA_5', 0) > curr.get('EMA_8', 0) else "BEAR"
+    lines.append(f"NOW:{curr['close']:.2f} RSI:{curr.get('RSI',0):.1f} {trend}")
+    return " | ".join(lines)
 
-FINNHUB_KEY = os.getenv("FINNHUB_KEY", "")   # free at finnhub.io
+def fetch_news():
+    try:
+        url  = "https://www.forexfactory.com/ff_calendar_thisweek.xml"
+        r    = requests.get(url, timeout=10)
+        root = ET.fromstring(r.content)
+        events = [item.find('title').text for item in root.findall('event')
+                  if item.find('impact').text in ['High', 'Medium']]
+        return " | ".join(events[:2]) if events else "Quiet"
+    except: return "Offline"
 
-# Known high-impact USD release windows (UTC hour, minute).
-# EST = UTC-5 in winter, UTC-4 in summer — we use UTC to avoid DST bugs.
-# 8:30 EST = 13:30 UTC | 10:00 EST = 15:00 UTC | 14:00 EST = 19:00 UTC
-_HIGH_IMPACT_UTC_WINDOWS = [
-    (13, 30),   # 8:30 AM EST  — NFP, CPI, PPI, jobless claims, retail sales
-    (15,  0),   # 10:00 AM EST — ISM, consumer confidence, existing home sales
-    (19,  0),   # 2:00 PM EST  — FOMC rate decision
-    (19, 30),   # 2:30 PM EST  — FOMC press conference
-]
-_NEWS_BLACKOUT_MINS = 20   # block ±20 min around each window
+def _groq_chat(headers: dict, model: str, prompt: str, timeout: int = 15) -> str:
+    resp = requests.post(
+        "https://api.groq.com/openai/v1/chat/completions",
+        headers=headers,
+        json={"model": model, "messages": [{"role": "user", "content": prompt}], "max_tokens": 50},
+        timeout=timeout,
+    )
+    data = resp.json()
+
+    if "choices" not in data:
+        err      = data.get("error", {})
+        err_type = err.get("type", "unknown")
+        err_msg  = err.get("message", str(data))
+        if err_type in ("tokens", "rate_limit_exceeded") or "rate limit" in err_msg.lower():
+            _budgeter.parse_and_sleep_rate_limit(err_msg)
+        raise Exception(f"Groq [{err_type}]: {err_msg}")
+
+    _budgeter.record_call()
+    return data["choices"][0]["message"]["content"].strip().upper()
 
 
-def _is_in_time_blackout() -> bool:
+def _rule_based_confirm(signal: str, rsi: float, h1_trend: str, h4_trend: str,
+                        signal_type: str = "TREND") -> bool:
     """
-    Pure time-based guard — no network required.
-    Blocks trading during the ±20-minute window around each known
-    high-impact USD release time (in UTC).
-    Used as a fallback when all calendar sources are unreachable.
+    Pure math fallback when AI budget is exhausted.
+    Now handles both TREND and DIP signal types.
     """
-    now_utc = datetime.now(timezone.utc)
-    for h, m in _HIGH_IMPACT_UTC_WINDOWS:
-        window_start = now_utc.replace(hour=h, minute=m, second=0, microsecond=0)
-        delta_secs   = (now_utc - window_start).total_seconds()
-        if -(_NEWS_BLACKOUT_MINS * 60) <= delta_secs <= (_NEWS_BLACKOUT_MINS * 60):
-            logger.warning(
-                f"🕐 Time blackout: near known high-impact window "
-                f"{h:02d}:{m:02d} UTC (±{_NEWS_BLACKOUT_MINS} min) — skipping trade"
-            )
-            return True
+    if signal_type == "DIP":
+        # For dip buys: both higher timeframes must be UP, RSI recovering
+        return h1_trend == "UP" and h4_trend == "UP" and rsi > _ADAPTIVE.get("dip_rsi_recovery", 38)
+    if signal == "BUY":
+        return h1_trend == "UP" and h4_trend == "UP" and rsi > 45
+    elif signal == "SELL":
+        return h1_trend == "DOWN" and h4_trend == "DOWN" and rsi < 55
     return False
 
 
-class _NewsCache:
-    TTL_SECONDS = 1800   # fetch at most once every 30 minutes
-
-    HEADERS = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/124.0.0.0 Safari/537.36"
-        ),
-        "Accept": "application/xml,text/xml,*/*;q=0.9",
-        "Accept-Language": "en-US,en;q=0.9",
-    }
-
-    def __init__(self):
-        self._events: list[dict] = []
-        self._label:  str        = "Offline"
-        self._fetched_at: float  = 0.0
-        self._source_ok:  str    = ""   # which source last succeeded
-
-    def _is_stale(self) -> bool:
-        return (time.time() - self._fetched_at) > self.TTL_SECONDS
-
-    # ── Source 1: Finnhub ─────────────────────────────────────
-    def _try_finnhub(self) -> list[dict] | None:
-        """
-        Finnhub free economic calendar.
-        Endpoint: /calendar/economic  (returns JSON)
-        Sign up free at https://finnhub.io — takes ~30 seconds.
-        Add FINNHUB_KEY=your_key to your .env file.
-        """
-        if not FINNHUB_KEY:
-            return None   # skip silently if not configured
-        today = datetime.now()
-        week_end = today + __import__('datetime').timedelta(days=7)
-        url = (
-            f"https://finnhub.io/api/v1/calendar/economic"
-            f"?from={today.strftime('%Y-%m-%d')}"
-            f"&to={week_end.strftime('%Y-%m-%d')}"
-            f"&token={FINNHUB_KEY}"
+def get_dual_ai_consensus(signal, rsi, atr, h1_trend, h4_trend, news,
+                          chart_text="", signal_type="TREND"):
+    if not _budgeter.can_call_ai():
+        confirmed = _rule_based_confirm(signal, rsi, h1_trend, h4_trend, signal_type)
+        remaining = _budgeter.budget_remaining()
+        logger.warning(
+            f"⚠️  AI budget low ({remaining:,} tokens left) — "
+            f"rule-based decision: {'CONFIRM' if confirmed else 'REJECT'}"
         )
-        r = requests.get(url, timeout=12)
-        r.raise_for_status()
-        data = r.json()
-        events = []
-        for ev in data.get("economicCalendar", []):
-            if ev.get("country") != "US":
-                continue
-            impact = ev.get("impact", "").capitalize()
-            if impact not in ("High", "Medium"):
-                continue
-            event_dt = None
-            try:
-                event_dt = datetime.strptime(ev["time"], "%Y-%m-%d %H:%M:%S")
-            except Exception:
-                pass
-            events.append({
-                "title":  ev.get("event", "Unknown"),
-                "impact": impact,
-                "dt":     event_dt,
-            })
-        return events
+        tag = "RULE" if confirmed else "RULE-NO"
+        return confirmed, f"L:{tag} S:SKIP"
 
-    # ── Source 2 & 3: ForexFactory XML (mirror + original) ────
-    def _try_ff_xml(self, url: str) -> list[dict] | None:
-        r = requests.get(url, headers=self.HEADERS, timeout=12)
-        r.raise_for_status()
-        root = ET.fromstring(r.content)
-        now  = datetime.now()
-        events = []
-        for item in root.findall("event"):
-            impact_el   = item.find("impact")
-            title_el    = item.find("title")
-            currency_el = item.find("currency")
-            date_el     = item.find("date")
-            time_el     = item.find("time")
-            if not impact_el or not title_el:
-                continue
-            impact   = impact_el.text   or ""
-            currency = currency_el.text if currency_el is not None else ""
-            if impact not in ("High", "Medium") or currency != "USD":
-                continue
-            event_dt = None
-            raw_time = (time_el.text or "").strip() if time_el is not None else ""
-            if date_el is not None and raw_time:
-                try:
-                    event_dt = datetime.strptime(
-                        f"{date_el.text} {raw_time}", "%a %b %d %I:%M%p"
-                    ).replace(year=now.year)
-                except Exception:
-                    pass
-            events.append({
-                "title":  title_el.text or "",
-                "impact": impact,
-                "dt":     event_dt,
-            })
-        return events
+    headers = {"Authorization": f"Bearer {GROQ_API_KEY}", "Content-Type": "application/json"}
 
-    def _fetch_and_parse(self):
-        """Try all sources in order. Cache whichever succeeds first."""
-        sources = [
-            ("Finnhub",          lambda: self._try_finnhub()),
-            ("nfs.faireconomy",  lambda: self._try_ff_xml(
-                "https://nfs.faireconomy.media/ff_calendar_thisweek.xml")),
-            ("ForexFactory",     lambda: self._try_ff_xml(
-                "https://www.forexfactory.com/ff_calendar_thisweek.xml")),
-        ]
+    _limiter.wait()
+    try:
+        # Tell the AI which type of signal this is so it judges it correctly
+        type_note = (
+            "This is a DIP-BUY: trend is UP on H1+H4 but price pulled back. "
+            "Confirm if the dip looks done and momentum is recovering."
+            if signal_type == "DIP"
+            else "Standard trend-following signal."
+        )
+        l_prompt = (
+            f"{SYMBOL} {signal} | RSI:{rsi:.1f} H1:{h1_trend} H4:{h4_trend} News:{news}\n"
+            f"Chart: {chart_text}\n"
+            f"{type_note}\n"
+            f"Reply CONFIRM or REJECT only."
+        )
+        l_res = _groq_chat(headers, LOGIC_MODEL, l_prompt)
+    except Exception as e:
+        logger.error(f"❌ Logic agent error: {e}")
+        confirmed = _rule_based_confirm(signal, rsi, h1_trend, h4_trend, signal_type)
+        logger.info(f"🔄 Fallback rule decision: {'CONFIRM' if confirmed else 'REJECT'}")
+        return confirmed, f"L:FALLBK S:SKIP"
 
-        for name, fetcher in sources:
-            try:
-                events = fetcher()
-                if events is None:
-                    continue   # source skipped (e.g. no API key)
-                self._events     = events
-                self._fetched_at = time.time()
-                self._source_ok  = name
-                tags = [
-                    ("🔴" if e["impact"] == "High" else "🟡") + e["title"]
-                    for e in events[:2]
-                ]
-                self._label = " | ".join(tags) if tags else "Quiet"
-                logger.info(
-                    f"📰 News cache refreshed via {name} "
-                    f"({len(events)} USD events) — next fetch in 30 min"
-                )
-                return   # success
-            except requests.exceptions.HTTPError as e:
-                logger.warning(f"⚠️  News [{name}] HTTP {e.response.status_code} — trying next")
-            except requests.exceptions.Timeout:
-                logger.warning(f"⚠️  News [{name}] timed out — trying next")
-            except Exception as e:
-                logger.warning(f"⚠️  News [{name}] error: {e} — trying next")
+    v_res = "CONFIRM"
+    _limiter.wait()
+    try:
+        v_prompt = f"{signal} on {SYMBOL}? {chart_text} [{signal_type}] Reply CONFIRM or REJECT only."
+        v_res = _groq_chat(headers, SECONDARY_MODEL, v_prompt)
+        logger.info(f"✅ Both agents OK | {_budgeter.status_line()}")
+    except Exception as e:
+        logger.warning(f"⚠️  Secondary check failed: {e} — logic agent decides alone")
 
-        # All sources failed
-        if self._fetched_at > 0:
-            logger.warning("⚠️  All news sources down — reusing cached data")
-        else:
-            logger.error("❌ All news sources failed and no cache — using time blackout")
-            self._label = "Offline"
-
-    def get_label(self) -> str:
-        if self._is_stale():
-            self._fetch_and_parse()
-        return self._label
-
-    def is_high_impact_imminent(self, window_secs: int = 900) -> bool:
-        """
-        Returns True if a High-impact USD event is within window_secs.
-        Falls back to time-based blackout if all sources are unavailable.
-        """
-        if self._is_stale():
-            self._fetch_and_parse()
-
-        # If we have real calendar data, use it
-        if self._fetched_at > 0 and self._events:
-            now = datetime.now()
-            for ev in self._events:
-                if ev["impact"] != "High" or ev["dt"] is None:
-                    continue
-                delta = (ev["dt"] - now).total_seconds()
-                if -window_secs <= delta <= window_secs:
-                    mins = round(delta / 60, 1)
-                    logger.warning(
-                        f"📰 High-impact news in {mins} min ({ev['title']}) — skipping trade"
-                    )
-                    return True
-            return False
-
-        # No calendar data at all — fall back to time-based blackout
-        return _is_in_time_blackout()
+    return ("CONFIRM" in l_res and "CONFIRM" in v_res), f"L:{l_res[:8]} S:{v_res[:8]}"
 
 
-_news_cache = _NewsCache()
+# ─── NEW: DIP DETECTION ──────────────────────────────────────
+# This is the fix for the "frozen bot" gap identified from the charts.
+#
+# WHAT IT DOES IN PLAIN ENGLISH:
+#   Imagine you're watching gold on the big picture (H4, H1) — the
+#   trend is clearly going UP. But right now on the 5-minute chart,
+#   price has pulled back and the short EMAs have crossed down.
+#   The bot's normal BUY rule would miss this because it requires the
+#   short EMAs to be going UP on M5.
+#
+#   This function detects exactly that situation:
+#   "Big trend = UP, short-term = pulling back, RSI suggesting
+#    the dip might be over" → flag it as a DIP_BUY opportunity.
+#
+# SAFETY CHECKS:
+#   1. Only fires when H1 AND H4 are both trending UP (gold must be
+#      in a genuine uptrend on multiple timeframes)
+#   2. Price must have actually fallen BELOW the H1 EMA50 (real dip,
+#      not just a tiny wobble)
+#   3. RSI on M5 must have recovered above dip_rsi_recovery (38 by
+#      default) — this filters out dips that are still falling
+#   4. Current M5 candle must close UP (green candle = buyers stepping in)
+#   5. We count how many candles price has been below H1 EMA and
+#      require at least 2 (avoids false positives on brief spikes)
+#   6. Checks existing open positions to avoid over-stacking
 
+_dip_candles_below_h1: int = 0   # rolling counter — resets when price is above H1 EMA
 
-def fetch_news() -> str:
-    """Return a short string of upcoming high/medium USD news events."""
-    return _news_cache.get_label()
-
-
-def is_high_impact_news_now() -> bool:
-    """True if a High-impact USD event is within 15 minutes of now."""
-    return _news_cache.is_high_impact_imminent(window_secs=900)
-
-def technical_confirmation(signal: str, df: pd.DataFrame, h1_trend: str) -> tuple[bool, str]:
+def check_dip_buy_signal(curr, prev, df, h1_trend: str, h4_trend: str,
+                          h1_ema_price: float) -> bool:
     """
-    Pure technical gate — replaces the LLM confirmation entirely.
-    Zero latency, zero API calls, never rate-limits.
-
-    Rules (ALL must pass):
-      1. H1 trend alignment — trade WITH the higher timeframe
-      2. RSI not in extreme zone — avoids chasing overbought/oversold exhaustion
-      3. ATR momentum — candle body >= 30% of ATR (real move, not drift)
-      4. EMA separation — fast/slow gap >= 0.05% of price (trend has conviction)
-      5. No back-to-back signals — previous candle must NOT also have been a signal
-         in the same direction (prevents re-entering a stale move)
-      6. No high-impact news within 15 minutes
+    Returns True when all dip-buy conditions are met.
+    Updates the global counter _dip_candles_below_h1.
     """
-    curr  = df.iloc[-1]
-    prev  = df.iloc[-2]
-    prev2 = df.iloc[-3]
+    global _dip_candles_below_h1
 
-    rsi       = curr['RSI']
-    atr       = curr['ATR']
-    ema_fast  = curr['EMA_fast']
-    ema_slow  = curr['EMA_slow']
-    close     = curr['close']
-    body_size = abs(curr['close'] - curr['open'])
+    # Master switch
+    if not _ADAPTIVE.get("dip_enabled", True):
+        return False
 
-    reasons = []
+    # Condition 1: Both higher timeframes bullish
+    if h1_trend != "UP" or h4_trend != "UP":
+        _dip_candles_below_h1 = 0
+        return False
 
-    # 1. H1 trend alignment
-    if signal == "BUY"  and h1_trend != "UP":
-        return False, f"TECH:H1={h1_trend} (need UP)"
-    if signal == "SELL" and h1_trend != "DOWN":
-        return False, f"TECH:H1={h1_trend} (need DOWN)"
+    # H1 EMA price must be valid
+    if h1_ema_price is None:
+        return False
 
-    # 2. RSI not extended (avoid chasing)
-    if signal == "BUY"  and rsi > 65:
-        return False, f"TECH:RSI={rsi:.0f} overbought"
-    if signal == "SELL" and rsi < 30:
-        return False, f"TECH:RSI={rsi:.0f} oversold"
+    current_price = curr['close']
 
-    # 3. ATR momentum — candle body is a real move
-    if atr > 0 and body_size < atr * 0.30:
-        return False, f"TECH:body={body_size:.2f} < 30% ATR={atr:.2f} (drift)"
+    # Condition 2: Price is below the H1 EMA (we're in a dip)
+    if current_price >= h1_ema_price:
+        _dip_candles_below_h1 = 0   # back above EMA — reset counter
+        return False
 
-    # 4. EMA separation — trend has conviction, not a flat cross
-    ema_sep_pct = abs(ema_fast - ema_slow) / close * 100
-    if ema_sep_pct < 0.05:
-        return False, f"TECH:EMA gap={ema_sep_pct:.3f}% (flat, no conviction)"
+    # Count how many consecutive M5 candles have been below H1 EMA
+    _dip_candles_below_h1 += 1
 
-    # 5. No stale re-entry — previous candle must not already have been in signal direction
-    prev_ema_bull  = prev['EMA_fast']  > prev['EMA_slow']
-    prev2_ema_bull = prev2['EMA_fast'] > prev2['EMA_slow']
-    if signal == "BUY"  and prev_ema_bull  and prev2_ema_bull:
-        return False, "TECH:stale BUY (EMA cross already 2+ candles old)"
-    if signal == "SELL" and not prev_ema_bull and not prev2_ema_bull:
-        return False, "TECH:stale SELL (EMA cross already 2+ candles old)"
+    # Condition 3: RSI recovering (above the dip threshold, not still falling)
+    rsi = curr.get('RSI', 50)
+    if rsi < _ADAPTIVE.get("dip_rsi_recovery", 38):
+        return False
 
-    # 6. News blackout
-    if is_high_impact_news_now():
-        return False, "TECH:high-impact news within 15 min"
+    # Condition 4: Current candle is a green/bullish candle (buyers returning)
+    if curr['close'] <= curr['open']:
+        return False
 
-    reason = (
-        f"TECH:OK RSI={rsi:.0f} body={body_size:.1f} "
-        f"ATR={atr:.1f} EMAgap={ema_sep_pct:.2f}% H1={h1_trend}"
+    # Condition 5: Dip must have lasted at least 2 candles (real pullback, not a spike)
+    if _dip_candles_below_h1 < 2:
+        return False
+
+    # Condition 6: RSI must be higher than the previous candle (momentum turning up)
+    prev_rsi = prev.get('RSI', 50)
+    if rsi <= prev_rsi:
+        return False
+
+    # Condition 7: Don't stack too many dip trades — max 1 open dip position
+    open_positions = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
+    if open_positions and len(open_positions) >= 2:
+        return False
+
+    logger.info(
+        f"🎯 DIP DETECTED: Price {current_price:.2f} below H1 EMA ({h1_ema_price:.2f}) "
+        f"| RSI recovering: {prev_rsi:.1f}→{rsi:.1f} "
+        f"| Candles below EMA: {_dip_candles_below_h1}"
     )
-    return True, reason
+    return True
+
 
 # ─── TRADE MANAGEMENT ────────────────────────────────────────
+
+def lock_profitable_trades():
+    positions = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
+    if not positions: return
+    for pos in positions:
+        point = mt5.symbol_info(SYMBOL).point
+        profit_pts = (pos.price_current - pos.price_open) / point if pos.type == 0 else (pos.price_open - pos.price_current) / point
+        if profit_pts > 100 and pos.sl != pos.price_open:
+            new_sl = pos.price_open + (10 * point) if pos.type == 0 else pos.price_open - (10 * point)
+            mt5.order_send({"action": mt5.TRADE_ACTION_SLTP, "position": pos.ticket, "sl": new_sl, "tp": pos.tp})
 
 def trail_stops():
     """Milestone Trail: Locks in profit in steps of 1,000."""
     STEP = 1000
     positions = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
-    if not positions:
-        return
+    if not positions: return
 
     for pos in positions:
         if pos.profit < STEP:
             continue
+
         num_steps    = int(pos.profit // STEP)
         lock_amount  = (num_steps - 1) * STEP
         symbol_info  = mt5.symbol_info(SYMBOL)
@@ -735,73 +620,71 @@ def trail_stops():
             target_sl = pos.price_open + price_offset
             if target_sl > pos.sl + (10 * symbol_info.point):
                 mt5.order_send({
-                    "action":   mt5.TRADE_ACTION_SLTP,
+                    "action": mt5.TRADE_ACTION_SLTP,
                     "position": pos.ticket,
-                    "sl":       target_sl,
-                    "tp":       pos.tp,
+                    "sl": target_sl,
+                    "tp": pos.tp
                 })
         elif pos.type == mt5.POSITION_TYPE_SELL:
             target_sl = pos.price_open - price_offset
             if pos.sl == 0 or target_sl < pos.sl - (10 * symbol_info.point):
                 mt5.order_send({
-                    "action":   mt5.TRADE_ACTION_SLTP,
+                    "action": mt5.TRADE_ACTION_SLTP,
                     "position": pos.ticket,
-                    "sl":       target_sl,
-                    "tp":       pos.tp,
+                    "sl": target_sl,
+                    "tp": pos.tp
                 })
 
-def close_on_profit_target(target: float = 1000.0):
-    """Close any position that hits the profit target."""
+def close_on_profit_target(target=1000):
+    """Surgical exit: Closes any trade that hits the 1,000 KES profit mark."""
     positions = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
     if not positions:
         return
+
     for pos in positions:
-        if pos.profit < target:
-            continue
-        tick        = mt5.symbol_info_tick(SYMBOL)
-        type_close  = mt5.ORDER_TYPE_SELL if pos.type == mt5.POSITION_TYPE_BUY else mt5.ORDER_TYPE_BUY
-        price_close = tick.bid if pos.type == mt5.POSITION_TYPE_BUY else tick.ask
-        res = mt5.order_send({
-            "action":        mt5.TRADE_ACTION_DEAL,
-            "position":      pos.ticket,
-            "symbol":        SYMBOL,
-            "volume":        pos.volume,
-            "type":          type_close,
-            "price":         price_close,
-            "magic":         MAGIC_NUMBER,
-            "type_time":     mt5.ORDER_TIME_GTC,
-            "type_filling":  mt5.ORDER_FILLING_IOC,
-        })
-        if res.retcode == mt5.TRADE_RETCODE_DONE:
-            logger.info(f"💰 TARGET: Closed #{pos.ticket} at profit {pos.profit:.2f}")
-        else:
-            logger.error(f"❌ Target close failed: {res.comment}")
+        if pos.profit >= target:
+            tick = mt5.symbol_info_tick(SYMBOL)
+            type_close  = mt5.ORDER_TYPE_SELL if pos.type == mt5.POSITION_TYPE_BUY else mt5.ORDER_TYPE_BUY
+            price_close = tick.bid if pos.type == mt5.POSITION_TYPE_BUY else tick.ask
+
+            request = {
+                "action":       mt5.TRADE_ACTION_DEAL,
+                "position":     pos.ticket,
+                "symbol":       SYMBOL,
+                "volume":       pos.volume,
+                "type":         type_close,
+                "price":        price_close,
+                "magic":        MAGIC_NUMBER,
+                "type_time":    mt5.ORDER_TIME_GTC,
+                "type_filling": mt5.ORDER_FILLING_IOC,
+            }
+            res = mt5.order_send(request)
+            if res.retcode == mt5.TRADE_RETCODE_DONE:
+                logger.info(f"💰 TARGET REACHED: Closed Ticket {pos.ticket} at {pos.profit:.2f} profit.")
+            else:
+                logger.error(f"❌ Target Close Failed: {res.comment}")
+
 
 # ─── MAIN ENGINE ─────────────────────────────────────────────
 
 def run_bot():
-    global _last_trade_time
-
     if not mt5.initialize(login=int(MT5_LOGIN), password=MT5_PASSWORD, server=MT5_SERVER):
         logger.error("❌ MT5 Init Failed")
         return
 
     logger.info("=" * 64)
-    logger.info("🔥 SCURO ACCUMULATOR — REBUILT")
-    logger.info(f"   Symbol: {SYMBOL} | Magic: {MAGIC_NUMBER}")
-    logger.info(f"   Daily loss limit: {DAILY_LOSS_LIMIT:+.2f}")
-    logger.info(f"   Max consecutive losses: {MAX_CONSECUTIVE_LOSSES}")
+    logger.info("🔥 SCURO ACCUMULATOR V3: DIP-HUNTER EDITION")
+    logger.info(f"   Symbol: {SYMBOL} | Lot: {_ADAPTIVE['accumulation_lot']} | Risk: Aggressive")
+    logger.info(f"   History file: {os.path.abspath(HISTORY_CSV)}")
+    logger.info(f"   Dip-buy logic: {'ENABLED ✅' if _ADAPTIVE.get('dip_enabled') else 'DISABLED ❌'}")
     logger.info("=" * 64)
 
-    # Initial sync and config load
-    logger.info("📥 Initial MT5 history sync...")
+    logger.info("📥 Syncing full MT5 trade history...")
     sync_mt5_history()
-    load_adaptive_config()
     print_summary_table()
 
-    last_min      = -1
-    last_summary  = -1
-    circuit_break_until = 0.0   # timestamp until circuit breaker expires
+    last_min     = -1
+    last_summary = -1
 
     while True:
         now   = datetime.now()
@@ -811,165 +694,123 @@ def run_bot():
             continue
 
         df = pd.DataFrame(rates)
-        # Use adaptive EMA periods
-        ema_fast_period = int(_ADAPTIVE['ema_fast'])
-        ema_slow_period = int(_ADAPTIVE['ema_slow'])
-        df['EMA_fast'] = ta.ema(df['close'], ema_fast_period)
-        df['EMA_slow'] = ta.ema(df['close'], ema_slow_period)
-        df['RSI']      = ta.rsi(df['close'], 14)
-        df['ATR']      = ta.atr(df['high'], df['low'], df['close'], 14)
+        df['EMA_5'] = ta.ema(df['close'], int(_ADAPTIVE['ema_fast']))
+        df['EMA_8'] = ta.ema(df['close'], int(_ADAPTIVE['ema_slow']))
+        df['RSI']   = ta.rsi(df['close'], 14)
+        df['ATR']   = ta.atr(df['high'], df['low'], df['close'], 14)
 
-        curr = df.iloc[-1]
+        curr, prev = df.iloc[-1], df.iloc[-2]
 
-        # Always manage open positions (profit targets + trailing stops)
-        close_on_profit_target(1000.0)
+        close_on_profit_target(1000)
         trail_stops()
+        sync_mt5_history()
 
-        # Once-per-minute tasks
+        summary_slot = (now.hour * 60 + now.minute) // SUMMARY_INTERVAL
+        if summary_slot != last_summary:
+            print_summary_table()
+            last_summary = summary_slot
+
         if now.minute != last_min:
-            # Hot-reload config from advisor
             load_adaptive_config()
 
-            # Sync MT5 history to CSV (diagnostic log)
-            sync_mt5_history()
+            # get_h1_context now returns BOTH trend direction AND EMA price
+            h1_trend, h1_ema_price = get_h1_context()
+            h4_trend = get_h4_context()
 
-            # Summary print
-            summary_slot = (now.hour * 60 + now.minute) // SUMMARY_INTERVAL
-            if summary_slot != last_summary:
-                print_summary_table()
-                last_summary = summary_slot
+            logger.info(
+                f"🔍 Scan: {SYMBOL} | Price: {curr['close']:.2f} | "
+                f"RSI: {curr['RSI']:.1f} | H1: {h1_trend} (EMA@{h1_ema_price:.2f} if known) | "
+                f"H4: {h4_trend} | {_budgeter.status_line()}"
+            )
 
-            # ── Circuit breaker checks ────────────────────────
-            trading_halted = False
+            signal      = "NONE"
+            signal_type = "TREND"
 
-            if time.time() < circuit_break_until:
-                remaining = (circuit_break_until - time.time()) / 60
-                logger.info(f"⏸️  Circuit breaker active — {remaining:.0f} min remaining")
-                trading_halted = True
+            # ── Standard trend signals ────────────────────────
+            if curr['EMA_5'] > curr['EMA_8'] and curr['RSI'] > _ADAPTIVE['rsi_buy_threshold']:
+                signal = "BUY"
+                signal_type = "TREND"
 
-            if not trading_halted and _ADAPTIVE.get('circuit_breaker_daily_loss_enabled', True) and check_daily_loss_circuit_breaker():
-                # Daily loss — halt until end of day
-                end_of_day = now.replace(hour=23, minute=59, second=59)
-                circuit_break_until = end_of_day.timestamp()
-                trading_halted = True
+            elif (curr['EMA_5'] < curr['EMA_8']
+                  and curr['RSI'] < _ADAPTIVE['rsi_sell_threshold']
+                  and h4_trend == "DOWN"):
+                signal = "SELL"
+                signal_type = "TREND"
 
-            if not trading_halted and _ADAPTIVE.get('circuit_breaker_consecutive_losses_enabled', True) and check_consecutive_loss_circuit_breaker():
-                # Consecutive losses — pause for cooldown_mins
-                pause_secs = _ADAPTIVE['cooldown_mins'] * 60
-                circuit_break_until = time.time() + pause_secs
-                trading_halted = True
+            elif curr['EMA_5'] < curr['EMA_8'] and curr['RSI'] < _ADAPTIVE['rsi_sell_threshold']:
+                logger.info(f"⛔ SELL signal suppressed — H4 is {h4_trend} (need DOWN)")
 
-            if not trading_halted:
-                # ── Cooldown check ────────────────────────────
-                mins_since_last = (time.time() - _last_trade_time) / 60
-                if _last_trade_time > 0 and mins_since_last < _ADAPTIVE['cooldown_mins']:
-                    remaining_cool = _ADAPTIVE['cooldown_mins'] - mins_since_last
-                    logger.info(f"⏱️  Cooldown: {remaining_cool:.0f} min remaining")
-                    trading_halted = True
+            # ── NEW: Dip-buy check (runs even when standard signals are NONE) ──
+            # In plain English: even if the 5-min chart looks bearish,
+            # check if we're in a golden "buy the pullback" scenario.
+            if signal == "NONE":
+                if check_dip_buy_signal(curr, prev, df, h1_trend, h4_trend, h1_ema_price):
+                    signal      = "BUY"
+                    signal_type = "DIP"
+                    logger.info("💧 Dip-buy signal activated — price pulled back into H1 uptrend zone")
 
-            if not trading_halted:
-                # ── Open position cap check ───────────────────
-                open_pos = mt5.positions_get(symbol=SYMBOL, magic=MAGIC_NUMBER)
-                open_count = len(open_pos) if open_pos else 0
-                if open_count >= _ADAPTIVE['max_open_positions']:
-                    logger.info(f"📊 Max positions reached ({open_count}/{int(_ADAPTIVE['max_open_positions'])}) — skipping signal")
-                    trading_halted = True
-
-            if not trading_halted:
-                # ── Signal generation ─────────────────────────
-                h1_trend = get_h1_context()
-                rsi_val  = curr['RSI']
-                rsi_buy  = _ADAPTIVE['rsi_buy_threshold']
-                rsi_sell = _ADAPTIVE['rsi_sell_threshold']
-
-                logger.info(
-                    f"🔍 {SYMBOL} | Price: {curr['close']:.2f} | RSI: {rsi_val:.1f} | "
-                    f"H1: {h1_trend} | EMA: {'↑' if curr['EMA_fast'] > curr['EMA_slow'] else '↓'} | "
-                    f"Streak: {count_consecutive_losses_current()}L"
+            if signal != "NONE":
+                news       = fetch_news()
+                chart_text = generate_chart_text_summary(df)
+                logger.info(f"📡 {signal} signal [{signal_type}] found. AI analysis...")
+                ok, reason = get_dual_ai_consensus(
+                    signal, curr['RSI'], curr['ATR'], h1_trend, h4_trend,
+                    news, chart_text, signal_type=signal_type
                 )
 
-                signal = "NONE"
-                ema_bull = curr['EMA_fast'] > curr['EMA_slow']
-                ema_bear = curr['EMA_fast'] < curr['EMA_slow']
+                if ok:
+                    term_info = mt5.terminal_info()
+                    if term_info and not term_info.trade_allowed:
+                        logger.error(
+                            "❌ AutoTrading DISABLED — click [AutoTrading] in MT5 toolbar."
+                        )
+                        last_min = now.minute
+                        time.sleep(1)
+                        continue
 
-                # Only trade WITH the H1 trend to avoid fighting the trend
-                if ema_bull and rsi_val > rsi_buy and h1_trend == "UP":
-                    signal = "BUY"
-                elif ema_bear and rsi_val < rsi_sell and h1_trend == "DOWN":
-                    signal = "SELL"
-                else:
-                    # Explain exactly why no signal — speeds up debugging
-                    no_sig_reasons = []
-                    if not ema_bull and not ema_bear:
-                        no_sig_reasons.append("EMA flat")
-                    elif ema_bull and h1_trend != "UP":
-                        no_sig_reasons.append(f"EMA↑ but H1={h1_trend} (need UP)")
-                    elif ema_bear and h1_trend != "DOWN":
-                        no_sig_reasons.append(f"EMA↓ but H1={h1_trend} (need DOWN)")
-                    if ema_bull and rsi_val <= rsi_buy:
-                        no_sig_reasons.append(f"RSI={rsi_val:.1f} <= buy threshold {rsi_buy}")
-                    if ema_bear and rsi_val >= rsi_sell:
-                        no_sig_reasons.append(f"RSI={rsi_val:.1f} >= sell threshold {rsi_sell}")
-                    logger.info(f"   ↳ No signal: {' | '.join(no_sig_reasons) if no_sig_reasons else 'conditions not met'}")
+                    tick    = mt5.symbol_info_tick(SYMBOL)
+                    price   = tick.ask if signal == "BUY" else tick.bid
 
-                if signal != "NONE":
-                    news = fetch_news()
-                    logger.info(f"📡 {signal} signal detected | Running technical gate...")
+                    # ── DIP trades get a tighter SL (we're counter-momentum on M5)
+                    # Standard trades use the normal ATR multiplier.
+                    sl_mult = (
+                        _ADAPTIVE['sl_atr_mult'] * 0.8   # 20% tighter SL for dip entries
+                        if signal_type == "DIP"
+                        else _ADAPTIVE['sl_atr_mult']
+                    )
+                    sl_dist = curr['ATR'] * sl_mult
+                    sl      = price - sl_dist if signal == "BUY" else price + sl_dist
+                    tp      = price + (sl_dist * _ADAPTIVE['reward_ratio']) if signal == "BUY" else price - (sl_dist * _ADAPTIVE['reward_ratio'])
 
-                    ok, reason = technical_confirmation(signal, df, h1_trend)
+                    req = {
+                        "action":       mt5.TRADE_ACTION_DEAL,
+                        "symbol":       SYMBOL,
+                        "volume":       _ADAPTIVE["accumulation_lot"],
+                        "type":         mt5.ORDER_TYPE_BUY if signal == "BUY" else mt5.ORDER_TYPE_SELL,
+                        "price":        price,
+                        "sl":           sl,
+                        "tp":           tp,
+                        "magic":        MAGIC_NUMBER,
+                        "type_time":    mt5.ORDER_TIME_GTC,
+                        "type_filling": mt5.ORDER_FILLING_IOC,
+                    }
+                    res = mt5.order_send(req)
 
-                    if ok:
-                        # AutoTrading guard
-                        term_info = mt5.terminal_info()
-                        if term_info and not term_info.trade_allowed:
-                            logger.error(
-                                "❌ AutoTrading DISABLED — enable in MT5 toolbar "
-                                "(Tools → Options → Expert Advisors)"
-                            )
-                            last_min = now.minute
-                            time.sleep(1)
-                            continue
-
-                        tick    = mt5.symbol_info_tick(SYMBOL)
-                        price   = tick.ask if signal == "BUY" else tick.bid
-                        sl_dist = curr['ATR'] * _ADAPTIVE['sl_atr_mult']
-                        sl      = price - sl_dist if signal == "BUY" else price + sl_dist
-                        tp      = (price + sl_dist * _ADAPTIVE['reward_ratio']
-                                   if signal == "BUY"
-                                   else price - sl_dist * _ADAPTIVE['reward_ratio'])
-
-                        res = mt5.order_send({
-                            "action":        mt5.TRADE_ACTION_DEAL,
-                            "symbol":        SYMBOL,
-                            "volume":        float(_ADAPTIVE["accumulation_lot"]),
-                            "type":          mt5.ORDER_TYPE_BUY if signal == "BUY" else mt5.ORDER_TYPE_SELL,
-                            "price":         price,
-                            "sl":            sl,
-                            "tp":            tp,
-                            "magic":         MAGIC_NUMBER,
-                            "type_time":     mt5.ORDER_TIME_GTC,
-                            "type_filling":  mt5.ORDER_FILLING_IOC,
-                        })
-
-                        if res.retcode == mt5.TRADE_RETCODE_DONE:
-                            _last_trade_time = time.time()
-                            logger.info(
-                                f"✅ TRADE PLACED: {signal} @ {price:.2f} | "
-                                f"SL: {sl:.2f} | TP: {tp:.2f} | AI: {reason}"
-                            )
-                            record_trade_open(
-                                ticket=res.order, signal=signal,
-                                price=price, sl=sl, tp=tp,
-                                rsi=rsi_val, h1_trend=h1_trend,
-                                news=news, ai_reason=reason,
-                            )
-                        else:
-                            logger.error(f"❌ Execution error: {res.comment}")
+                    if res.retcode == mt5.TRADE_RETCODE_DONE:
+                        logger.info(f"✅ TRADE PLACED: {signal} [{signal_type}] @ {price:.2f} | AI: {reason}")
+                        record_trade_open(
+                            ticket=res.order, signal=signal,
+                            price=price, sl=sl, tp=tp,
+                            rsi=curr['RSI'], h1_trend=h1_trend,
+                            news=news, ai_reason=reason,
+                            signal_type=signal_type,
+                        )
                     else:
-                        logger.info(f"⏭️  Technical gate rejected: {reason}")
+                        logger.error(f"❌ Execution Error: {res.comment}")
+                else:
+                    logger.info(f"⏭️  Rejected by AI: {reason}")
 
             last_min = now.minute
-
         time.sleep(1)
 
 if __name__ == "__main__":
